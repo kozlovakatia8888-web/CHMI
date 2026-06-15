@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопрос 05: Когнитивная нагрузка и закон Миллера</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f1a;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #e2e8f0;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #0f172a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #1e293b;
+        }
+
+        .nav-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #334155;
+        }
+
+        .nav-btn:hover {
+            background: #2d3a4f;
+            color: #f1f5f9;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .hero {
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .section {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid #1e293b;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #b9e2ff;
+            border-left: 3px solid #3b82f6;
+            padding-left: 0.8rem;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem;
+            color: #cbd5e1;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #1e293b;
+            vertical-align: top;
+        }
+
+        th {
+            background: #0a0f1a;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        td {
+            color: #cbd5e6;
+        }
+
+        .strategy-box {
+            background: #111827;
+            border-left: 4px solid #facc15;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+
+        .note {
+            background: #1e1b2e;
+            border-left: 3px solid #facc15;
+            padding: 0.8rem 1rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #1e293b;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
+            .nav-group { justify-content: space-between; }
+            .hero h1 { font-size: 1.5rem; }
+            .section h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q4.html" class="nav-btn">← Назад (вопрос 4)</a>
+        </div>
+        <a href="q6.html" class="nav-btn">Вперёд (вопрос 6) →</a>
+    </div>
+
+    <div class="hero">
+        <h1>🧠 Вопрос 5. Когнитивная нагрузка и закон Миллера</h1>
+        <p>Как не перегружать мозг пользователя: стратегии снижения умственной работы в интерфейсах.</p>
+    </div>
+
+    <!-- Типы когнитивной нагрузки -->
+    <div class="section">
+        <h2>🧩 Что такое когнитивная нагрузка (Cognitive Load)</h2>
+        <p>Когнитивная нагрузка — объём умственной работы, необходимой для использования интерфейса. По классификации Свеллера выделяют три типа:</p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Тип</th><th>Что означает</th><th>Пример в интерфейсе</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Внутренняя</strong></td><td>Сложность самой задачи (не зависит от интерфейса).</td><td>Перевести число из десятичной в двоичную систему — задача сложна сама по себе.</td></tr>
+                    <tr><td><strong>Внешняя</strong></td><td>Лишняя работа, навязываемая плохим интерфейсом.</td><td>Искать спрятанную кнопку сохранения, проходить лишние диалоги.</td></tr>
+                    <tr><td><strong>Сущностная (связанная с задачей)</strong></td><td>Необходимая умственная работа для освоения интерфейса.</td><td>Запомнить, что шестерёнка — это настройки, а корзина — удаление.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">🎯 <strong>Цель дизайнера</strong> — минимизировать <strong>внешнюю нагрузку</strong>, так как внутреннюю и сущностную полностью убрать невозможно.</div>
+    </div>
+
+    <!-- Закон Миллера -->
+    <div class="section">
+        <h2>🔢 Закон Миллера (7 ± 2)</h2>
+        <div class="strategy-box">
+            <p><strong>Формулировка:</strong> Количество объектов, которое человек может одновременно удерживать в рабочей памяти, составляет примерно <strong>7 ± 2</strong> (от 5 до 9).</p>
+        </div>
+        <p><strong>Как применяется в HCI?</strong></p>
+        <ul style="margin: 0.5rem 0 0 1.5rem;">
+            <li><strong>Главное меню</strong> — не более 5–7 пунктов. Если больше — группировать в подменю.</li>
+            <li><strong>Вкладки (tabs)</strong> — не более 5–7, дальше пользователь путается, нужен другой паттерн.</li>
+            <li><strong>Поля ввода на одной форме</strong> — не более 5–7 без разбивки на секции.</li>
+            <li><strong>Радио-кнопки и чекбоксы</strong> — если больше 7, использовать группировку или выпадающий список с поиском.</li>
+        </ul>
+        <div class="note">⚠️ <strong>Важно:</strong> Миллер не запрещает иметь 100 элементов на экране — главное, чтобы они были сгруппированы в «куски» по 5–7.</div>
+    </div>
+
+    <!-- Стратегии снижения нагрузки -->
+    <div class="section">
+        <h2>🛠️ Стратегии снижения когнитивной нагрузки</h2>
+
+        <h3>1. Группировка (Chunking)</h3>
+        <p>Объединяем несколько элементов в один мысленный «пакет». Вместо 12 полей — 3 группы.</p>
+        <div class="strategy-box">
+            📋 <strong>Пример:</strong> форма заказа — группы «Личные данные», «Адрес доставки», «Платёжные реквизиты».
+        </div>
+
+        <h3>2. Прогрессивное раскрытие (Progressive Disclosure)</h3>
+        <p>Сначала только основное, дополнительные опции — по кнопке «Расширенные настройки», «Подробнее».</p>
+        <div class="strategy-box">
+            🔍 <strong>Пример:</strong> поиск Google — сначала одно поле; кнопка «Настройки» открывает язык, регион, фильтры.
+        </div>
+
+        <h3>3. Узнавание, а не воспоминание (Recognition over Recall)</h3>
+        <p>Проще <strong>узнать</strong> правильный вариант среди предложенных, чем <strong>вспомнить</strong> самому.</p>
+        <div class="strategy-box">
+            📞 <strong>Пример:</strong> вместо пустого поля «Введите код города» — выпадающий список с поиском.
+        </div>
+
+        <h3>4. Стандартные паттерны и аффордансы</h3>
+        <p>Если элемент выглядит как кнопка — он должен быть кнопкой. Лупа → поиск, корзина → удаление.</p>
+
+        <h3>5. Сокращение числа шагов в сценарии</h3>
+        <p>Каждый лишний клик или подтверждение — когнитивная нагрузка. Не спрашивайте «Вы уверены?» для обратимых действий.</p>
+
+        <h3>6. Визуальная иерархия и упрощение</h3>
+        <p>Меньше шума — меньше отвлекающих факторов. Достаточная контрастность, отказ от лишних рамок и теней.</p>
+
+        <h3>7. Автоматизация вычислений и предиктивный ввод</h3>
+        <p>Не заставляйте пользователя делать то, что может сделать программа.</p>
+        <div class="strategy-box">
+            🌡️ <strong>Пример:</strong> конвертер валют с результатом сразу при вводе, автозаполнение адреса по индексу.
+        </div>
+    </div>
+
+    <!-- Итоговая таблица -->
+    <div class="section">
+        <h2>📌 Итог для экзамена</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Понятие</th><th>Суть</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Когнитивная нагрузка</strong></td><td>Объём умственной работы. Внешняя — вызвана плохим интерфейсом, её нужно снижать.</td></tr>
+                    <tr><td><strong>Закон Миллера (7±2)</strong></td><td>Рабочая память удерживает 5–9 несвязанных элементов → группируйте.</td></tr>
+                    <tr><td><strong>Группировка (Chunking)</strong></td><td>Объединение полей в логические блоки (3×5 вместо 15 полей).</td></tr>
+                    <tr><td><strong>Прогрессивное раскрытие</strong></td><td>Основные опции видны, расширенные — по требованию.</td></tr>
+                    <tr><td><strong>Узнавание vs воспоминание</strong></td><td>Предлагайте выбрать из списка, а не вводить по памяти.</td></tr>
+                    <tr><td><strong>Другие стратегии</strong></td><td>Стандартные паттерны, сокращение шагов, визуальная иерархия, автоматизация.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">💡 <strong>Главный принцип:</strong> проектируйте так, чтобы пользователю не приходилось «держать в голове» лишнего — интерфейс должен напоминать, подсказывать, группировать и упрощать.</div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q4.html" class="nav-btn">← Назад (вопрос 4)</a>
+        </div>
+        <a href="q6.html" class="nav-btn">Вперёд (вопрос 6) →</a>
+    </div>
+
+
+    <footer>
+        Вопрос 05 · Когнитивная нагрузка и закон Миллера · HCI Экзамен
+    </footer>
+</div>
+</body>
+</html>

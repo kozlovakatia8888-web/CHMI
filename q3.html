@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопрос 03: Закон Фиттса и закон Хика</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f1a;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #e2e8f0;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #0f172a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #1e293b;
+        }
+
+        .nav-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #334155;
+        }
+
+        .nav-btn:hover {
+            background: #2d3a4f;
+            color: #f1f5f9;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .hero {
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .section {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid #1e293b;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #b9e2ff;
+            border-left: 3px solid #3b82f6;
+            padding-left: 0.8rem;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem;
+            color: #cbd5e1;
+        }
+
+        .law-box {
+            background: #111827;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border-left: 4px solid #facc15;
+        }
+
+        .formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            background: #020617;
+            padding: 0.5rem 0.8rem;
+            border-radius: 0.6rem;
+            display: inline-block;
+            margin: 0.5rem 0;
+            color: #a5f3c3;
+        }
+
+        .code-block {
+            background: #020617;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #a5f3c3;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        th {
+            background: #0a0f1a;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        td {
+            color: #cbd5e6;
+        }
+
+        .note {
+            background: #1e1b2e;
+            border-left: 3px solid #facc15;
+            padding: 0.8rem 1rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .mistakes {
+            background: #1e293b;
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #1e293b;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
+            .nav-group { justify-content: space-between; }
+            .hero h1 { font-size: 1.5rem; }
+            .section h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q2.html" class="nav-btn">← Назад (вопрос 2)</a>
+        </div>
+        <a href="q4.html" class="nav-btn">Вперёд (вопрос 4) →</a>
+    </div>
+
+    <div class="hero">
+        <h1>📏 Вопрос 3. Количественные методы в HCI</h1>
+        <p>Закон Фиттса и закон Хика — математическая основа для проектирования удобных интерфейсов.</p>
+    </div>
+
+    <!-- Закон Фиттса -->
+    <div class="section">
+        <h2>📐 Закон Фиттса (Fitts’s law)</h2>
+        <div class="law-box">
+            <p><strong>Формулировка:</strong> Время, необходимое для быстрого перемещения указателя к цели, зависит от расстояния до цели и от её размера. Чем дальше цель и чем она меньше — тем дольше.</p>
+            <div class="formula">T = a + b · log₂(D / W + 1)</div>
+            <ul style="margin: 0.5rem 0 0 1.2rem;">
+                <li><code>T</code> — среднее время достижения цели</li>
+                <li><code>D</code> — расстояние от стартовой точки до центра цели</li>
+                <li><code>W</code> — ширина цели в направлении движения</li>
+                <li><code>a, b</code> — эмпирические константы (зависят от устройства ввода)</li>
+            </ul>
+            <p style="margin-top: 0.5rem;"><strong>Суть:</strong> логарифмическая зависимость — увеличение расстояния в 2 раза увеличивает время не в 2 раза, а на константу. Основной вклад вносит соотношение <code>D/W</code>.</p>
+        </div>
+
+        <h3>📌 Как применяется для оптимизации интерфейсов?</h3>
+        <ul style="margin: 0.5rem 0 0 1.5rem;">
+            <li><strong>Делайте важные кнопки крупнее</strong> — размер цели <code>W</code> в знаменателе даёт прямое влияние на скорость.</li>
+            <li><strong>Уменьшайте расстояние <code>D</code></strong> — помещайте частые действия рядом с типичной позицией курсора (контекстные меню под курсором, фиксированные панели).</li>
+            <li><strong>Используйте края экрана</strong> — в десктопе курсор останавливается на границе, поэтому углы имеют «бесконечный» размер (кнопка «Пуск», системные иконки).</li>
+            <li><strong>Мобильные интерфейсы</strong> — минимальный размер цели ≈ 44×44 pt, нижняя часть экрана ближе к большому пальцу.</li>
+        </ul>
+        <div class="note">⚠️ <strong>Ошибка по Фиттсу:</strong> плавающая кнопка действия (FAB) в вебе — далеко от курсора и маленькая; узкие выпадающие меню.</div>
+    </div>
+
+    <!-- Закон Хика -->
+    <div class="section">
+        <h2>⏱️ Закон Хика (Hick–Hyman law)</h2>
+        <div class="law-box">
+            <p><strong>Формулировка:</strong> Время принятия решения (выбора из нескольких вариантов) растёт логарифмически с увеличением количества альтернатив.</p>
+            <div class="formula">RT = a + b · log₂(n + 1)</div>
+            <ul style="margin: 0.5rem 0 0 1.2rem;">
+                <li><code>RT</code> — время реакции (выбора)</li>
+                <li><code>n</code> — количество равновероятных альтернатив</li>
+                <li><code>+1</code> — учитывает опцию «не выбирать ничего»</li>
+            </ul>
+            <p style="margin-top: 0.5rem;"><strong>Суть:</strong> переход от 2 к 4 вариантам увеличивает время на константу, от 4 к 8 — на такую же. 8 вариантов не в 4 раза дольше, чем 2, а на небольшой процент.</p>
+        </div>
+
+        <h3>📌 Как применяется для оптимизации интерфейсов?</h3>
+        <ul style="margin: 0.5rem 0 0 1.5rem;">
+            <li><strong>Уменьшайте количество вариантов в каждом решении</strong> — не более 5-7 основных пунктов меню.</li>
+            <li><strong>Прогрессивное раскрытие</strong> — сначала показывайте 2-3 главных выбора, остальное — за дополнительной кнопкой.</li>
+            <li><strong>Категоризация и иерархия</strong> — разбивайте длинные списки на группы (настройки телефона: «Звук», «Экран», «Уведомления»).</li>
+            <li><strong>Используйте стандартные паттерны</strong> — память снижает время выбора (Файл → Сохранить).</li>
+        </ul>
+    </div>
+
+    <!-- Совместное применение на примере меню -->
+    <div class="section">
+        <h2>🧩 Совместное применение: пример меню интернет-магазина</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Без учёта законов</th><th>С учётом законов</th></tr></thead>
+                <tbody>
+                    <tr><td>20 пунктов меню горизонтально (много вариантов — Хик)</td><td>Группировка: 5 категорий (Одежда, Обувь, Аксессуары, Бренды, Распродажа)</td></tr>
+                    <tr><td>Узкие кнопки высотой 20px (маленький размер цели — Фиттс)</td><td>Пункты меню высотой 44px, с отступами</td></tr>
+                    <tr><td>Меню в левом верхнем углу, курсор в центре (большое D)</td><td>Фиксированное меню при скролле или дублирование важных действий в правом нижнем углу</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Частые ошибки -->
+    <div class="section">
+        <h2>🚫 Частые ошибки проектирования</h2>
+        <div class="mistakes">
+            <ul style="margin-left: 1.5rem;">
+                <li>Слишком маленькие интерактивные элементы (ссылки 12px, чекбоксы без увеличенной области).</li>
+                <li>Длинные плоские списки без группировки.</li>
+                <li>Кнопка действия далеко от места работы пользователя (например, «Применить фильтр» вверху, а фильтры внизу).</li>
+                <li>Скрытые жесты без видимых альтернатив — пользователь не может выбрать, так как не знает о жесте.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Итоговая таблица -->
+    <div class="section">
+        <h2>📌 Итог для экзамена</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Закон</th><th>Формула (упрощённо)</th><th>Применение</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Фиттс</strong></td><td><code>T = a + b·log₂(D/W+1)</code></td><td>Крупные и близкие кнопки; края экрана; сокращение расстояния мыши/пальца.</td></tr>
+                    <tr><td><strong>Хика</strong></td><td><code>RT = a + b·log₂(n+1)</code></td><td>Группировка, прогрессивное раскрытие, не более 5-7 равноправных вариантов.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">💡 <strong>Золотое правило связки:</strong> сначала уменьши <code>n</code> (Хик), чтобы пользователь быстро решил, <em>что</em> делать. Потом уменьши <code>D</code> и увеличь <code>W</code> (Фиттс), чтобы он быстро <em>сделал</em> это.</div>
+    </div>
+
+
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q2.html" class="nav-btn">← Назад (вопрос 2)</a>
+        </div>
+        <a href="q4.html" class="nav-btn">Вперёд (вопрос 4) →</a>
+    </div>
+
+    <footer>
+        Вопрос 03 · Закон Фиттса и закон Хика · HCI Экзамен
+    </footer>
+</div>
+</body>
+</html>

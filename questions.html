@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Человекомашинные интерфейсы | Экзамен</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a0a1a, #010101);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            color: #f0f3fa;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        /* анимированный фон */
+        .cyber-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                repeating-linear-gradient(45deg, rgba(0, 255, 255, 0.02) 0px, rgba(0, 255, 255, 0.02) 2px, transparent 2px, transparent 8px),
+                radial-gradient(ellipse at 70% 30%, rgba(255, 0, 255, 0.1), transparent 60%);
+            animation: slowDrift 20s infinite alternate;
+        }
+
+        @keyframes slowDrift {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
+            100% { transform: scale(1.2) translate(-2%, -3%); opacity: 1; }
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* шапка с неоном */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 1rem;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0, 255, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, #ff00cc, #00ffff, #ffcc00);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 4s ease infinite;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 10px rgba(0,255,255,0.3);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero p {
+            margin-top: 0.8rem;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            border: 1px solid cyan;
+        }
+
+        /* сетка карточек */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.8rem;
+        }
+
+        /* карточка вопроса */
+        .question-card {
+            background: rgba(15, 25, 45, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.6, 1.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .question-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: #0ff;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), 0 10px 25px -5px black;
+            background: rgba(20, 32, 55, 0.85);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #0ff;
+            padding-left: 0.8rem;
+        }
+
+        .q-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0ff;
+            text-shadow: 0 0 5px cyan;
+        }
+
+        .q-tag {
+            font-size: 0.7rem;
+            background: #0ff20a;
+            background: linear-gradient(95deg, #0ff, #f0f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            font-size: 0.98rem;
+            line-height: 1.4;
+            color: #eef5ff;
+        }
+
+        /* ссылка — весь блок кликабельный? Нет, кнопка */
+        .question-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(0, 255, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #0ff;
+            border: 1px solid rgba(0,255,255,0.5);
+            transition: 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .question-link:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 15px #0ff;
+            gap: 1rem;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 1.5rem;
+            border-top: 1px dashed cyan;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 760px) {
+            .hero h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="cyber-bg"></div>
+<div class="container">
+    <div class="hero">
+        <h1>🧠 ЧЕЛОВЕКО-МАШИННЫЕ ИНТЕРФЕЙСЫ 🧠</h1>
+        <p> 20 вопросов к экзамену <br> кликни по кнопке — перейдёшь на страницу с ответом</p>
+    </div>
+
+    <div class="grid">
+        <!-- 1 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">01</span><span class="q-tag">ARCH</span></div>
+            <div class="question-text">Архитектурные парадигмы веб-фронтенда: MPA, SPA, SSR, SSG. Различия рендеринга, SEO, TTI.</div>
+            <a href="q1.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 2 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">02</span><span class="q-tag">DOM</span></div>
+            <div class="question-text">Модель DOM и события: фазы захвата/всплытия, делегирование событий — суть и задачи.</div>
+            <a href="q2.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 3 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">03</span><span class="q-tag">HCI LAWS</span></div>
+            <div class="question-text">Закон Фиттса и закон Хика. Применение в UI для меню и интерактивных элементов.</div>
+            <a href="q3.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 4 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">04</span><span class="q-tag">GOMS/KLM</span></div>
+            <div class="question-text">Модель GOMS и KLM: сравнение альтернативных дизайнов на примере конвертера температур.</div>
+            <a href="q4.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 5 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">05</span><span class="q-tag">COGNITIVE</span></div>
+            <div class="question-text">Когнитивная нагрузка, закон Миллера 7±2, стратегии снижения: группировка, прогрессивное раскрытие.</div>
+            <a href="q5.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 6 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">06</span><span class="q-tag">USABILITY</span></div>
+            <div class="question-text">Критерии юзабилити: скорость, ошибки, обучение, удовлетворение. SUS, SEQ методы измерения.</div>
+            <a href="q6.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 7 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">07</span><span class="q-tag">ORM</span></div>
+            <div class="question-text">Object‑relational impedance mismatch. ORM: Hibernate, SQLAlchemy. Антипаттерны N+1, божественная сущность.</div>
+            <a href="q7.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 8 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">08</span><span class="q-tag">SERIALIZATION</span></div>
+            <div class="question-text">Сравнение Java Serialization / Python pickle vs XML/JSON. Недостатки бинарной и текстовой сериализации.</div>
+            <a href="q8.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 9 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">09</span><span class="q-tag">AUTH</span></div>
+            <div class="question-text">Идентификация, аутентификация, авторизация. Сессии (stateful) vs JWT (stateless): плюсы/минусы.</div>
+            <a href="q9.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 10 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">10</span><span class="q-tag">OAUTH2</span></div>
+            <div class="question-text">OAuth 2.0: роли, Authorization Code Flow. Решаемая проблема безопасности.</div>
+            <a href="q10.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 11 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">11</span><span class="q-tag">OPENAPI</span></div>
+            <div class="question-text">Спецификация OpenAPI и экосистема Swagger: Editor, UI, Codegen.</div>
+            <a href="q11.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 12 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">12</span><span class="q-tag">API PROTOCOLS</span></div>
+            <div class="question-text">REST vs GraphQL vs gRPC: сильные стороны, слабости, сценарии.</div>
+            <a href="q12.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 13 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">13</span><span class="q-tag">DESIGN SYS</span></div>
+            <div class="question-text">Дизайн-системы (Material, HIG). WCAG: контрастность, скринридеры, клавиатура.</div>
+            <a href="q13.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 14 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">14</span><span class="q-tag">COMPOSITION</span></div>
+            <div class="question-text">Законы композиции: целостность, доминанта, уравновешенность. Правило 60‑30‑10 для цвета.</div>
+            <a href="q14.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 15 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">15</span><span class="q-tag">ISLANDS/RSC</span></div>
+            <div class="question-text">Islands Architecture и React Server Components: решение проблем производительности SPA.</div>
+            <a href="q15.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 16 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">16</span><span class="q-tag">SECURITY</span></div>
+            <div class="question-text">XSS, CSRF, SQL‑инъекции. Защита: экранирование, CSRF‑токены.</div>
+            <a href="q16.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 17 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">17</span><span class="q-tag">MICROFRONTEND</span></div>
+            <div class="question-text">Микрофронтенды: iframe, Web Components, Module Federation. Проблемы и цели.</div>
+            <a href="q17.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 18 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">18</span><span class="q-tag">BACKEND TOOLS</span></div>
+            <div class="question-text">Middleware и pipeline. Внедрение зависимостей (DI) для тестируемости.</div>
+            <a href="q18.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 19 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">19</span><span class="q-tag">TYPOGRAPHY</span></div>
+            <div class="question-text">Типы шрифтов (serif, sans‑serif, моно). Параметры читаемости.</div>
+            <a href="q19.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+        <!-- 20 -->
+        <div class="question-card">
+            <div class="card-header"><span class="q-num">20</span><span class="q-tag">PERCEPTION</span></div>
+            <div class="question-text">F‑образный паттерн сканирования, эффект последовательной позиции. Влияние на навигацию.</div>
+            <a href="q20.html" class="question-link">📖 Перейти к ответу →</a>
+        </div>
+    </div>
+    <div class="footer">
+        💀 Кликай на кнопки — откроются страницы с ответами. <br>
+        Если они пустые, значит ответ еще не написан, но мы над этим работаем.
+    </div>
+</div>
+</body>
+</html>
