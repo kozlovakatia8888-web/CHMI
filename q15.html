@@ -5,334 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вопрос 15: Islands Architecture и React Server Components</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0b0f1a;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            color: #e2e8f0;
-            line-height: 1.5;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            background: #0f172a;
-            padding: 0.8rem 1.2rem;
-            border-radius: 60px;
-            border: 1px solid #1e293b;
-        }
-
-        .nav-btn {
-            background: #1e293b;
-            color: #94a3b8;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid #334155;
-        }
-
-        .nav-btn:hover {
-            background: #2d3a4f;
-            color: #f1f5f9;
-            border-color: #3b82f6;
-            transform: translateY(-2px);
-        }
-
-        .nav-group {
-            display: flex;
-            gap: 0.8rem;
-        }
-
-        .hero {
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-            padding-left: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            color: #94a3b8;
-            font-size: 1rem;
-        }
-
-        .section {
-            background: #0f172a;
-            border-radius: 1.2rem;
-            padding: 1.5rem;
-            margin: 1.8rem 0;
-            border: 1px solid #1e293b;
-        }
-
-        .section h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #b9e2ff;
-            border-left: 3px solid #3b82f6;
-            padding-left: 0.8rem;
-        }
-
-        .section h3 {
-            font-size: 1.2rem;
-            margin: 1rem 0 0.6rem;
-            color: #cbd5e1;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        th, td {
-            padding: 0.7rem 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid #1e293b;
-            vertical-align: top;
-        }
-
-        th {
-            background: #0a0f1a;
-            color: #f1f5f9;
-            font-weight: 600;
-        }
-
-        td {
-            color: #cbd5e6;
-        }
-
-        .code-block {
-            background: #020617;
-            padding: 1rem;
-            border-radius: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: #a5f3c3;
-            overflow-x: auto;
-            margin: 1rem 0;
-            white-space: pre-wrap;
-        }
-
-        .note {
-            background: #1e1b2e;
-            border-left: 3px solid #facc15;
-            padding: 0.8rem 1rem;
-            border-radius: 0.8rem;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        .example-box {
-            background: #111827;
-            border-left: 4px solid #facc15;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin: 1rem 0;
-        }
-
-        footer {
-            margin-top: 2.5rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #5b6e8c;
-            border-top: 1px solid #1e293b;
-            padding-top: 1.5rem;
-        }
-
-        @media (max-width: 700px) {
-            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
-            .nav-group { justify-content: space-between; }
-            .hero h1 { font-size: 1.5rem; }
-            .section h2 { font-size: 1.2rem; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.5; padding: 2rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: #0f172a; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #1e293b; }
+        .nav-btn { background: #1e293b; color: #94a3b8; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #334155; }
+        .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
+        .nav-group { display: flex; gap: 0.8rem; }
+        .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
+        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
+        .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
+        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
+        th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
+        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
+        .quiz-question { background: #111827; border-radius: 1rem; padding: 1rem; margin-bottom: 1.2rem; border: 1px solid #2d3a4f; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
+        .quiz-option input { accent-color: #3b82f6; }
+        .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
+        .quiz-feedback.correct { background: #14532d; color: #86efac; }
+        .quiz-feedback.wrong { background: #7f1d1d; color: #fca5a5; }
+        .quiz-submit { background: #3b82f6; border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+        .quiz-submit:hover { background: #2563eb; }
+        footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- Навигация -->
     <div class="nav-bar">
         <div class="nav-group">
-            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="index.html" class="nav-btn">🏠 На главную</a>
             <a href="q14.html" class="nav-btn">← Назад (вопрос 14)</a>
         </div>
         <a href="q16.html" class="nav-btn">Вперёд (вопрос 16) →</a>
     </div>
-
     <div class="hero">
-        <h1>🏝️ Вопрос 15. Современные архитектурные паттерны фронтенда</h1>
-        <p>Islands Architecture и React Server Components (RSC) — как они решают проблемы производительности классических SPA.</p>
+        <h1>🏝️ Современные архитектурные паттерны фронтенда: Islands Architecture и React Server Components (RSC)</h1>
+        <p>Как решают проблемы производительности классических SPA: тяжёлый бандл, долгий TTI, плохой SEO.</p>
     </div>
 
-    <!-- Islands Architecture -->
     <div class="section">
-        <h2>🏝️ Архитектура «Изолированные острова» (Islands Architecture)</h2>
-        <p><strong>Суть:</strong> Страница генерируется как статический HTML (SSG/SSR) без JS по умолчанию. Внутри «океана» статики выделяются отдельные <strong>острова</strong> — интерактивные компоненты, которые загружают свой JS независимо. Каждый остров гидратируется сам по себе.</p>
-        <div class="code-block">
-// Пример в Astro: компонент-остров с директивой client:load
----
+        <h2>Islands Architecture (на примере Astro)</h2>
+        <p>Статический HTML по умолчанию + изолированные интерактивные "острова", каждый со своим JS. Острова загружаются независимо (client:load, client:idle, client:visible).</p>
+        <div class="code-block">---
 import Carousel from '../components/Carousel.jsx';
 ---
-&lt;div&gt;Статический контент, не требующий JS&lt;/div&gt;
-&lt;Carousel client:load /&gt;   &lt;!-- JS подгрузится только для карусели --&gt;
-        </div>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Проблема SPA</th><th>Решение Islands</th></tr></thead>
-                <tbody>
-                    <tr><td>Тяжёлый бандл при первом заходе</td><td>Первый ответ — чистый HTML. JS грузится точечно, только для виджетов.</td>
-                    <tr>
-                    <tr><td>Долгая гидратация всей страницы</td><td>Нет глобальной гидратации. Каждый остров независим.</td>
-                    </tr>
-                    <tr><td>SEO</td><td>Отличное — робот получает полный HTML.</td>
-                    </tr>
-                    <tr><td>Производительность на слабых устройствах</td><td>Только минимальный JS, не качает гигантский бандл.</td>
-                    </tr>
-                    <tr><td>TTI</td><td>Статика видна мгновенно, интерактив приходит позже, но не блокирует.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="note">🎯 <strong>Идеальный сценарий:</strong> контентные сайты, блоги, интернет-магазины, документация — где интерактива мало, но важны скорость и SEO.</div>
-        <div class="example-box">
-            <strong>Ограничения:</strong> сложнее глобальное состояние, общение между островами (через события/шину), не подходит для приложений с интенсивным взаимодействием (Figma, Google Docs).
-        </div>
+&lt;div&gt;Статический контент&lt;/div&gt;
+&lt;Carousel client:load /&gt;   &lt;!-- JS только для карусели --&gt;</div>
+        <ul>
+            <li>✅ Мгновенный TTV, отличное SEO, точечная гидратация.</li>
+            <li>✅ Нет глобального JS-бандла.</li>
+            <li>❌ Сложная коммуникация между островами, не подходит для сложных SPA.</li>
+        </ul>
     </div>
 
-    <!-- React Server Components -->
     <div class="section">
-        <h2>⚛️ React Server Components (RSC)</h2>
-        <p><strong>Суть:</strong> Расширение модели React. Компоненты делятся на:</p>
-        <ul><li><strong>Client Components</strong> — обычные React-компоненты с состоянием, хуками, DOM.</li>
-        <li><strong>Server Components</strong> — выполняются только на сервере, никогда не отправляют свой код в браузер. Могут быть асинхронными, напрямую ходить в БД, читать файлы. В браузер приходит только результат рендера.</li></ul>
-        <div class="code-block">
-// ServerComponent.js (нет 'use client')
+        <h2>React Server Components (RSC)</h2>
+        <p>Компоненты делятся на серверные (выполняются на сервере, без JS в браузере) и клиентские ('use client'). Серверные компоненты могут быть асинхронными, напрямую ходить в БД.</p>
+        <div class="code-block">// ServerComponent.js
 import { db } from '@/db';
 import ClientCounter from './ClientCounter';
 
 export default async function ServerComponent() {
   const users = await db.user.findMany();
-  return (
-    &lt;div&gt;
-      {users.map(user => &lt;div&gt;{user.name}&lt;/div&gt;)}
-      &lt;ClientCounter initialCount={users.length} /&gt;
-    &lt;/div&gt;
-  );
-}
-        </div>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Проблема</th><th>Решение RSC</th></tr></thead>
-                <tbody>
-                    <tr><td>Загрузка ненужного JS</td><td>Серверные компоненты не добавляют JS в бандл.</td>
-                    </tr>
-                    <tr><td>Проблема N+1 запросов на клиенте</td><td>Серверный компонент выполняет запросы к БД, отдаёт готовые данные.</td>
-                    </tr>
-                    <tr><td>Лишние API-слои</td><td>Прямой доступ к БД из компонента, убирается «водопровод».</td>
-                    </tr>
-                    <tr>
-        
-                        <td>Hydration mismatch и задержка TTI</td><td>Серверные компоненты не гидратируются, клиентских меньше.</td>
-                    </tr>
-                    <tr><td>Размер бандла</td><td>Серверные зависимости (БД, файловая система) не попадают в браузер.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="note">🎯 <strong>Идеальный сценарий:</strong> сложные React-приложения с серверной логикой и интерактивом (e‑commerce, дашборды, CRM, соцсети).</div>
-        <div class="example-box">
-            <strong>Ограничения:</strong> серверные компоненты не используют хуки и браузерные API; требуют фреймворк (Next.js App Router, React 19); сложность потокового рендеринга.
-        </div>
+  return &lt;div&gt;{users.map(u => &lt;div&gt;{u.name}&lt;/div&gt;)}&lt;ClientCounter /&gt;&lt;/div&gt;;
+}</div>
+        <ul>
+            <li>✅ Серверный код не попадает в бандл, отличная производительность, прямая работа с БД.</li>
+            <li>✅ Постепенная миграция, стриминг (Suspense).</li>
+            <li>❌ Требует фреймворка (Next.js App Router), серверные компоненты не имеют хуков/состояния.</li>
+        </ul>
     </div>
 
-    <!-- Сравнение Islands и RSC -->
     <div class="section">
-        <h2>🆚 Сравнение Islands Architecture и RSC</h2>
+        <h2>Сравнение Islands и RSC</h2>
         <div class="table-wrapper">
             <table>
-                <thead></td><th>Характеристика</th><th>Islands (Astro)</th><th>RSC (Next.js, React 19)</th></tr>
-                </thead>
+                <thead><tr><th>Характеристика</th><th>Islands (Astro)</th><th>RSC (Next.js)</th></tr></thead>
                 <tbody>
-                    <tr><td>По умолчанию статика</td><td>Да, почти всё статический HTML.</td><td>Нет, серверные компоненты рендерятся динамически (можно сочетать с SSG).</td>
-                    </tr>
-                    <tr><td>Маркировка островов/клиентских</td><td><code>client:load</code></td><td><code>'use client'</code></td>
-                    </tr>
-                    <tr><td>Глобальное состояние</td><td>Через события или внешние сторы.</td><td>Контекст работает только внутри клиентского дерева.</td>
-                    </tr>
-                    <tr><td>Серверная логика</td><td>API-маршруты, но не из компонентов напрямую.</td><td>Прямые запросы к БД, файлам из серверных компонентов.</td>
-                    </tr>
-                    <tr><td>Навигация после загрузки</td><td>Обычно полная перезагрузка (MPA-стиль).</td><td>Клиентская навигация (SPA-подобно) с предзагрузкой.</td>
-                    </tr>
-                    <tr><td>Экосистема</td><td>Astro, возможны другие.</td><td>React-экосистема, Next.js лидирует.</td>
-                    </tr>
+                    <tr><td>Статика по умолчанию</td><td>Да</td><td>Нет (динамика + SSG опционально)</td></tr>
+                    <tr><td>Маркировка интерактива</td><td>client:load</td><td>'use client'</td></tr>
+                    <tr><td>Серверная логика</td><td>API-маршруты</td><td>Прямые запросы из компонентов</td></tr>
+                    <tr><td>Навигация</td><td>MPA-стиль (перезагрузка)</td><td>SPA-подобная (клиентский роутинг)</td></tr>
                 </tbody>
             </table>
         </div>
+        <div class="note">🎯 Вывод: оба паттерна отказываются от монолитного JS, перенося рендер на сервер. Islands — для контентных сайтов, RSC — для сложных React-приложений с серверной логикой.</div>
     </div>
 
-    <!-- Итог для экзамена -->
+    <!-- ТЕСТ -->
     <div class="section">
-        <h2>📌 Итог для экзамена (тезисы)</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Паттерн</th><th>Суть</th><th>Какие проблемы решает</th><th>Когда применять</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>Islands Architecture</strong></td><td>Статический HTML + изолированные интерактивные виджеты, каждый со своим JS.</td><td>Тяжёлый бандл, долгий TTI, проблемы SEO из-за JS.</td><td>Контентные сайты (блоги, документация, каталоги).</td>
-                    </tr>
-                    <tr><td><strong>React Server Components</strong></td><td>Серверные компоненты (без JS в браузере) + клиентские.</td><td>Ненужный JS, избыточные API-запросы, водопровод данных, большая гидратация.</td><td>Сложные React-приложения с серверной логикой (e‑commerce, дашборды, соцсети).</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="note">💡 <strong>Главный вывод:</strong> оба паттерна отказываются от монолитного клиентского JS и переносят рендер/логику на сервер. Islands делают это просто и жёстко, RSC — глубоко интегрированно в React, позволяя смешивать серверный и клиентский код. Оба значительно улучшают производительность по сравнению с классической SPA.</div>
+        <h2>📝 Тест: Islands Architecture и RSC</h2>
+        <div id="quiz-container"></div>
+        <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
+        <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
-
-    <!-- Навигация -->
-    <div class="nav-bar">
-        <div class="nav-group">
-            <a href="questions.html" class="nav-btn">🏠 На главную</a>
-            <a href="q14.html" class="nav-btn">← Назад (вопрос 14)</a>
-        </div>
-        <a href="q16.html" class="nav-btn">Вперёд (вопрос 16) →</a>
-    </div>
-
-    <footer>
-        Вопрос 15 · Islands Architecture и React Server Components · HCI Экзамен
-    </footer>
+    <footer>Вопрос 15 · Islands Architecture и RSC · HCI Экзамен</footer>
 </div>
+<script>
+    const quizData = [
+        { question: "Какой паттерн предполагает статический HTML с изолированными интерактивными виджетами?", options: ["SPA", "SSR", "Islands Architecture", "CSR"], correct: [2] },
+        { question: "Что такое гидратация (hydration) в контексте RSC?", options: ["Процесс загрузки CSS", "Оживление статического HTML клиентским JS", "Сборка проекта", "Кеширование данных"], correct: [1] },
+        { question: "Как в Astro обозначается компонент, который должен загрузить свой JS?", options: ["client:load", "use client", "hydrate", "async"], correct: [0] },
+        { question: "Какое преимущество дают React Server Components?", options: ["Возможность использовать хуки", "Серверный код не попадает в клиентский бандл", "Встроенное кеширование", "Автоматическая типизация"], correct: [1] },
+        { question: "Для какого типа сайтов лучше всего подходит Islands Architecture?", options: ["Онлайн-редактор", "Дашборд с реальным временем", "Блог / контентный сайт", "CRM"], correct: [2] }
+    ];
+    function buildQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        quizData.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-question';
+            div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
+            const optsDiv = div.querySelector('.quiz-options');
+            q.options.forEach((opt, optIdx) => {
+                const label = document.createElement('label');
+                label.className = 'quiz-option';
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = `q${idx}`;
+                input.value = optIdx;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(` ${opt}`));
+                optsDiv.appendChild(label);
+            });
+            container.appendChild(div);
+        });
+    }
+    function evaluateQuiz() {
+        let score = 0;
+        const total = quizData.length;
+        for (let i = 0; i < quizData.length; i++) {
+            const q = quizData[i];
+            const inputs = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) input`);
+            let selected = null;
+            for (let inp of inputs) if (inp.checked) { selected = parseInt(inp.value); break; }
+            const isCorrect = (selected === q.correct[0]);
+            if (isCorrect) score++;
+            let fb = document.getElementById(`fb-${i}`);
+            if (!fb) { const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`); fb = document.createElement('div'); fb.id = `fb-${i}`; fb.className = 'quiz-feedback'; parentDiv.appendChild(fb); }
+            if (isCorrect) { fb.textContent = '✓ Верно'; fb.className = 'quiz-feedback correct'; }
+            else { const correctAns = q.correct.map(idx => q.options[idx]).join(', '); fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`; fb.className = 'quiz-feedback wrong'; }
+        }
+        document.getElementById('quiz-result').innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично!' : ' 📘 Повторите.'}`;
+    }
+    buildQuiz();
+    document.getElementById('quiz-submit').addEventListener('click', evaluateQuiz);
+</script>
 </body>
 </html>

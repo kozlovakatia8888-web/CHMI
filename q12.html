@@ -3,298 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос 12: Сетевые протоколы для API — REST, GraphQL, gRPC</title>
+    <title>Вопрос 12: REST, GraphQL, gRPC</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #0b0f1a;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            color: #e2e8f0;
-            line-height: 1.5;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            background: #0f172a;
-            padding: 0.8rem 1.2rem;
-            border-radius: 60px;
-            border: 1px solid #1e293b;
-        }
-
-        .nav-btn {
-            background: #1e293b;
-            color: #94a3b8;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid #334155;
-        }
-
-        .nav-btn:hover {
-            background: #2d3a4f;
-            color: #f1f5f9;
-            border-color: #3b82f6;
-            transform: translateY(-2px);
-        }
-
-        .nav-group {
-            display: flex;
-            gap: 0.8rem;
-        }
-
-        .hero {
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-            padding-left: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            color: #94a3b8;
-            font-size: 1rem;
-        }
-
-        .section {
-            background: #0f172a;
-            border-radius: 1.2rem;
-            padding: 1.5rem;
-            margin: 1.8rem 0;
-            border: 1px solid #1e293b;
-        }
-
-        .section h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #b9e2ff;
-            border-left: 3px solid #3b82f6;
-            padding-left: 0.8rem;
-        }
-
-        .section h3 {
-            font-size: 1.2rem;
-            margin: 1rem 0 0.6rem;
-            color: #cbd5e1;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        th, td {
-            padding: 0.7rem 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid #1e293b;
-            vertical-align: top;
-        }
-
-        th {
-            background: #0a0f1a;
-            color: #f1f5f9;
-            font-weight: 600;
-        }
-
-        td {
-            color: #cbd5e6;
-        }
-
-        .code-block {
-            background: #020617;
-            padding: 1rem;
-            border-radius: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: #a5f3c3;
-            overflow-x: auto;
-            margin: 1rem 0;
-            white-space: pre-wrap;
-        }
-
-        .note {
-            background: #1e1b2e;
-            border-left: 3px solid #facc15;
-            padding: 0.8rem 1rem;
-            border-radius: 0.8rem;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        footer {
-            margin-top: 2.5rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #5b6e8c;
-            border-top: 1px solid #1e293b;
-            padding-top: 1.5rem;
-        }
-
-        @media (max-width: 700px) {
-            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
-            .nav-group { justify-content: space-between; }
-            .hero h1 { font-size: 1.5rem; }
-            .section h2 { font-size: 1.2rem; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.5; padding: 2rem 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: #0f172a; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #1e293b; }
+        .nav-btn { background: #1e293b; color: #94a3b8; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #334155; }
+        .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
+        .nav-group { display: flex; gap: 0.8rem; }
+        .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
+        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
+        .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
+        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
+        th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
+        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
+        .quiz-question { background: #111827; border-radius: 1rem; padding: 1rem; margin-bottom: 1.2rem; border: 1px solid #2d3a4f; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
+        .quiz-option input { accent-color: #3b82f6; }
+        .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
+        .quiz-feedback.correct { background: #14532d; color: #86efac; }
+        .quiz-feedback.wrong { background: #7f1d1d; color: #fca5a5; }
+        .quiz-submit { background: #3b82f6; border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+        .quiz-submit:hover { background: #2563eb; }
+        footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- Навигация -->
     <div class="nav-bar">
         <div class="nav-group">
-            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="index.html" class="nav-btn">🏠 На главную</a>
             <a href="q11.html" class="nav-btn">← Назад (вопрос 11)</a>
         </div>
         <a href="q13.html" class="nav-btn">Вперёд (вопрос 13) →</a>
     </div>
-
     <div class="hero">
-        <h1>🌐 Вопрос 12. Сетевые протоколы для API</h1>
-        <p>REST, GraphQL и gRPC — сравнение, сильные и слабые стороны, сценарии использования.</p>
+        <h1>🌐 Сетевые протоколы для API: REST, GraphQL, gRPC</h1>
+        <p>Сравнение, сильные и слабые стороны, сценарии использования.</p>
     </div>
 
-    <!-- REST -->
     <div class="section">
-        <h2>📡 REST (Representational State Transfer)</h2>
-        <p>Использует HTTP-методы (GET, POST, PUT, PATCH, DELETE) для операций над ресурсами, каждый ресурс идентифицируется URL. Данные обычно в JSON, сервер stateless.</p>
-        <div class="code-block">
-GET /users/123        → возвращает пользователя
-GET /users/123/orders → возвращает заказы
-POST /orders          → создаёт новый заказ
-        </div>
-        <h3>✅ Сильные стороны REST</h3>
-        <ul><li>Простота и привычность, отладка через curl/браузер.</li><li>Кеширование через HTTP-заголовки (Cache-Control, ETag).</li><li>Масштабируемость (stateless).</li><li>Понятная документация через OpenAPI.</li></ul>
-        <h3>❌ Слабые стороны REST</h3>
-        <ul><li>Over‑fetching (лишние поля) и under‑fetching (несколько запросов).</li><li>Фиксированная структура ответа.</li><li>Версионирование приводит к дублированию.</li><li>Несколько round‑trip'ов для сложных данных.</li></ul>
-        <div class="note">🎯 <strong>Сценарии:</strong> публичные API, CRUD-приложения, проекты, где важно кеширование и простота.</div>
+        <h2>REST</h2>
+        <p>HTTP-методы (GET, POST, ...), ресурсы через URL, stateless, обычно JSON.</p>
+        <ul><li>✅ Простота, кеширование, OpenAPI.</li><li>❌ Over-fetching, under-fetching, много запросов.</li></ul>
+    </div>
+    <div class="section">
+        <h2>GraphQL</h2>
+        <p>Единый endpoint, клиент запрашивает нужные поля в одном запросе.</p>
+        <div class="code-block">query { user(id: 123) { name orders { total } } }</div>
+        <ul><li>✅ Нет over-fetching, один запрос, сильная типизация.</li><li>❌ Сложный на сервере, плохое кеширование, риск глубоких запросов.</li></ul>
+    </div>
+    <div class="section">
+        <h2>gRPC</h2>
+        <p>HTTP/2, Protocol Buffers (бинарный), строгая типизация, стриминг.</p>
+        <div class="code-block">service UserService { rpc GetUser(GetUserRequest) returns (User); }</div>
+        <ul><li>✅ Высокая производительность, стриминг, генерация кода.</li><li>❌ Сложность отладки, не поддерживается браузерами напрямую.</li></ul>
     </div>
 
-    <!-- GraphQL -->
     <div class="section">
-        <h2>🔮 GraphQL</h2>
-        <p>Единый endpoint (/graphql). Клиент отправляет запрос, явно указывая нужные поля. Сервер возвращает ровно запрошенные данные, включая связанные ресурсы.</p>
-        <div class="code-block">
-query {
-  user(id: 123) {
-    name
-    avatarUrl
-    orders(limit: 5) { total items { name } }
-  }
-}
-        </div>
-        <h3>✅ Сильные стороны GraphQL</h3>
-        <ul><li>Нет over‑fetching и under‑fetching.</li><li>Один запрос вместо многих (важно для мобильных сетей).</li><li>Сильная типизация (схема), интроспекция, инструменты (GraphiQL).</li><li>Удобная эволюция API (добавление полей без ломки клиентов).</li><li>DataLoader для объединения N+1 на сервере.</li></ul>
-        <h3>❌ Слабые стороны GraphQL</h3>
-        <ul><li>Сложность реализации на сервере (резолверы, защита от глубоких запросов).</li><li>Плохое кеширование HTTP (один URL).</li><li>Уязвимость к resource exhaustion (лимит глубины, сложности).</li><li>Не подходит для простых CRUD (оверхед).</li></ul>
-        <div class="note">🎯 <strong>Сценарии:</strong> сложные клиентские приложения (дашборды, соцсети), мобильные приложения, агрегация данных из разных источников.</div>
-    </div>
-
-    <!-- gRPC -->
-    <div class="section">
-        <h2>⚡ gRPC</h2>
-        <p>Фреймворк от Google на HTTP/2 и Protocol Buffers. Описывается .proto-файл, генерируется код клиента и сервера. Поддерживает стриминг.</p>
-        <div class="code-block">
-service UserService {
-  rpc GetUser (GetUserRequest) returns (User);
-  rpc ListOrders (ListOrdersRequest) returns (stream Order);
-}
-        </div>
-        <h3>✅ Сильные стороны gRPC</h3>
-        <ul><li>Высокая производительность (бинарный Protobuf, HTTP/2).</li><li>Строгая типизация, ошибки на этапе компиляции.</li><li>Потоковая передача (server, client, bidirectional).</li><li>Автоматическая генерация кода на 10+ языках.</li><li>Встроенные механизмы: интерцепторы, балансировка, deadlines.</li></ul>
-        <h3>❌ Слабые стороны gRPC</h3>
-        <ul><li>Сложность отладки (бинарный формат, нужны grpcurl/grpcui).</li><li>Не поддерживается браузерами напрямую (требуется grpc-web).</li><li>Нет гибкости запроса — изменение полей требует изменения .proto.</li><li>Кривая обучения (Protobuf, HTTP/2).</li></ul>
-        <div class="note">🎯 <strong>Сценарии:</strong> внутренние микросервисы, системы реального времени (стриминг), высоконагруженные сервисы, полиглотные среды.</div>
-    </div>
-
-    <!-- Сравнительная таблица -->
-    <div class="section">
-        <h2>📊 Сравнительная таблица</h2>
+        <h2>Таблица сравнения</h2>
         <div class="table-wrapper">
             <table>
                 <thead><tr><th>Характеристика</th><th>REST</th><th>GraphQL</th><th>gRPC</th></tr></thead>
                 <tbody>
-                    <tr><td>Транспорт</td><td>HTTP/1.1 или HTTP/2</td><td>HTTP/1.1 (обычно POST)</td><td>HTTP/2</td></tr>
-                    <tr><td>Формат данных</td><td>JSON (XML, HTML)</td><td>JSON</td><td>Protocol Buffers (бинарный)</td></tr>
-                    <tr><td>Читаемость</td><td>Высокая</td><td>Высокая</td><td>Низкая</td></tr>
-                    <tr><td>Кеширование HTTP</td><td>Отличное</td><td>Отсутствует</td><td>Нет</td></tr>
-                    <tr><td>Типизация</td><td>Опционально (OpenAPI)</td><td>Строгая (схема)</td><td>Строгая (.proto)</td></tr>
-                    <tr><td>Гибкость запроса</td><td>Фиксированные поля</td><td>Клиент выбирает поля</td><td>Фиксированные сообщения</td></tr>
-                    <tr><td>Количество запросов</td><td>Много (часто N+1)</td><td>Один (глубокая вложенность)</td><td>Один (RPC)</td></tr>
-                    <tr><td>Потоковая передача</td><td>Нет</td><td>Нет (только Subscription через WS)</td><td>Да (все виды стриминга)</td></tr>
-                    <tr><td>Простота для внешних разработчиков</td><td>Высокая</td><td>Средняя</td><td>Низкая</td></tr>
+                    <tr><td>Формат</td><td>JSON</td><td>JSON</td><td>Protobuf</td></tr>
+                    <tr><td>Кеширование</td><td>Отличное</td><td>Плохое</td><td>Нет</td></tr>
+                    <tr><td>Стриминг</td><td>Нет</td><td>Нет (только WS)</td><td>Да</td></tr>
+                    <tr><td>Гибкость запроса</td><td>Фиксированная</td><td>Высокая</td><td>Фиксированная</td></tr>
                 </tbody>
             </table>
         </div>
+        <div class="note">🎯 Выбор: публичное API → REST; сложные клиенты → GraphQL; внутренние микросервисы → gRPC.</div>
     </div>
 
-    <!-- Итог: выбор по сценарию -->
+    <!-- ТЕСТ -->
     <div class="section">
-        <h2>🧠 Итог: выбор протокола по сценарию</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Сценарий</th><th>Рекомендация</th><th>Почему</th></tr></thead>
-                <tbody>
-                    <tr><td>Публичное API для сторонних разработчиков</td><td><strong>REST</strong></td><td>Простота, кеширование, документация, curl.</td></tr>
-                    <tr><td>Внутренние микросервисы с высокой нагрузкой</td><td><strong>gRPC</strong></td><td>Производительность, типизация, стриминг.</td></tr>
-                    <tr><td>Мобильное/веб-приложение со сложными экранами</td><td><strong>GraphQL</strong></td><td>Один запрос, клиент сам выбирает поля, меньше трафика.</td></tr>
-                    <tr><td>Простое CRUD-приложение (блог, каталог)</td><td><strong>REST</strong></td><td>Оверхед GraphQL/gRPC не оправдан.</td></tr>
-                    <tr><td>Агрегатор нескольких сервисов (API Gateway)</td><td><strong>GraphQL</strong> или <strong>gRPC Gateway</strong></td><td>GraphQL хорошо собирает данные, gRPC даёт производительность.</td></tr>
-                    <tr><td>Система реального времени (чат, мониторинг)</td><td><strong>gRPC</strong> (streaming)</td><td>Двунаправленный стриминг из коробки.</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="note">💡 <strong>Коротко:</strong> REST — золотая середина для большинства. GraphQL — когда клиент сложный и капризный. gRPC — когда нужно максимально быстро и строго внутри своей инфраструктуры.</div>
+        <h2>📝 Тест: REST, GraphQL, gRPC</h2>
+        <div id="quiz-container"></div>
+        <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
+        <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
-
-    <!-- Навигация -->
-    <div class="nav-bar">
-        <div class="nav-group">
-            <a href="questions.html" class="nav-btn">🏠 На главную</a>
-            <a href="q11.html" class="nav-btn">← Назад (вопрос 11)</a>
-        </div>
-        <a href="q13.html" class="nav-btn">Вперёд (вопрос 13) →</a>
-    </div>
-
-    <footer>
-        Вопрос 12 · Сетевые протоколы для API · HCI Экзамен
-    </footer>
+    <footer>Вопрос 12 · REST, GraphQL, gRPC · HCI Экзамен</footer>
 </div>
+<script>
+    const quizData = [
+        { question: "Какой протокол использует HTTP/2 и бинарную сериализацию?", options: ["REST", "GraphQL", "gRPC", "SOAP"], correct: [2] },
+        { question: "Что такое 'over-fetching' в REST?", options: ["Получение лишних данных", "Недостаток данных", "Медленный ответ", "Ошибка сервера"], correct: [0] },
+        { question: "Какой подход позволяет клиенту запросить только нужные поля в одном запросе?", options: ["REST", "GraphQL", "gRPC", "SOAP"], correct: [1] },
+        { question: "Для какого сценария лучше всего подходит gRPC?", options: ["Публичное API", "Внутренние микросервисы с высокой нагрузкой", "Блог", "Форма обратной связи"], correct: [1] },
+        { question: "Что из перечисленного является недостатком GraphQL?", options: ["Нет типизации", "Плохое кеширование HTTP", "Сложность с JSON", "Отсутствие документации"], correct: [1] }
+    ];
+    function buildQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        quizData.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-question';
+            div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
+            const optsDiv = div.querySelector('.quiz-options');
+            q.options.forEach((opt, optIdx) => {
+                const label = document.createElement('label');
+                label.className = 'quiz-option';
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = `q${idx}`;
+                input.value = optIdx;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(` ${opt}`));
+                optsDiv.appendChild(label);
+            });
+            container.appendChild(div);
+        });
+    }
+    function evaluateQuiz() {
+        let score = 0;
+        const total = quizData.length;
+        for (let i = 0; i < quizData.length; i++) {
+            const q = quizData[i];
+            const inputs = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) input`);
+            let selected = null;
+            for (let inp of inputs) if (inp.checked) { selected = parseInt(inp.value); break; }
+            const isCorrect = (selected === q.correct[0]);
+            if (isCorrect) score++;
+            let fb = document.getElementById(`fb-${i}`);
+            if (!fb) { const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`); fb = document.createElement('div'); fb.id = `fb-${i}`; fb.className = 'quiz-feedback'; parentDiv.appendChild(fb); }
+            if (isCorrect) { fb.textContent = '✓ Верно'; fb.className = 'quiz-feedback correct'; }
+            else { const correctAns = q.correct.map(idx => q.options[idx]).join(', '); fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`; fb.className = 'quiz-feedback wrong'; }
+        }
+        document.getElementById('quiz-result').innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично!' : ' 📘 Повторите.'}`;
+    }
+    buildQuiz();
+    document.getElementById('quiz-submit').addEventListener('click', evaluateQuiz);
+</script>
 </body>
 </html>

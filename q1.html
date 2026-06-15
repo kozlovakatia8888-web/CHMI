@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вопрос 01: Архитектурные парадигмы веб-фронтенда</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #0b0f1a;
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
@@ -18,26 +13,20 @@
             line-height: 1.5;
             padding: 2rem 1rem;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* навигационные кнопки (группа) */
-        .nav-group {
+        .container { max-width: 1200px; margin: 0 auto; }
+        .nav-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
             flex-wrap: wrap;
             gap: 1rem;
+            margin-bottom: 2rem;
+            background: #0f172a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #1e293b;
         }
-
         .nav-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             background: #1e293b;
             color: #94a3b8;
             padding: 0.5rem 1.2rem;
@@ -46,316 +35,317 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.2s;
-            border: 1px solid #334155;
-        }
-
-        .nav-btn:hover {
-            background: #2d3a4f;
-            color: #f1f5f9;
-            border-color: #5b6e8c;
-        }
-
-        .nav-right {
-            margin-left: auto;
-        }
-
-        /* заголовок */
-        .hero {
-            margin-bottom: 2.5rem;
-            border-left: 4px solid #3b82f6;
-            padding-left: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            color: #94a3b8;
-            font-size: 1rem;
-            max-width: 80%;
-        }
-
-        /* карточки архитектур */
-        .arch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2.5rem 0;
-        }
-
-        .arch-card {
-            background: #111827;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            border: 1px solid #1e293b;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 6px -2px rgba(0,0,0,0.3);
-        }
-
-        .arch-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-4px);
-            background: #0f172a;
-        }
-
-        .arch-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #3b82f6;
-            opacity: 0.6;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .arch-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            flex-wrap: wrap;
+            border: 1px solid #334155;
         }
-
-        .badge {
-            font-size: 0.7rem;
-            background: #1e293b;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            color: #94a3b8;
-            font-weight: 400;
-        }
-
-        .arch-desc {
-            color: #cbd5e1;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .arch-pros {
-            margin-top: 1rem;
-            padding-top: 0.8rem;
-            border-top: 1px dashed #334155;
-            font-size: 0.85rem;
-            color: #9ca3af;
-        }
-
-        .arch-pros span {
-            color: #34d399;
-            font-weight: 600;
-        }
-
-        /* таблица */
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 2rem 0;
+        .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
+        .nav-group { display: flex; gap: 0.8rem; }
+        .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
+        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .section {
             background: #0f172a;
-            border-radius: 1rem;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
             border: 1px solid #1e293b;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        th, td {
-            padding: 0.9rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #1e293b;
-        }
-
-        th {
-            background: #0a0f1a;
-            color: #f1f5f9;
-            font-weight: 600;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        td {
-            color: #cbd5e6;
-        }
-
-        .highlight {
-            color: #facc15;
-            font-weight: 500;
-        }
-
-        /* секции */
-        .section {
-            margin: 2.5rem 0;
-        }
-
-        .section h2 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(135deg, #e2e8f0, #a5b4fc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .roadmap {
-            background: #0f172a;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .roadmap p {
-            margin-bottom: 0.8rem;
-        }
-
-        .code-example {
-            background: #020617;
-            padding: 1rem;
+        .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
+        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.6rem; color: #cbd5e1; }
+        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
+        th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
+        td { color: #cbd5e6; }
+        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
+        /* стили теста */
+        .quiz-question {
+            background: #111827;
             border-radius: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: #a5f3c3;
-            overflow-x: auto;
-            margin: 1rem 0;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #2d3a4f;
         }
-
-        footer {
-            margin-top: 3rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #5b6e8c;
-            border-top: 1px solid #1e293b;
-            padding-top: 2rem;
+        .quiz-question p { font-weight: 600; margin-bottom: 0.5rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
+        .quiz-option input { accent-color: #3b82f6; width: 18px; height: 18px; }
+        .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
+        .quiz-feedback.correct { background: #14532d; color: #86efac; }
+        .quiz-feedback.wrong { background: #7f1d1d; color: #fca5a5; }
+        .quiz-submit {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
         }
-
+        .quiz-submit:hover { background: #2563eb; transform: scale(1.02); }
+        footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
         @media (max-width: 700px) {
-            .hero p { max-width: 100%; }
-            .hero h1 { font-size: 1.6rem; }
-            .arch-title { font-size: 1.2rem; }
-            .nav-group { flex-direction: column; align-items: stretch; }
-            .nav-right { margin-left: 0; }
+            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
+            .nav-group { justify-content: space-between; }
+            .hero h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- Навигационная панель: На главную + Вперед -->
-    <div class="nav-group">
-        <a href="questions.html" class="nav-btn">← На главную (список вопросов)</a>
-        <a href="q2.html" class="nav-btn nav-right">Вперед → Вопрос 02 (Модель DOM и события)</a>
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q2.html" class="nav-btn">← Назад (вопрос 2)</a>
+        </div>
+        <a href="q2.html" class="nav-btn">Вперёд (вопрос 2) →</a>
     </div>
 
     <div class="hero">
-        <h1>Архитектурные парадигмы веб-фронтенда</h1>
-        <p>MPA, SPA, SSR, SSG — как они влияют на рендеринг, SEO и время до интерактивности (TTI). Разбираем эволюцию веба.</p>
+        <h1>🌐 Архитектурные парадигмы веб-фронтенда: MPA, SPA, SSR, SSG</h1>
+        <p>Полный разбор с примерами, плюсами/минусами, таблицей сравнения и тестом для самопроверки.</p>
     </div>
 
-    <!-- 4 карточки с краткими определениями -->
-    <div class="arch-grid">
-        <div class="arch-card">
-            <div class="arch-number">01</div>
-            <div class="arch-title">MPA <span class="badge">Multi‑Page App</span></div>
-            <div class="arch-desc">Классический веб: каждый клик — полная перезагрузка страницы. Сервер отдаёт готовый HTML.</div>
-            <div class="arch-pros"><span>✅ Идеальное SEO</span> · 🧠 Простота · 🚫 Медленная навигация</div>
+    <!-- 1. Введение -->
+    <div class="section">
+        <h2>📌 Зачем разбираться в парадигмах?</h2>
+        <p>Выбор архитектуры определяет, как быстро загрузится сайт, насколько он будет дружелюбен к поисковым роботам и насколько удобен для пользователя. Каждая парадигма — это компромисс между скоростью первого рендера, интерактивностью и сложностью разработки.</p>
+    </div>
+
+    <!-- 2. MPA -->
+    <div class="section">
+        <h2>1. MPA (Multi‑Page Application)</h2>
+        <p><strong>Принцип:</strong> при каждом клике по ссылке сервер генерирует и отправляет новый HTML-документ. Страница перезагружается полностью.</p>
+        <div class="code-block">
+// Пример на Express.js (сервер рендерит HTML)
+app.get('/about', (req, res) => {
+  res.send('&lt;html&gt;&lt;body&gt;&lt;h1&gt;О нас&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;');
+});
         </div>
-        <div class="arch-card">
-            <div class="arch-number">02</div>
-            <div class="arch-title">SPA <span class="badge">Single‑Page App</span></div>
-            <div class="arch-desc">Одна страница, роутинг на клиенте. Грузит JS-бандл, дальше — только данные.</div>
-            <div class="arch-pros"><span>⚡ Мгновенная навигация</span> · 🐢 Плохой первый TTI · ❌ SEO требует ухищрений</div>
+        <ul>
+            <li><strong>Рендеринг:</strong> полностью на сервере.</li>
+            <li><strong>SEO:</strong> идеальное — поисковый робот видит готовый HTML.</li>
+            <li><strong>TTI (Time to Interactive):</strong> быстрый первый показ, но навигация требует перезагрузки.</li>
+            <li><strong>Плюсы:</strong> простота, надёжность, кеширование на уровне CDN.</li>
+            <li><strong>Минусы:</strong> перезагрузка страницы при любом действии, хуже пользовательский опыт при сложных интерфейсах.</li>
+        </ul>
+        <div class="note">📌 <strong>Примеры MPA:</strong> корпоративные сайты, новостные порталы, WordPress без плагинов-одностраничек.</div>
+    </div>
+
+    <!-- 3. SPA -->
+    <div class="section">
+        <h2>2. SPA (Single‑Page Application)</h2>
+        <p><strong>Принцип:</strong> при первом визите загружается "скелет" HTML и большой JS-бандл. Далее роутинг на клиенте: подгружаются только данные через API, страница не перезагружается.</p>
+        <div class="code-block">
+// Пример React с React Router
+function App() {
+  return (
+    &lt;Router&gt;
+      &lt;Link to="/about"&gt;О нас&lt;/Link&gt;
+      &lt;Route path="/about" component={About} /&gt;
+    &lt;/Router&gt;
+  );
+}
         </div>
-        <div class="arch-card">
-            <div class="arch-number">03</div>
-            <div class="arch-title">SSR <span class="badge">Server‑Side Rendering</span></div>
-            <div class="arch-desc">Первый экран — серверный HTML, потом гидратация в SPA.</div>
-            <div class="arch-pros"><span>🎯 Быстрый TTV + SEO</span> · ⚠️ Высокая нагрузка на сервер · 🧩 Сложность гидратации</div>
+        <ul>
+            <li><strong>Рендеринг:</strong> инициализация на сервере, отрисовка на клиенте (CSR).</li>
+            <li><strong>SEO:</strong> плохое без дополнительных ухищрений (из-за пустого <code>&lt;div id="root"&gt;&lt;/div&gt;</code>).</li>
+            <li><strong>TTI:</strong> медленный первый запуск (загрузка и выполнение JS), затем мгновенная навигация.</li>
+            <li><strong>Плюсы:</strong> плавность, богатые интерфейсы, меньше трафика при переходах.</li>
+            <li><strong>Минусы:</strong> сложность, SEO требует серверного рендеринга или prerendering.</li>
+        </ul>
+        <div class="note">📌 <strong>Примеры SPA:</strong> Gmail, Figma, Trello, внутренние админки.</div>
+    </div>
+
+    <!-- 4. SSR -->
+    <div class="section">
+        <h2>3. SSR (Server‑Side Rendering) с гидратацией</h2>
+        <p><strong>Принцип:</strong> первый запрос — сервер генерирует полный HTML (как MPA), параллельно загружается JS-бандл. После загрузки JS происходит "гидратация" — статическая страница становится интерактивным SPA.</p>
+        <div class="code-block">
+// Next.js (React) — страница автоматически рендерится на сервере
+export default function Page({ data }) {
+  return &lt;div&gt;{data}&lt;/div&gt;;
+}
         </div>
-        <div class="arch-card">
-            <div class="arch-number">04</div>
-            <div class="arch-title">SSG <span class="badge">Static Site Gen</span></div>
-            <div class="arch-desc">Генерация HTML на этапе сборки. Идеально для CDN и контентных сайтов.</div>
-            <div class="arch-pros"><span>🚀 Максимальная скорость</span> · 🔒 Безопасность · 🔄 Не подходит для частых обновлений</div>
+        <ul>
+            <li><strong>Рендеринг:</strong> сервер (первый раз) + клиент (после гидратации).</li>
+            <li><strong>SEO:</strong> отличное (как у MPA).</li>
+            <li><strong>TTI:</strong> контент виден быстро (TTV — Time to View), но интерактивность наступает только после гидратации.</li>
+            <li><strong>Плюсы:</strong> сочетание SEO и интерактивности.</li>
+            <li><strong>Минусы:</strong> высокая нагрузка на сервер (CPU-intensive), риск "разрыва" между гидратацией и статикой.</li>
+        </ul>
+        <div class="note">📌 <strong>Примеры SSR:</strong> Next.js, Nuxt.js, Remix — используются для интернет-магазинов, новостных порталов с виджетами.</div>
+    </div>
+
+    <!-- 5. SSG -->
+    <div class="section">
+        <h2>4. SSG (Static Site Generation)</h2>
+        <p><strong>Принцип:</strong> HTML-страницы генерируются один раз на этапе сборки (build-time). Пользователь получает готовый статический файл с CDN — максимальная скорость.</p>
+        <div class="code-block">
+// Eleventy, Hugo, или Next.js (export)
+export default {
+  async getStaticProps() {
+    const data = await fetchData();
+    return { props: { data } };
+  }
+}
         </div>
+        <ul>
+            <li><strong>Рендеринг:</strong> заранее на сервере сборки (CI).</li>
+            <li><strong>SEO:</strong> идеальное.</li>
+            <li><strong>TTI:</strong> мгновенное (статика + минимум JS).</li>
+            <li><strong>Плюсы:</strong> скорость, безопасность, дешевый хостинг (CDN).</li>
+            <li><strong>Минусы:</strong> перегенерация при каждом изменении контента, не подходит для персонализированных данных.</li>
+        </ul>
+        <div class="note">📌 <strong>Примеры SSG:</strong> блоги, документация, лендинги, сайты-визитки (Hugo, Gatsby, Astro, 11ty).</div>
     </div>
 
     <!-- Сводная таблица -->
     <div class="section">
-        <h2>📊 Сравнительная таблица</h2>
+        <h2>📊 Полная сравнительная таблица</h2>
         <div class="table-wrapper">
             <table>
-                <thead>
-                    <tr><th>Критерий</th><th>MPA</th><th>SPA</th><th>SSR</th><th>SSG</th></tr>
-                </thead>
+                <thead><tr><th>Критерий</th><th>MPA</th><th>SPA (CSR)</th><th>SSR</th><th>SSG</th></tr></thead>
                 <tbody>
-                    <tr><td>Где рендерится</td><td>Сервер (каждый раз)</td><td>Клиент (браузер)</td><td>Сервер → клиент</td><td>Build time</td></tr>
-                    <tr><td>SEO</td><td class="highlight">Идеальное</td><td>Плохое (нужен рендеринг)</td><td class="highlight">Идеальное</td><td class="highlight">Идеальное</td></tr>
-                    <tr><td>TTI (первый визит)</td><td>👍 Хорошее</td><td>👎 Медленное (загрузка JS)</td><td>🟡 TTV быстрый, TTI позже</td><td>⚡ Мгновенное</td></tr>
+                    <tr><td>Рендеринг</td><td>Сервер (каждый запрос)</td><td>Клиент (браузер)</td><td>Сервер → клиент</td><td>Build-time</td></tr>
+                    <tr><td>SEO</td><td>Идеальное</td><td>Плохое (требует рендеринга)</td><td>Идеальное</td><td>Идеальное</td></tr>
+                    <tr><td>TTI (первый визит)</td><td>👍 Хорошее</td><td>👎 Медленное (грузят JS)</td><td>🟡 TTV быстрый, TTI позже</td><td>⚡ Мгновенное</td></tr>
                     <tr><td>TTI (навигация)</td><td>👎 Перезагрузка</td><td>⚡ Мгновенное</td><td>⚡ Мгновенное (после гидратации)</td><td>⚡ Мгновенное</td></tr>
-                    <tr><td>Серверная нагрузка</td><td>Средняя</td><td>Низкая (только API)</td><td>Высокая (CPU)</td><td>Низкая (CDN)</td></tr>
-                    <tr><td>Примеры фреймворков</td><td>Laravel, Django, WordPress</td><td>React, Vue, Angular (CSR)</td><td>Next.js, Nuxt, Remix</td><td>Hugo, Astro, 11ty, Next.js (export)</td></tr>
+                    <tr><td>Нагрузка на сервер</td><td>Средняя</td><td>Низкая (только API)</td><td>Высокая (CPU)</td><td>Низкая (CDN)</td></tr>
+                    <tr><td>Примеры фреймворков</td><td>Django, Rails, PHP</td><td>React, Vue, Angular (CSR)</td><td>Next.js, Nuxt, Remix</td><td>Astro, Hugo, 11ty</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Глубокое объяснение: TTV vs TTI, гидратация, ISR -->
+    <!-- Дополнительные пояснения: TTV vs TTI, гидратация, ISR -->
     <div class="section">
-        <h2>🧠 Детали, которые важно понять</h2>
-        <div style="background: #0f172a; border-radius: 1rem; padding: 1.5rem;">
-            <p style="margin-bottom: 1rem;"><strong>📌 TTV (Time to View)</strong> — когда пользователь видит контент. <strong>📌 TTI (Time to Interactive)</strong> — когда может кликать и взаимодействовать.</p>
-            <p style="margin-bottom: 1rem;">В <strong>SSR</strong> возникает разрыв: страница отрисована быстро, но кнопки не работают, пока не загрузится JavaScript и не произойдёт <strong>гидратация</strong>. Это одна из главных проблем, которую решают <strong>Islands Architecture</strong> (частичная гидратация).</p>
-            <p style="margin-bottom: 1rem;"><strong>⚙️ Incremental Static Regeneration (ISR)</strong> — улучшенный SSG: страницы обновляются фоном после сборки, не требуя перегенерации всего сайта. Используется в Next.js.</p>
-            <div class="code-example">
-                // Пример: в SPA навигация без перезагрузки<br>
-                // Роутер на клиенте меняет URL и подгружает данные fetch<br>
-                // В SSG всё — готовый HTML, загружаемый почти мгновенно.
-            </div>
-        </div>
-    </div>
-
-    <!-- Roadmap выбора -->
-    <div class="section">
-        <h2>🗺️ Дорожная карта: как выбрать?</h2>
-        <div class="roadmap">
-            <p>✅ <strong>Блог, документация, лендинг</strong> → <strong>SSG</strong> (максимум скорости) или MPA.</p>
-            <p>✅ <strong>Интернет-магазин / новостной портал с важным SEO</strong> → <strong>SSR</strong> (Next.js/Nuxt) или гибрид SSG + SSR.</p>
-            <p>✅ <strong>Личный кабинет, CRM, онлайн-редактор</strong> → <strong>SPA</strong> (интерактивность превыше SEO).</p>
-            <p>✅ <strong>Корпоративный сайт с редкими правками</strong> → <strong>MPA</strong> на Django/Rails или SSG.</p>
-            <p>🔥 <strong>Современный тренд:</strong> <strong>Astro</strong> (Islands) — по умолчанию SSG, но можно подключать интерактивные компоненты React/Vue изолированно.</p>
-        </div>
-    </div>
-
-    <!-- Бонус: о SEO для SPA -->
-    <div class="section">
-        <h2>🔍 А что с SEO для SPA?</h2>
-        <p style="margin-bottom: 1rem;">SPA изначально плохо индексируются, потому что краулеры не исполняют JavaScript. Решения:</p>
-        <ul style="margin-left: 1.5rem; color: #cbd5e6;">
-            <li>🔹 Dynamic Rendering (рендеринг для ботов на сервере через Puppeteer).</li>
-            <li>🔹 Prerendering (генерация статичных копий для популярных маршрутов).</li>
-            <li>🔹 Использование SSR-фреймворков (Next.js, Nuxt) вместо голого SPA.</li>
+        <h2>🧠 Важные термины</h2>
+        <ul>
+            <li><strong>TTV (Time to View)</strong> — время, когда пользователь увидел контент.</li>
+            <li><strong>TTI (Time to Interactive)</strong> — время, когда можно кликать и взаимодействовать.</li>
+            <li><strong>Гидратация (hydration)</strong> — процесс, при котором статический HTML, полученный с сервера, "оживляется" клиентским JS (вешаются обработчики событий, начинают работать хуки).</li>
+            <li><strong>ISR (Incremental Static Regeneration)</strong> — усовершенствование SSG (Next.js), позволяющее обновлять статические страницы фоном без полной перегенерации.</li>
         </ul>
     </div>
 
-    <!-- Навигационная панель: На главную + Вперед -->
-    <div class="nav-group">
-        <a href="questions.html" class="nav-btn">← На главную (список вопросов)</a>
-        <a href="q2.html" class="nav-btn nav-right">Вперед → Вопрос 02 (Модель DOM и события)</a>
+    <!-- ИНТЕРАКТИВНЫЙ ТЕСТ -->
+    <div class="section">
+        <h2>📝 Тест по теме: архитектурные парадигмы</h2>
+        <p>Проверь себя — выбери правильный ответ (возможно несколько). После ответа на все вопросы нажми "Проверить".</p>
+        <div id="quiz-container"></div>
+        <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
+        <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
 
     <footer>
-        Вопрос 01 · Архитектурные парадигмы веб-фронтенда · Материал подготовлен для экзамена по HCI
+        Вопрос 01 · Архитектурные парадигмы веб-фронтенда · HCI Экзамен · Углублённая версия с тестом
     </footer>
 </div>
+
+<script>
+    // Данные теста: вопросы, варианты, правильные ответы (индексы, начиная с 0)
+    const quizData = [
+        {
+            question: "Какая архитектура обеспечивает максимальную скорость при первом визите и не требует серверной обработки в момент запроса?",
+            options: ["MPA", "SPA (CSR)", "SSR", "SSG"],
+            correct: [3]  // SSG
+        },
+        {
+            question: "Какие из перечисленных архитектур имеют отличное SEO 'из коробки'? (можно несколько)",
+            options: ["MPA", "SPA (CSR)", "SSR", "SSG"],
+            correct: [0,2,3] // MPA, SSR, SSG
+        },
+        {
+            question: "В какой архитектуре возникает понятие 'гидратация'?",
+            options: ["MPA", "SPA", "SSR", "SSG"],
+            correct: [2] // SSR
+        },
+        {
+            question: "Какой недостаток характерен для SPA (CSR)?",
+            options: ["Плохая SEO", "Медленная навигация", "Высокая нагрузка на сервер", "Невозможность кеширования"],
+            correct: [0] // плохая SEO
+        },
+        {
+            question: "Какая архитектура подходит для блога с редкими обновлениями и максимальной скоростью?",
+            options: ["MPA", "SPA", "SSR", "SSG"],
+            correct: [3] // SSG
+        },
+        {
+            question: "Что из перечисленного является преимуществом SSR?",
+            options: ["Полная изоляция клиентского кода", "Минимальное потребление CPU на сервере", "Быстрый TTV и хорошее SEO", "Не требует гидратации"],
+            correct: [2] // быстрый TTV и хорошее SEO
+        }
+    ];
+
+    function buildQuiz() {
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        quizData.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-question';
+            div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
+            const optionsDiv = div.querySelector(`.quiz-options`);
+            q.options.forEach((opt, optIdx) => {
+                const label = document.createElement('label');
+                label.className = 'quiz-option';
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.value = optIdx;
+                input.setAttribute('data-q', idx);
+                input.setAttribute('data-opt', optIdx);
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(` ${opt}`));
+                optionsDiv.appendChild(label);
+            });
+            container.appendChild(div);
+        });
+    }
+
+    function evaluateQuiz() {
+        let score = 0;
+        let total = quizData.length;
+        let resultsHtml = '';
+        for (let i = 0; i < quizData.length; i++) {
+            const q = quizData[i];
+            const checkboxes = document.querySelectorAll(`.quiz-question:has(p:first-child) .quiz-option input[data-q="${i}"]`);
+            const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => parseInt(cb.value));
+            const isCorrect = selected.length === q.correct.length && selected.every(v => q.correct.includes(v));
+            if (isCorrect) score++;
+            // подсветка ответа
+            const questionDiv = document.querySelector(`.quiz-question:has(p:first-child)`);
+            // упростим: добавим фидбек в каждом вопросе
+            let feedbackDiv = document.getElementById(`feedback-${i}`);
+            if (!feedbackDiv) {
+                const targetDiv = document.querySelector(`.quiz-question:nth-child(${i+1})`);
+                if(targetDiv) {
+                    feedbackDiv = document.createElement('div');
+                    feedbackDiv.id = `feedback-${i}`;
+                    feedbackDiv.className = 'quiz-feedback';
+                    targetDiv.appendChild(feedbackDiv);
+                }
+            }
+            if(feedbackDiv) {
+                if(isCorrect) {
+                    feedbackDiv.textContent = '✓ Правильно';
+                    feedbackDiv.className = 'quiz-feedback correct';
+                } else {
+                    const correctAnswers = q.correct.map(idx => q.options[idx]).join(', ');
+                    feedbackDiv.textContent = `✗ Неправильно. Правильный ответ: ${correctAnswers}`;
+                    feedbackDiv.className = 'quiz-feedback wrong';
+                }
+            }
+        }
+        const resultDiv = document.getElementById('quiz-result');
+        resultDiv.innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично! Ты готов к экзамену!' : ' 👉 Повтори разделы с ошибками.'}`;
+    }
+
+    buildQuiz();
+    document.getElementById('quiz-submit').addEventListener('click', evaluateQuiz);
+</script>
 </body>
 </html>
