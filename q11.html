@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопрос 11: Стандарт OpenAPI и Swagger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f1a;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #e2e8f0;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #0f172a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #1e293b;
+        }
+
+        .nav-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #334155;
+        }
+
+        .nav-btn:hover {
+            background: #2d3a4f;
+            color: #f1f5f9;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .hero {
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .section {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid #1e293b;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #b9e2ff;
+            border-left: 3px solid #3b82f6;
+            padding-left: 0.8rem;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem;
+            color: #cbd5e1;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #1e293b;
+            vertical-align: top;
+        }
+
+        th {
+            background: #0a0f1a;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        td {
+            color: #cbd5e6;
+        }
+
+        .code-block {
+            background: #020617;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #a5f3c3;
+            overflow-x: auto;
+            margin: 1rem 0;
+            white-space: pre-wrap;
+        }
+
+        .note {
+            background: #1e1b2e;
+            border-left: 3px solid #facc15;
+            padding: 0.8rem 1rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #1e293b;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
+            .nav-group { justify-content: space-between; }
+            .hero h1 { font-size: 1.5rem; }
+            .section h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q10.html" class="nav-btn">← Назад (вопрос 10)</a>
+        </div>
+        <a href="q12.html" class="nav-btn">Вперёд (вопрос 12) →</a>
+    </div>
+
+    <div class="hero">
+        <h1>📄 Вопрос 11. Стандарт OpenAPI и Swagger</h1>
+        <p>Спецификация OpenAPI, экосистема инструментов Swagger (Editor, UI, Codegen): задачи и применение.</p>
+    </div>
+
+    <!-- Введение: OpenAPI vs Swagger -->
+    <div class="section">
+        <h2>📌 OpenAPI и Swagger: разница понятий</h2>
+        <p><strong>OpenAPI</strong> (ранее Swagger Specification) — спецификация (стандарт) для описания RESTful API в машиночитаемом формате (YAML или JSON). <strong>Swagger</strong> — набор инструментов с открытым исходным кодом, реализующих эту спецификацию.</p>
+        <div class="note">💡 <strong>Ключевое различие:</strong> OpenAPI — «язык описания», Swagger — «инструменты для работы с этим языком».</div>
+    </div>
+
+    <!-- Для чего используется OpenAPI -->
+    <div class="section">
+        <h2>🎯 Для чего используется спецификация OpenAPI?</h2>
+        <p>OpenAPI описывает:</p>
+        <ul style="margin-left: 1.5rem;">
+            <li>Список всех endpoint'ов (URL + HTTP метод: GET /users, POST /orders)</li>
+            <li>Параметры запросов (query, path, header, cookie)</li>
+            <li>Схемы тел запросов и ответов (типы, обязательность, форматы)</li>
+            <li>Коды ошибок и ответов (200, 404, 500)</li>
+            <li>Аутентификацию (API Key, OAuth2, Bearer)</li>
+            <li>Модели данных (например, объект <code>User</code>)</li>
+        </ul>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Задача</th><th>Как решается OpenAPI</th></tr></thead>
+                <tbody>
+                    <tr><td>Автоматическая генерация документации</td><td>Из OpenAPI-файла → красивая, всегда актуальная документация (Swagger UI).</td></tr>
+                    <tr><td>Валидация запросов и ответов</td><td>Инструменты проверяют соответствие реальных данных спецификации.</td></tr>
+                    <tr><td>Генерация клиентского кода (SDK)</td><td>Автоматическое создание библиотек на Java, Python, TypeScript, C# и др.</td></tr>
+                    <tr><td>Генерация серверного каркаса (skeleton)</td><td>Создание контроллеров и маршрутов для фреймворков (Spring, Express, Flask).</td></tr>
+                    <tr><td>Mock-сервер</td><td>Эмуляция API без реальной реализации (фронтенд параллельно).</td></tr>
+                    <tr><td>Контрактное тестирование</td><td>Спецификация как «истина» для тестов соответствия API.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Экосистема Swagger -->
+    <div class="section">
+        <h2>🛠️ Экосистема инструментов Swagger</h2>
+
+        <h3>1. Swagger Editor</h3>
+        <p>Веб-редактор (или IDE-плагин) для написания и проверки OpenAPI-документов в реальном времени.</p>
+        <ul style="margin-left: 1.5rem;">
+            <li>Подсветка синтаксиса, автодополнение, валидация ошибок.</li>
+            <li>Предпросмотр документации (Swagger UI) справа.</li>
+            <li>Экспорт YAML/JSON, публикация на SwaggerHub.</li>
+        </ul>
+        <div class="note">📌 <strong>Применение:</strong> проектирование API (design-first) — сначала описали, потом реализовали.</div>
+
+        <h3>2. Swagger UI</h3>
+        <p>Интерактивная веб-страница, генерируемая из OpenAPI-файла. Позволяет развернуть методы, посмотреть примеры, а главное — <strong>«Try it out»</strong> (выполнить реальный запрос к API прямо из документации).</p>
+        <ul style="margin-left: 1.5rem;">
+            <li>Актуальная, синхронизированная документация.</li>
+            <li>Снижает количество вопросов от разработчиков-потребителей.</li>
+            <li>Часто встраивается в приложение по пути <code>/swagger-ui</code> или <code>/docs</code> (например, Spring Boot + springdoc-openapi).</li>
+        </ul>
+
+        <h3>3. Swagger Codegen</h3>
+        <p>Генератор кода (CLI-инструмент или веб-сервис). На вход OpenAPI-файл, на выходе — готовый код.</p>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Клиентские SDK</strong> на 40+ языках (Python, Java, TypeScript (axios, fetch), C#, Go, Ruby, PHP).</li>
+            <li><strong>Серверные скелетоны</strong> для Spring, Node.js (Express), Flask, ASP.NET Core и др.</li>
+            <li>Конфигурации для Postman, Insomnia, Apidog.</li>
+            <li>Документация (Markdown, HTML).</li>
+        </ul>
+        <div class="code-block">
+# Пример генерации TypeScript-клиента (axios)
+swagger-codegen generate -i api.yaml -l typescript-axios -o ./generated-client
+        </div>
+    </div>
+
+    <!-- Дополнительные инструменты -->
+    <div class="section">
+        <h2>🔁 Дополнительные инструменты (кратко)</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Инструмент</th><th>Назначение</th></tr></thead>
+                <tbody>
+                    <tr><td>SwaggerHub</td><td>Платформа для командной работы над OpenAPI (хостинг, версионирование, контроль доступа, интеграция с GitHub).</td></tr>
+                    <tr><td>Swagger Inspector</td><td>Тестирование API (альтернатива Postman) с экспортом в OpenAPI.</td></tr>
+                    <tr><td>Swagger Parser</td><td>Библиотека для разбора (parsing) и валидации OpenAPI-документов в коде.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Практические сценарии -->
+    <div class="section">
+        <h2>💡 Практические сценарии использования (для экзамена)</h2>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Design-first</strong>: команда пишет OpenAPI в Swagger Editor, фронтенд и заказчик видят спецификацию и могут использовать мок-сервер.</li>
+            <li><strong>Генерация клиента для микросервисов</strong>: сервис А описывает API, сервис Б генерирует клиент и вызывает типобезопасно.</li>
+            <li><strong>Автоматическая документация публичного API</strong> (как у Stripe, GitHub, Яндекс).</li>
+            <li><strong>Контрактное тестирование</strong>: спецификация — единый источник правды, тесты проверяют соответствие реального API.</li>
+        </ul>
+    </div>
+
+    <!-- Итог для экзамена -->
+    <div class="section">
+        <h2>📌 Итог для экзамена (тезисы)</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Понятие</th><th>Суть</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>OpenAPI</strong></td><td>Стандарт описания REST API в YAML/JSON (машиночитаемый). Единый источник правды.</td></tr>
+                    <tr><td><strong>Swagger Editor</strong></td><td>Редактор с валидацией и предпросмотром документации.</td></tr>
+                    <tr><td><strong>Swagger UI</strong></td><td>Интерактивная документация с возможностью выполнять реальные запросы (<em>Try it out</em>).</td></tr>
+                    <tr><td><strong>Swagger Codegen</strong></td><td>Генератор клиентских SDK и серверных скелетонов из OpenAPI.</td></tr>
+                    <tr><td><strong>Главная ценность</strong></td><td>Автоматизация, синхронизация, снижение ошибок, ускорение разработки.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">🎯 <strong>Ключевой вывод:</strong> OpenAPI — формальный язык описания API, Swagger — инструменты, которые превращают эту спецификацию в документацию, код и тесты.</div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q10.html" class="nav-btn">← Назад (вопрос 10)</a>
+        </div>
+        <a href="q12.html" class="nav-btn">Вперёд (вопрос 12) →</a>
+    </div>
+
+    <footer>
+        Вопрос 11 · Стандарт OpenAPI и Swagger · HCI Экзамен
+    </footer>
+</div>
+</body>
+</html>
