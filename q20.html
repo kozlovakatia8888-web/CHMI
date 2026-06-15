@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопрос 20: Восприятие и внимание — F-паттерн, эффект позиции</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f1a;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #e2e8f0;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #0f172a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #1e293b;
+        }
+
+        .nav-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #334155;
+        }
+
+        .nav-btn:hover {
+            background: #2d3a4f;
+            color: #f1f5f9;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .hero {
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .section {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid #1e293b;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #b9e2ff;
+            border-left: 3px solid #3b82f6;
+            padding-left: 0.8rem;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem;
+            color: #cbd5e1;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #1e293b;
+            vertical-align: top;
+        }
+
+        th {
+            background: #0a0f1a;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        td {
+            color: #cbd5e6;
+        }
+
+        .note {
+            background: #1e1b2e;
+            border-left: 3px solid #facc15;
+            padding: 0.8rem 1rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .pattern-demo {
+            background: #020617;
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            font-family: monospace;
+            white-space: pre;
+            margin: 1rem 0;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #1e293b;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
+            .nav-group { justify-content: space-between; }
+            .hero h1 { font-size: 1.5rem; }
+            .section h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q19.html" class="nav-btn">← Назад (вопрос 19)</a>
+        </div>
+        <a href="q21.html" class="nav-btn">✅ Завершить →</a>
+    </div>
+
+    <div class="hero">
+        <h1>👁️ Вопрос 20. Восприятие и внимание в HCI</h1>
+        <p>F-образный паттерн сканирования веб-страниц и эффект последовательной позиции (начала и конца списка) — как знание этих закономерностей влияет на расположение контента и навигации.</p>
+    </div>
+
+    <!-- F-образный паттерн -->
+    <div class="section">
+        <h2>👁️ F-образный паттерн сканирования (F-shaped pattern)</h2>
+        <p><strong>Суть:</strong> При сканировании текстового контента (лево-правое чтение) взгляд движется траекторией, напоминающей букву <strong>F</strong>:</p>
+        <div class="pattern-demo">
+1. Первая горизонтальная линия (заголовки, верхнее меню, первая строка)
+2. Вторая горизонтальная линия (чуть ниже, обычно короче)
+3. Вертикальная линия по левому краю (начала абзацев, списки)
+        </div>
+        <p>Открыт Якобом Нильсеном (2006) на основе айтрекинга. Тепловая карта: горячие зоны — вверху и слева; холодные — справа и внизу.</p>
+        <h3>📌 Практические выводы для дизайна</h3>
+        <ul>
+            <li><strong>Самое важное — в верхней строке (F-1):</strong> логотип, главное меню, ключевой заголовок, CTA (Call to Action) — в пределах первых 400–500 пикселей.</li>
+            <li><strong>Начала абзацев и маркированные списки — выигрывают:</strong> ключевое сообщение — в начало абзаца, а не в конец. Маркированные списки привлекают вертикальное сканирование.</li>
+            <li><strong>Не кладите важное в правую нижнюю четверть:</strong> сайдбары, баннеры, кнопки «Подписаться» будут замечены хуже. Используйте левую колонку или «прилипающие» блоки.</li>
+            <li><strong>Короткие строки и чёткая иерархия — друзья F-паттерна:</strong> разбивайте текст на подзаголовки, списки, короткие блоки.</li>
+            <li><strong>Мобильные устройства:</strong> F-паттерн работает, но из-за узкой колонки взгляд быстрее переходит к вертикальному сканированию («Ɩ» или перевёрнутая L).</li>
+        </ul>
+        <div class="note">⚠️ <strong>Ограничения:</strong> F-паттерн не работает при внимательном чтении (инструкции, юридические документы) и в интерфейсах с яркой визуальной иерархией (картинки, плитки). Для языков с право-левым письмом (арабский, иврит) паттерн зеркалируется.</div>
+    </div>
+
+    <!-- Эффект последовательной позиции -->
+    <div class="section">
+        <h2>📋 Эффект последовательной позиции (Serial position effect)</h2>
+        <p><strong>Суть:</strong> Из списка элементов люди лучше всего запоминают <strong>первые</strong> (primacy) и <strong>последние</strong> (recency). Середина списка запоминается хуже всего (открытие Эббингауза, 1885).</p>
+        <h3>📌 Практические выводы для дизайна интерфейсов</h3>
+        <ul>
+            <li><strong>Главные пункты меню — в начало и в конец:</strong> важные действия («Каталог», «Личный кабинет») — первыми и последними. Второстепенные («О компании») — в середину.</li>
+            <li><strong>Списки товаров / результатов поиска:</strong> первые 3–5 позиций (primacy) — самые релевантные; последние 1–2 (recency) — акционные предложения или напоминания. Середину пользователи игнорируют.</li>
+            <li><strong>Многостраничные формы (мастера):</strong> первый шаг — простой, без пугающих вопросов (primacy). Последний шаг — кнопка подтверждения «Оплатить» (recency). Серединные шаги можно упрощать.</li>
+            <li><strong>Мобильные приложения (таб-бар):</strong> первая и последняя иконки (слева и справа) запоминаются лучше центральных. «Главная» — первая, «Профиль» — последняя.</li>
+            <li><strong>Выпадающие списки (select, комбобокс):</strong> часто выбираемые варианты — в начало и в конец; редко используемые — в середину.</li>
+        </ul>
+        <div class="note">💡 <strong>Сочетание с F-паттерном:</strong> F-паттерн определяет <strong>куда</strong> смотрит пользователь, эффект последовательной позиции — <strong>что</strong> запоминает. Важные пункты меню (начало и конец) должны находиться в «горячих» зонах F-паттерна (верхняя строка, левый край).</div>
+    </div>
+
+    <!-- Итог для экзамена -->
+    <div class="section">
+        <h2>📌 Итог для экзамена (тезисы)</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Феномен</th><th>Суть</th><th>Как применять</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>F-образный паттерн</strong></td><td>Глаз сканирует страницу как букву F: две горизонтальные полосы вверху, затем вертикаль по левому краю. </td><td>Важный контент — вверху и слева. Начала абзацев, маркированные списки. Избегать важного в правой нижней области.</td>
+                    </tr>
+                    <tr><td><strong>Эффект первичности (primacy)</strong></td><td>Лучше запоминаются первые элементы списка. </td><td>Самые важные пункты меню, товары, действия — в начало списка. Первый шаг мастера — простой и понятный.</td>
+                    </tr>
+                    <tr><td><strong>Эффект недавности (recency)</strong></td><td>Лучше запоминаются последние элементы списка. </td><td>Кнопка подтверждения в конце формы, последний пункт меню (например, «Выйти»), последний товар перед подвалом.</td>
+                    </tr>
+                    <tr><td><strong>Середина списка</strong></td><td>Запоминается хуже всего. </td><td>Второстепенные пункты, редко выбираемые варианты — туда.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">🎯 <strong>Ключевая мысль:</strong> Пользователь не читает, а сканирует (F-паттерн) и запоминает только края списка (primacy/recency). Проектируйте иерархию контента под эти закономерности. Главное — в начало и в горячие зоны, второстепенное — в середину и на периферию.</div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q19.html" class="nav-btn">← Назад (вопрос 19)</a>
+        </div>
+        <a href="q21.html" class="nav-btn">✅ Завершить →</a>
+    </div>
+
+    <footer>
+        Вопрос 20 · Восприятие и внимание в HCI · HCI Экзамен — ПОЗДРАВЛЯЮ С ЗАВЕРШЕНИЕМ!
+    </footer>
+</div>
+</body>
+</html>

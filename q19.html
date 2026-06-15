@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопрос 19: Типографика в UI — шрифты и параметры читаемости</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f1a;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #e2e8f0;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #0f172a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #1e293b;
+        }
+
+        .nav-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #334155;
+        }
+
+        .nav-btn:hover {
+            background: #2d3a4f;
+            color: #f1f5f9;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .hero {
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .section {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid #1e293b;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #b9e2ff;
+            border-left: 3px solid #3b82f6;
+            padding-left: 0.8rem;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.6rem;
+            color: #cbd5e1;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #1e293b;
+            vertical-align: top;
+        }
+
+        th {
+            background: #0a0f1a;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        td {
+            color: #cbd5e6;
+        }
+
+        .font-demo {
+            font-family: 'Times New Roman', Georgia, serif;
+        }
+        .sans-demo {
+            font-family: 'Inter', Roboto, Helvetica, sans-serif;
+        }
+        .mono-demo {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        .code-block {
+            background: #020617;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #a5f3c3;
+            overflow-x: auto;
+            margin: 1rem 0;
+            white-space: pre-wrap;
+        }
+
+        .note {
+            background: #1e1b2e;
+            border-left: 3px solid #facc15;
+            padding: 0.8rem 1rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            border-top: 1px solid #1e293b;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
+            .nav-group { justify-content: space-between; }
+            .hero h1 { font-size: 1.5rem; }
+            .section h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q18.html" class="nav-btn">← Назад (вопрос 18)</a>
+        </div>
+        <a href="q20.html" class="nav-btn">Вперёд (вопрос 20) →</a>
+    </div>
+
+    <div class="hero">
+        <h1>🔤 Вопрос 19. Типографика в UI</h1>
+        <p>Типы шрифтов (serif, sans-serif, моноширинные) и критические параметры читаемости: размер, длина строки, интерлиньяж, контраст.</p>
+    </div>
+
+    <!-- Типы шрифтов -->
+    <div class="section">
+        <h2>🔤 Основные типы шрифтов</h2>
+
+        <h3>1. Serif (с засечками)</h3>
+        <p class="font-demo">Пример: Times New Roman, Georgia, Merriweather. У букв есть декоративные засечки. Классические, «книжные», внушают доверие. На экране при малых размерах читаемость может снижаться.</p>
+        <p><strong>Где использовать:</strong> длинные статьи, блоги, заголовки (элегантность), не рекомендуется для мелкого текста (подписи) и дашбордов.</p>
+
+        <h3>2. Sans-serif (без засечек)</h3>
+        <p class="sans-demo">Пример: Inter, Roboto, Helvetica, Arial. Чистые линии, максимально читаемые на экранах. Стандарт де-факто для UI.</p>
+        <p><strong>Где использовать:</strong> почти везде: основной текст, кнопки, поля ввода, навигация, мобильные интерфейсы, дашборды, CRM.</p>
+
+        <h3>3. Моноширинные (Monospace)</h3>
+        <p class="mono-demo">Пример: JetBrains Mono, Fira Code, Consolas. Каждый символ одинаковой ширины. Технические, ассоциируются с кодом.</p>
+        <p><strong>Где использовать:</strong> блоки кода, терминалы, логи, таблицы с колонками, поля ввода паролей. Не использовать для абзацев текста.</p>
+    </div>
+
+    <!-- Параметры читаемости -->
+    <div class="section">
+        <h2>📏 Критические параметры читаемости</h2>
+
+        <h3>1. Размер шрифта (font size)</h3>
+        <ul><li>Десктоп: основной текст <strong>≥16px</strong> (или 1rem). Вспомогательный (подписи) — 14px, но не для длительного чтения.</li>
+        <li>Мобильные: <strong>16px</strong> (Apple рекомендует минимум 16px для полей ввода, чтобы избежать зума).</li>
+        <li>Заголовки: 1.5–2× от основного (24–32px).</li></ul>
+
+        <h3>2. Длина строки (line length / measure)</h3>
+        <ul><li>Десктоп: <strong>50–75 символов</strong> на строку (включая пробелы).</li>
+        <li>Мобильные: <strong>35–50 символов</strong>.</li>
+        <li>Контроль: <code>max-width: 600px</code> для текста (при 16px даст ~60–70 символов).</li></ul>
+
+        <h3>3. Интерлиньяж (line height)</h3>
+        <ul><li>Оптимально: <strong>1.4–1.6</strong> от размера шрифта (без единиц).</li>
+        <li>Пример: <code>line-height: 1.5</code> при 16px = 24px.</li>
+        <li>Для заголовков — 1.2–1.3; для мобильных и длинных текстов — ближе к 1.6.</li></ul>
+
+        <h3>4. Контраст (contrast)</h3>
+        <p><strong>WCAG 2.1 уровень AA:</strong> обычный текст — коэффициент контраста <strong>≥4.5:1</strong>; крупный текст (≥18pt или 14pt жирного) — <strong>≥3:1</strong>.</p>
+        <ul><li>Плохо: серый <code>#AAAAAA</code> на белом (~2.3:1) — не читается.</li>
+        <li>Хорошо: <code>#333333</code> на белом (~12:1), <code>#595959</code> (~7:1).</li>
+        <li>Инструменты: WebAIM, Lighthouse, axe DevTools.</li></ul>
+        <div class="note">💡 <strong>Практика:</strong> для основного текста — чёрный или очень тёмно-серый на светлом фоне; для второстепенного — серый, но с контрастом ≥4.5:1.</div>
+    </div>
+
+    <!-- Дополнительные параметры -->
+    <div class="section">
+        <h2>📌 Дополнительные параметры (менее критичны)</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Параметр</th><th>Рекомендация</th></tr></thead>
+                <tbody>
+                    <tr><td>Трекинг (letter-spacing)</td><td>Для основного текста — 0. Для заголовков заглавными можно увеличить (0.05em).</tr>
+                    <tr><td>Регистр (uppercase)</td><td>Избегать длинных фраз — читаются на 20% медленнее. Только для коротких акронимов или меток.</td></tr>
+                    <tr><td>Выравнивание</td><td>Основной текст — по левому краю (без полного выравнивания, чтобы избежать «речных» дыр).</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Итог для экзамена -->
+    <div class="section">
+        <h2>📌 Итог для экзамена (тезисы)</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Тип шрифта</th><th>Где использовать</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Serif</strong></td><td>Длинные статьи, заголовки, брендовые тексты (осторожно на малых размерах).</td></tr>
+                    <tr><td><strong>Sans-serif</strong></td><td>Основной UI, кнопки, поля, мобильные интерфейсы, таблицы — везде.</td></tr>
+                    <tr><td><strong>Monospace</strong></td><td>Блоки кода, терминалы, таблицы с колонками, пароли.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Параметр</th><th>Критическое значение</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Размер</strong></td><td>≥16px (десктоп), ≥16px (мобильный)</td></tr>
+                    <tr><td><strong>Длина строки</strong></td><td>50–75 символов (десктоп), 35–50 (мобильные)</td></tr>
+                    <tr><td><strong>Интерлиньяж</strong></td><td>1.4–1.6 от размера шрифта</td></tr>
+                    <tr><td><strong>Контраст</strong></td><td>≥4.5:1 (обычный текст, WCAG AA)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">🎯 <strong>Золотая формула:</strong> хорошая типографика = правильный выбор шрифта + достаточный размер + комфортная длина строки + просторный интерлиньяж + высокий контраст.</div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="q18.html" class="nav-btn">← Назад (вопрос 18)</a>
+        </div>
+        <a href="q20.html" class="nav-btn">Вперёд (вопрос 20) →</a>
+    </div>
+
+
+    <footer>
+        Вопрос 19 · Типографика в UI · HCI Экзамен
+    </footer>
+</div>
+</body>
+</html>
