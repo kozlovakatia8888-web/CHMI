@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос 01: Архитектурные парадигмы веб-фронтенда — полный разбор + тесты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🎉 ФИНАЛ: Мотивация и стратегии | HCI Экзамен</title>
     <style>
         * {
             margin: 0;
@@ -12,455 +12,522 @@
         }
 
         body {
-            background: #0b0f1a;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            color: #e2e8f0;
-            line-height: 1.5;
+            min-height: 100vh;
+            background: radial-gradient(circle at 30% 10%, #0a0a1a, #010101);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'SF Pro Text', sans-serif;
+            color: #f0f3fa;
             padding: 2rem 1rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .chaos-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: repeating-linear-gradient(45deg, rgba(0, 255, 255, 0.02) 0px, rgba(0, 255, 255, 0.02) 1px, transparent 1px, transparent 12px),
+                        repeating-linear-gradient(135deg, rgba(255, 0, 255, 0.02) 0px, rgba(255, 0, 255, 0.02) 1px, transparent 1px, transparent 12px);
+            animation: driftBackground 30s infinite linear;
+        }
+
+        @keyframes driftBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(5%, 5%); }
+        }
+
+        .orb {
+            position: fixed;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(0,200,255,0.2), transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            top: 20%;
+            left: -20%;
+            animation: orbMove 15s infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes orbMove {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+            100% { transform: translate(15%, 10%) scale(1.3); opacity: 0.7; }
+        }
+
+        .orb2 {
+            left: auto;
+            right: -15%;
+            top: 60%;
+            background: radial-gradient(circle, rgba(255,0,200,0.15), transparent 70%);
+            animation: orbMove2 18s infinite alternate;
+        }
+
+        @keyframes orbMove2 {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            100% { transform: translate(-20%, -10%) scale(1.5); opacity: 0.6; }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 10;
         }
 
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            background: #0f172a;
-            padding: 0.8rem 1.2rem;
-            border-radius: 60px;
-            border: 1px solid #1e293b;
-        }
-
-        .nav-btn {
-            background: #1e293b;
-            color: #94a3b8;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
+        .home-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            border: 1px solid #334155;
-        }
-
-        .nav-btn:hover {
-            background: #2d3a4f;
-            color: #f1f5f9;
-            border-color: #3b82f6;
-            transform: translateY(-2px);
-        }
-
-        .hero {
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-            padding-left: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
+            gap: 0.6rem;
+            background: rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 255, 0.6);
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #0ff;
             font-weight: 700;
-            background: linear-gradient(135deg, #f0f9ff, #b9e2ff);
+            transition: 0.3s;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .home-btn:hover {
+            background: #0ff;
+            color: #000;
+            box-shadow: 0 0 25px #0ff;
+            transform: scale(1.02);
+        }
+
+        .hero-final {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-final h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff00cc, #00ffff, #ffcc00, #ff00cc);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 0.5rem;
+            animation: superShift 5s ease infinite;
+            text-shadow: 0 0 30px rgba(0,255,255,0.5);
+            letter-spacing: -0.02em;
         }
 
-        .section {
-            background: #0f172a;
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            margin: 2rem 0;
-            border: 1px solid #1e293b;
-            transition: box-shadow 0.2s;
+        @keyframes superShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .section h2 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            color: #b9e2ff;
-            border-left: 3px solid #3b82f6;
-            padding-left: 0.8rem;
-        }
-
-        .section h3 {
+        .hero-final p {
             font-size: 1.3rem;
-            margin: 1.2rem 0 0.8rem;
-            color: #facc15;
-        }
-
-        .arch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .arch-card {
-            background: #111827;
-            border-radius: 1.2rem;
-            padding: 1.5rem;
-            border: 1px solid #1e293b;
-            transition: all 0.25s;
-        }
-        .arch-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-4px);
-        }
-        .arch-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .badge {
-            font-size: 0.7rem;
-            background: #1e293b;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-        th, td {
-            padding: 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid #1e293b;
-            vertical-align: top;
-        }
-        th {
-            background: #0a0f1a;
-            color: #f1f5f9;
-        }
-
-        .quiz-question {
-            background: #111827;
-            padding: 1.2rem;
-            border-radius: 1rem;
-            margin: 1.2rem 0;
-            border-left: 4px solid #3b82f6;
-        }
-        .quiz-question p {
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-        }
-        .quiz-option {
-            display: block;
-            margin: 0.5rem 0;
-            cursor: pointer;
-            padding: 0.4rem 0.8rem;
-            border-radius: 40px;
-            transition: 0.1s;
-        }
-        .quiz-option:hover {
-            background: #1e293b;
-        }
-        .quiz-feedback {
             margin-top: 0.8rem;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .strategies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.8rem;
+            margin: 3rem 0;
+        }
+
+        .strat-card {
+            background: rgba(10, 20, 35, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            transition: all 0.4s;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .strat-card:hover {
+            transform: translateY(-10px) rotate(0.5deg);
+            border-color: #ff00cc;
+            box-shadow: 0 0 35px rgba(255,0,204,0.4);
+            background: rgba(20, 30, 50, 0.9);
+        }
+
+        .icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            animation: floatIcon 3s infinite ease;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .strat-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(135deg, #fff, #88ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .strat-card p {
+            color: #cbd5e6;
             font-size: 0.9rem;
-            padding: 0.5rem;
-            border-radius: 0.6rem;
         }
-        .correct {
-            color: #4ade80;
-            border-left: 3px solid #4ade80;
-            padding-left: 0.6rem;
+
+        .quote-block {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(16px);
+            border-radius: 3rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 40px rgba(255,215,0,0.2);
         }
-        .wrong {
-            color: #f87171;
-            border-left: 3px solid #f87171;
-            padding-left: 0.6rem;
+
+        .quote-text {
+            font-size: 1.6rem;
+            font-weight: 500;
+            font-style: italic;
+            color: #fff5cc;
         }
-        button {
-            background: #3b82f6;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
-            color: white;
-            font-weight: 600;
+
+        .quote-author {
+            margin-top: 0.8rem;
+            font-size: 1rem;
+            color: #ffdd99;
+        }
+
+        .spell-block {
+            background: rgba(30, 20, 50, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            border: 1px dashed #ff00cc;
+        }
+
+        .spell-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ff99ff;
+            margin-bottom: 1rem;
+        }
+
+        .spell-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .spell-item {
+            background: rgba(0,0,0,0.5);
+            padding: 0.4rem 1rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            border-left: 3px solid #0ff;
+        }
+
+        .random-tip {
+            background: linear-gradient(95deg, #ff00cc20, #00ffff20);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .random-tip:hover {
+            transform: scale(1.01);
+            border-color: #ffcc00;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .random-tip p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .tip-btn {
+            background: none;
+            border: 1px solid #0ff;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            color: #0ff;
+            margin-top: 0.8rem;
             cursor: pointer;
             transition: 0.2s;
         }
-        button:hover {
-            background: #2563eb;
-            transform: scale(0.98);
+
+        .tip-btn:hover {
+            background: #0ff;
+            color: #000;
         }
-        .note {
-            background: #1e1b2e;
-            border-left: 3px solid #facc15;
-            padding: 0.8rem 1rem;
-            border-radius: 0.8rem;
-            margin: 1rem 0;
-        }
-        footer {
-            margin-top: 2rem;
+
+        .final-btn {
+            display: block;
             text-align: center;
-            font-size: 0.8rem;
-            color: #5b6e8c;
-            border-top: 1px solid #1e293b;
-            padding-top: 1.5rem;
+            background: linear-gradient(95deg, #ff00cc, #00ffff);
+            margin: 2rem auto;
+            width: fit-content;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #000;
+            transition: 0.2s;
+            box-shadow: 0 0 20px rgba(0,255,255,0.6);
+            border: none;
+            cursor: pointer;
         }
+
+        .final-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255,0,204,0.8);
+            letter-spacing: 2px;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
         @media (max-width: 700px) {
-            .hero h1 { font-size: 1.6rem; }
-            .section h2 { font-size: 1.3rem; }
+            .hero-final h1 { font-size: 2.2rem; }
+            .quote-text { font-size: 1.2rem; }
+            .final-btn { font-size: 1rem; }
+            .strategies { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+<canvas id="confetti-canvas"></canvas>
+<div class="chaos-bg"></div>
+<div class="orb"></div>
+<div class="orb orb2"></div>
+
 <div class="container">
-    <div class="nav-bar">
-        <div class="nav-group">
-            <a href="index.html" class="nav-btn">🏠 На главную</a>
-            <a href="q2.html" class="nav-btn">→ Вперёд (вопрос 2)</a>
-        </div>
+    <a href="index.html" class="home-btn">🏠 ВЕРНУТЬСЯ К ВОПРОСАМ</a>
+
+    <div class="hero-final">
+        <h1>🔥 ТЫ ГОТОВ НА 200% 🔥</h1>
+        <p>20 вопросов разобраны — осталось только зайти и порвать экзамен</p>
     </div>
 
-    <div class="hero">
-        <h1>📘 Вопрос 1. Архитектурные парадигмы веб-фронтенда: MPA, SPA, SSR, SSG</h1>
-        <p>Полный разбор: как работают, в чём различия рендеринга, SEO и времени до интерактивности (TTI). С примерами и тестами.</p>
+    <!-- 8 карточек стратегий -->
+    <div class="strategies">
+        <div class="strat-card"><div class="icon">🧠</div><h3>Активное повторение</h3><p>Отвечай на вопросы вслух, объясняй коту или стене — закрепляется в 2 раза лучше.</p></div>
+        <div class="strat-card"><div class="icon">⏱️</div><h3>Правило 25/5</h3><p>25 минут фокуса, 5 минут отдыха — мозг работает как турборежим.</p></div>
+        <div class="strat-card"><div class="icon">😴</div><h3>Повтор перед сном</h3><p>Последний взгляд на конспекты за час до сна — память фиксирует магически.</p></div>
+        <div class="strat-card"><div class="icon">🎯</div><h3>Слабое звено</h3><p>Выпиши 3 самых страшных вопроса и разбери их ещё раз. Страх уйдёт.</p></div>
+        <div class="strat-card"><div class="icon">🚶</div><h3>Ходьба и повтор</h3><p>Повторяй сложные темы во время прогулки — физическая активность улучшает память.</p></div>
+        <div class="strat-card"><div class="icon">🎧</div><h3>Аудио-подкаст для себя</h3><p>Запиши свои ответы на диктофон и слушай в транспорте — работает как заклинание.</p></div>
+        <div class="strat-card"><div class="icon">👥</div><h3>Объясни другу</h3><p>Расскажи хоть один вопрос человеку, который не шарит в HCI. Сам поймёшь глубже.</p></div>
+        <div class="strat-card"><div class="icon">💪</div><h3>Настрой — половина дела</h3><p>Скажи себе: «Я уже эксперт». Уверенность меняет результат.</p></div>
     </div>
 
-    <!-- ========== ОСНОВНАЯ ТЕОРИЯ ========== -->
-    <div class="section">
-        <h2>🌐 Что такое архитектура веб-приложения?</h2>
-        <p>Архитектура определяет, <strong>где и как генерируется HTML-код</strong>, который видит пользователь, и <strong>когда загружается JavaScript</strong> для интерактивности. От этого зависят скорость загрузки, SEO, поведение при навигации.</p>
+    <!-- Блок с заклинаниями/приколюхами -->
+    <div class="spell-block">
+        <div class="spell-title">🧙 ЭКЗАМЕНАЦИОННЫЕ ЗАКЛИНАНИЯ 🧙</div>
+        <div class="spell-list">
+            <div class="spell-item">«Абракадабра-юзабилити»</div>
+            <div class="spell-item">«Фитус-хиксус-респектус»</div>
+            <div class="spell-item">«Омниа-перфекта-интерфейсио»</div>
+            <div class="spell-item">«Сессия-диструктио-комплитус»</div>
+        </div>
+        <div style="font-size:0.8rem; margin-top:0.5rem;">⚠️ Шёпотом перед входом в аудиторию повышает шанс на 33%</div>
     </div>
 
-    <div class="arch-grid">
-        <!-- MPA -->
-        <div class="arch-card">
-            <div class="arch-title">📄 MPA <span class="badge">Multi-Page Application</span></div>
-            <p><strong>Как работает:</strong> каждый переход по ссылке — новый запрос к серверу. Сервер полностью генерирует HTML-страницу и отправляет её. Браузер перезагружает страницу целиком.</p>
-            <p><strong>Рендеринг:</strong> серверный (каждый раз).</p>
-            <p><strong>SEO:</strong> отличное — робот получает готовый контент.</p>
-            <p><strong>TTI (Time to Interactive):</strong> при первом визите — быстро (HTML уже содержит контент). При навигации — медленно, т.к. полная перезагрузка.</p>
-            <p><strong>Где применяется:</strong> блоги, новостные порталы, корпоративные сайты, интернет-магазины на CMS (WordPress, Tilda).</p>
-            <div class="note">📌 <strong>Пример фреймворков:</strong> Django, Ruby on Rails, Laravel, WordPress.</div>
-        </div>
-        <!-- SPA -->
-        <div class="arch-card">
-            <div class="arch-title">⚡ SPA <span class="badge">Single-Page Application</span></div>
-            <p><strong>Как работает:</strong> при первом визите скачивается «пустая» HTML-обёртка и огромный JS-бандл. Дальше роутинг на клиенте — JS подгружает данные через API и перерисовывает страницу без перезагрузки.</p>
-            <p><strong>Рендеринг:</strong> клиентский (браузер).</p>
-            <p><strong>SEO:</strong> плохое (из коробки) — робот видит пустой div. Нужен рендеринг на сервере (SSR) или prerendering.</p>
-            <p><strong>TTI:</strong> первый визит — долго (загрузка и выполнение JS). Последующие навигации — мгновенно.</p>
-            <p><strong>Где применяется:</strong> дашборды, CRM, онлайн-редакторы (Google Docs, Figma, Trello).</p>
-            <div class="note">📌 <strong>Примеры:</strong> React (create-react-app), Vue CLI, Angular.</div>
-        </div>
-        <!-- SSR -->
-        <div class="arch-card">
-            <div class="arch-title">🖥️ SSR <span class="badge">Server-Side Rendering</span></div>
-            <p><strong>Как работает:</strong> первый запрос — сервер генерирует полный HTML. Затем загружается JS и происходит <strong>гидратация</strong> — статическая верстка оживает, становится интерактивной. Дальше навигация как в SPA.</p>
-            <p><strong>Рендеринг:</strong> сервер (первый раз), потом клиент.</p>
-            <p><strong>SEO:</strong> отличное.</p>
-            <p><strong>TTI:</strong> пользователь видит контент быстро (TTV — Time to View), но кликнуть может только после гидратации — задержка.</p>
-            <p><strong>Где применяется:</strong> e-commerce, новостные порталы с виджетами, сайты, где нужны и SEO, и интерактивность.</p>
-            <div class="note">📌 <strong>Примеры:</strong> Next.js (React), Nuxt (Vue), Remix.</div>
-        </div>
-        <!-- SSG -->
-        <div class="arch-card">
-            <div class="arch-title">📦 SSG <span class="badge">Static Site Generation</span></div>
-            <p><strong>Как работает:</strong> HTML-страницы генерируются один раз на этапе сборки (build time). Сервер просто отдаёт готовые файлы через CDN. Нет серверной обработки запросов.</p>
-            <p><strong>Рендеринг:</strong> заранее (build-time).</p>
-            <p><strong>SEO:</strong> идеальное.</p>
-            <p><strong>TTI:</strong> максимально быстрый — никакой задержки, страницы лёгкие.</p>
-            <p><strong>Где применяется:</strong> блоги, документация, лендинги, Jamstack-сайты.</p>
-            <div class="note">📌 <strong>Примеры:</strong> Hugo, Jekyll, Astro, Next.js (export), 11ty.</div>
-        </div>
+    <!-- Рандомный тост с советом -->
+    <div class="random-tip" id="randomTipBlock">
+        <p id="tipText">🍀 Нажми на кнопку, чтобы получить секретный совет</p>
+        <button class="tip-btn" id="newTipBtn">✨ Ещё совет ✨</button>
     </div>
 
-    <div class="section">
-        <h2>🧠 Ключевые метрики: TTI, TTV, гидратация</h2>
-        <ul style="margin-left: 1.5rem;">
-            <li><strong>TTV (Time to View)</strong> — когда пользователь видит контент (пусть даже статический).</li>
-            <li><strong>TTI (Time to Interactive)</strong> — когда можно кликать, вводить текст, взаимодействовать.</li>
-            <li><strong>Гидратация (hydration)</strong> — процесс, когда серверный HTML «привязывается» к клиентскому JS (вешаются обработчики, восстанавливается состояние).</li>
-        </ul>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Архитектура</th><th>Где рендер</th><th>TTV</th><th>TTI</th><th>SEO</th></tr></thead>
-                <tbody>
-                    <tr><td>MPA</td><td>Сервер (каждый раз)</td><td>быстрый</td><td>быстрый (но навигация с перезагрузкой)</td><td>✅ отличное</td></tr>
-                    <tr><td>SPA</td><td>Клиент (браузер)</td><td>медленный (ждём JS)</td><td>медленный, затем мгновенный</td><td>❌ плохое</td></tr>
-                    <tr><td>SSR</td><td>Сервер → клиент</td><td>быстрый</td><td>средний (после гидратации)</td><td>✅ отличное</td></tr>
-                    <tr><td>SSG</td><td>Заранее (build)</td><td>мгновенный</td><td>мгновенный</td><td>✅ идеальное</td></tr>
-                </tbody>
-            </table>
-        </div>
+    <!-- Мотивационная цитата -->
+    <div class="quote-block">
+        <div class="quote-text">«Преподаватель не враг. Он хочет убедиться, что ты понял. А ты понял, наверное...»</div>
+        <div class="quote-author">— Мудрый студент</div>
     </div>
 
-    <div class="section">
-        <h2>🔄 Детальное сравнение (таблица 10 параметров)</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Критерий</th><th>MPA</th><th>SPA</th><th>SSR</th><th>SSG</th></tr></thead>
-                <tbody>
-                    <tr><td>Рендеринг</td><td>сервер</td><td>клиент</td><td>сервер → клиент</td><td>build-time</td></tr>
-                    <tr><td>Скорость первого показа</td><td>⭐ высокая</td><td>⭐ низкая (бандл)</td><td>⭐ высокая</td><td>⭐ максимальная</td></tr>
-                    <tr><td>Навигация без перезагрузки</td><td>нет</td><td>да</td><td>да (после гидратации)</td><td>нет (если не добавить JS)</td></tr>
-                    <tr><td>SEO из коробки</td><td>отличное</td><td>плохое</td><td>отличное</td><td>отличное</td></tr>
-                    <tr><td>Нагрузка на сервер</td><td>средняя</td><td>низкая (только API)</td><td>высокая (CPU)</td><td>низкая (CDN)</td></tr>
-                    <tr><td>Возможность кеширования CDN</td><td>средняя (динамика)</td><td>средняя (API)</td><td>сложно</td><td>отличная</td></tr>
-                    <tr><td>Гидратация</td><td>не нужна</td><td>нужна (вся страница)</td><td>частичная или полная</td><td>не нужна</td></tr>
-                    <tr><td>Пример фреймворка</td><td>Laravel, Django</td><td>React CSR, Vue CLI</td><td>Next.js, Nuxt</td><td>Hugo, Astro</td></tr>
-                    <tr><td>Идеальный сценарий</td><td>Контентный сайт</td><td>Интерактивное приложение</td><td>E-commerce, соцсеть</td><td>Блог, документация</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>⚙️ Гибридные подходы (ISR, Partial Hydration)</h2>
-        <p><strong>ISR (Incremental Static Regeneration)</strong> — улучшенный SSG: страницы обновляются фоном после сборки (Next.js).<br>
-        <strong>Partial Hydration / Islands Architecture</strong> — гидратируется только часть страницы (Astro).<br>
-        <strong>React Server Components</strong> — компоненты рендерятся на сервере и не отправляют JS клиенту.</p>
-    </div>
-
-    <!-- ========== ТЕСТИРОВАНИЕ ========== -->
-    <div class="section">
-        <h2>📝 Проверь себя: тест по теме</h2>
-        <div id="quiz-container"></div>
-        <button id="reset-quiz">🔄 Сбросить ответы</button>
-    </div>
+    <!-- Большая кнопка -->
+    <a href="index.html" class="final-btn" id="wish-btn">💪 ПОЖЕЛАЙ МНЕ УДАЧИ 💪</a>
 
     <footer>
-        Вопрос 01 — полный разбор + тесты. Удачи на экзамене!
+        Ты перелопатил 20 вопросов. Каждый ответ — кирпич в твоей уверенности. Просто иди и сделай.
     </footer>
 </div>
 
 <script>
-    // Вопросы для теста
-    const questions = [
-        {
-            text: "Какая архитектура требует полной перезагрузки страницы при каждом переходе?",
-            options: ["SPA", "MPA", "SSR", "SSG"],
-            correct: 1, // MPA
-            explanation: "MPA (Multi-Page Application) — каждый клик вызывает полную перезагрузку."
-        },
-        {
-            text: "Что такое гидратация (hydration) в контексте SSR?",
-            options: [
-                "Сервер отправляет только JSON-данные",
-                "Процесс привязки событий к серверному HTML",
-                "Сжатие CSS-файлов",
-                "Сборка статических файлов"
-            ],
-            correct: 1,
-            explanation: "Гидратация — когда клиентский JS 'оживляет' статический HTML, полученный с сервера."
-        },
-        {
-            text: "Какой подход даёт максимальную скорость и отличное SEO, но не подходит для часто меняющегося контента?",
-            options: ["SPA", "SSR", "SSG", "MPA"],
-            correct: 2,
-            explanation: "SSG (Static Site Generation) — страницы генерируются один раз, идеально для блогов и документации."
-        },
-        {
-            text: "Что из перечисленного является главной проблемой SPA для поисковых систем?",
-            options: [
-                "Медленные запросы к API",
-                "Отсутствие HTML-контента при первом запросе (пустой div)",
-                "Сложность роутинга",
-                "Большой размер изображений"
-            ],
-            correct: 1,
-            explanation: "Поисковый робот видит пустой контейнер, пока не выполнится JS — контент не индексируется."
-        },
-        {
-            text: "Какой подход требует мощного сервера, потому что страница генерируется на каждый запрос пользователя?",
-            options: ["SSG", "MPA (без кеша)", "SSR", "SPA"],
-            correct: 2,
-            explanation: "SSR генерирует страницу на сервере при каждом запросе, что создаёт нагрузку на CPU."
-        },
-        {
-            text: "Что такое TTI (Time to Interactive)?",
-            options: [
-                "Время до первого байта",
-                "Когда пользователь может кликать и взаимодействовать с интерфейсом",
-                "Скорость загрузки CSS",
-                "Время отрисовки первого символа"
-            ],
-            correct: 1,
-            explanation: "TTI — момент, когда страница полностью готова к взаимодействию."
-        },
-        {
-            text: "Какую архитектуру вы выберете для интернет-магазина, которому нужны и SEO, и быстрая интерактивная корзина?",
-            options: ["SPA", "MPA", "SSG", "SSR или гибрид"],
-            correct: 3,
-            explanation: "SSR (Next.js/Nuxt) даёт SEO и SPA-навигацию после гидратации."
+    // Конфетти
+    (function() {
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let active = false;
+        let animationId = null;
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
         }
-    ];
+        window.addEventListener('resize', resize);
+        resize();
 
-    let userAnswers = new Array(questions.length).fill(null);
+        function randomRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
 
-    function renderQuiz() {
-        const container = document.getElementById('quiz-container');
-        if (!container) return;
-        container.innerHTML = '';
-        questions.forEach((q, idx) => {
-            const qDiv = document.createElement('div');
-            qDiv.className = 'quiz-question';
-            qDiv.innerHTML = `<p>${idx+1}. ${q.text}</p>`;
-            q.options.forEach((opt, optIdx) => {
-                const optDiv = document.createElement('div');
-                optDiv.className = 'quiz-option';
-                optDiv.textContent = `${String.fromCharCode(65+optIdx)}. ${opt}`;
-                optDiv.onclick = (e) => {
-                    e.stopPropagation();
-                    userAnswers[idx] = optIdx;
-                    renderQuiz(); // перерисовать с обратной связью
-                };
-                if (userAnswers[idx] !== null) {
-                    if (optIdx === q.correct) {
-                        optDiv.style.background = '#14532d'; // зелёный фон для правильного
-                    } else if (optIdx === userAnswers[idx] && userAnswers[idx] !== q.correct) {
-                        optDiv.style.background = '#7f1d1d'; // красный для ошибочного выбора
-                    }
-                }
-                qDiv.appendChild(optDiv);
-            });
-            // feedback
-            if (userAnswers[idx] !== null) {
-                const fb = document.createElement('div');
-                fb.className = 'quiz-feedback';
-                const isCorrect = (userAnswers[idx] === q.correct);
-                fb.innerHTML = isCorrect 
-                    ? `<span class="correct">✅ Верно! ${q.explanation}</span>` 
-                    : `<span class="wrong">❌ Неверно. Правильный ответ: ${String.fromCharCode(65+q.correct)}. ${q.explanation}</span>`;
-                qDiv.appendChild(fb);
+        function createParticles(count) {
+            const colors = ['#0ff', '#f0f', '#ffcc00', '#ff6699', '#66ff99', '#ff9933', '#88ffcc'];
+            for(let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height - height,
+                    size: randomRange(3, 9),
+                    speedX: randomRange(-3.5, 3.5),
+                    speedY: randomRange(3, 9),
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    spin: randomRange(-6, 6)
+                });
             }
-            container.appendChild(qDiv);
-        });
-    }
+        }
 
-    function resetQuiz() {
-        userAnswers = new Array(questions.length).fill(null);
-        renderQuiz();
-    }
+        function drawParticles() {
+            if(!active) return;
+            ctx.clearRect(0, 0, width, height);
+            for(let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI/180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                ctx.restore();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.rotation += p.spin;
+                if(p.y > height + 60 || p.x < -60 || p.x > width + 60) {
+                    particles[i] = {
+                        x: Math.random() * width,
+                        y: -20,
+                        size: randomRange(3, 9),
+                        speedX: randomRange(-3.5, 3.5),
+                        speedY: randomRange(4, 10),
+                        color: p.color,
+                        rotation: 0,
+                        spin: randomRange(-6,6)
+                    };
+                }
+            }
+            requestAnimationFrame(drawParticles);
+        }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        renderQuiz();
-        const resetBtn = document.getElementById('reset-quiz');
-        if (resetBtn) resetBtn.addEventListener('click', resetQuiz);
-    });
+        function startConfetti() {
+            if(active) {
+                // если уже активно, просто добавим частиц
+                for(let i=0;i<80;i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height - height,
+                        size: randomRange(3, 9),
+                        speedX: randomRange(-3.5, 3.5),
+                        speedY: randomRange(4, 10),
+                        color: ['#0ff','#f0f','#ffcc00','#ff6699'][Math.floor(Math.random()*4)],
+                        rotation: 0,
+                        spin: randomRange(-6,6)
+                    });
+                }
+                return;
+            }
+            active = true;
+            particles = [];
+            createParticles(200);
+            drawParticles();
+            setTimeout(() => {
+                setTimeout(() => {
+                    active = false;
+                    ctx.clearRect(0, 0, width, height);
+                    particles = [];
+                    if(animationId) cancelAnimationFrame(animationId);
+                }, 5000);
+            }, 100);
+        }
+
+        startConfetti();
+
+        const wishBtn = document.getElementById('wish-btn');
+        if(wishBtn) {
+            wishBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                startConfetti();
+                const messages = ["🍀 Ты порвёшь экзамен!", "💯 HCI боится тебя!", "🏆 Ты уже сдал на отлично!", "✨ Преподаватель будет в шоке!", "🎓 Диплом в кармане!", "🔥 У тебя получится, бро!"];
+                const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                alert(randomMsg);
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 800);
+            });
+        }
+
+        // рандомные советы
+        const tips = [
+            "🍕 Съешь шоколадку за 15 минут до экзамена — глюкоза питает мозг.",
+            "🚰 Выпей стакан воды перед выходом — обезвоживание ухудшает когнитивные способности.",
+            "🧘 Глубоко вдохни 3 раза перед дверью аудитории — это снижает тревожность.",
+            "📖 Прочитай последний вопрос ещё раз перед сном — подсознание доработает.",
+            "🤝 Улыбнись преподавателю — это создаёт позитивный контекст.",
+            "✍️ Если завис — напиши хоть что-то, структура ответа уже даст баллы.",
+            "💪 Ты уже сделал 20 страниц — это больше, чем нужно для пятёрки.",
+            "🕯️ Представь, что объясняешь вопрос любимому человеку — станет легче.",
+            "📝 Напиши шпаргалку ручкой на бумаге — даже если не возьмёшь, запомнишь.",
+            "🎵 Послушай любимый трек перед выходом — поднимет настроение."
+        ];
+        const tipText = document.getElementById('tipText');
+        const newTipBtn = document.getElementById('newTipBtn');
+        function updateRandomTip() {
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipText.innerHTML = `✨ ${randomTip} ✨`;
+        }
+        newTipBtn.addEventListener('click', updateRandomTip);
+        updateRandomTip();
+    })();
 </script>
 </body>
 </html>
