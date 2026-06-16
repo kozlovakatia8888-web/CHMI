@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос 03: Закон Фиттса и закон Хика</title>
+    <title>Вопрос 03: Закон Фиттса и закон Хика — углублённо</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.5; padding: 2rem 1rem; }
-        .container { max-width: 1100px; margin: 0 auto; }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
         .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: #0f172a; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #1e293b; }
         .nav-btn { background: #1e293b; color: #94a3b8; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #334155; }
         .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
         .nav-group { display: flex; gap: 0.8rem; }
         .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
-        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
         .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
         .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
-        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.6rem; color: #cbd5e1; }
-        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
-        .formula { background: #111827; padding: 0.5rem 0.8rem; border-radius: 0.6rem; font-family: monospace; font-size: 1rem; color: #facc15; display: inline-block; margin: 0.5rem 0; }
-        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
-        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #cbd5e1; }
+        .table-wrap { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
         th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
+        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
+        .formula { background: #111827; padding: 0.5rem 0.8rem; border-radius: 0.6rem; font-family: monospace; font-size: 1.1rem; color: #facc15; display: inline-block; margin: 0.5rem 0; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.95rem; }
+        .glossary { margin-top: 1.5rem; background: #0a0f1a; border-radius: 1rem; padding: 1rem; border: 1px solid #2d3a4f; }
+        .glossary h3 { color: #facc15; margin-bottom: 0.5rem; }
+        .glossary-item { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1rem; padding: 0.3rem 0; border-bottom: 1px solid #1e293b; }
+        .glossary-item:last-child { border-bottom: none; }
+        .glossary-term { font-weight: 600; color: #86efac; }
+        .glossary-def { color: #cbd5e6; }
+        .glossary-en { color: #94a3b8; font-size: 0.85rem; }
         .quiz-question { background: #111827; border-radius: 1rem; padding: 1rem; margin-bottom: 1.2rem; border: 1px solid #2d3a4f; }
-        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.5rem; }
         .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
         .quiz-option input { accent-color: #3b82f6; }
         .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
@@ -34,7 +41,7 @@
         .quiz-submit { background: #3b82f6; border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
         .quiz-submit:hover { background: #2563eb; }
         footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
-        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } .glossary-item { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -47,52 +54,43 @@
         <a href="q4.html" class="nav-btn">Вперёд (вопрос 4) →</a>
     </div>
     <div class="hero">
-        <h1>📏 Количественные методы HCI: закон Фиттса и закон Хика</h1>
-        <p>Как математика помогает проектировать удобные интерфейсы. Глубокий разбор с формулами, примерами и тестом.</p>
+        <h1>📏 Закон Фиттса и закон Хика — количественные методы HCI</h1>
+        <p>Математические основы проектирования интерфейсов. Глубокий разбор с формулами, примерами и глоссарием.</p>
     </div>
 
-    <!-- Закон Фиттса -->
     <div class="section">
         <h2>1. Закон Фиттса (Fitts's Law)</h2>
-        <p><strong>Формулировка:</strong> Время, необходимое для быстрого перемещения указателя к цели, зависит от расстояния до цели и размера цели. Чем дальше и меньше цель — тем дольше.</p>
+        <p><strong>Формулировка:</strong> Время, необходимое для быстрого перемещения указателя к цели, зависит от расстояния до цели и её размера. Чем дальше и меньше цель — тем дольше.</p>
         <div class="formula">T = a + b · log₂(D / W + 1)</div>
         <ul>
-            <li><strong>T</strong> — среднее время достижения цели (ms)</li>
-            <li><strong>D</strong> — расстояние от стартовой точки до центра цели</li>
-            <li><strong>W</strong> — ширина цели в направлении движения</li>
-            <li><strong>a, b</strong> — константы, зависящие от устройства ввода (например, для мыши a≈0, b≈0.1 с/бит)</li>
-            <li><strong>log₂(D/W+1)</strong> — индекс сложности (ID) в битах</li>
+            <li><strong>T</strong> — среднее время достижения цели (в миллисекундах).</li>
+            <li><strong>D</strong> — расстояние от стартовой точки до центра цели.</li>
+            <li><strong>W</strong> — ширина цели в направлении движения (размер).</li>
+            <li><strong>a, b</strong> — эмпирические константы, зависящие от устройства ввода (например, для мыши a ≈ 0, b ≈ 0.1 с/бит).</li>
+            <li><strong>log₂(D/W + 1)</strong> — индекс сложности (ID, Index of Difficulty), измеряется в битах.</li>
         </ul>
-        <div class="code-block">
-Пример: кнопка шириной 100px, расстояние 200px → ID = log₂(200/100+1) = log₂(3) ≈ 1.585 бит
-Время ≈ 0 + 0.1 * 1.585 ≈ 0.158 с = 158 мс (идеальное)
-Увеличим D до 400px, W=50px → ID = log₂(400/50+1) = log₂(9) ≈ 3.17 → время ≈ 317 мс
-        </div>
+        <p><strong>Пример расчёта:</strong> кнопка шириной 100px, расстояние 200px → ID = log₂(200/100+1) = log₂(3) ≈ 1.585 бит, время ≈ 0.1 * 1.585 ≈ 0.158 с = 158 мс.</p>
         <h3>📌 Применение в UI</h3>
         <ul>
-            <li><strong>Большие кнопки</strong> для важных действий (например, «Оплатить»).</li>
-            <li><strong>Близкое расположение</strong> частых элементов к курсору (контекстные меню, панели инструментов).</li>
-            <li><strong>Использование краёв экрана</strong> — углы имеют бесконечный эффективный размер (закон «волшебных углов»). Кнопка «Пуск» в Windows, системный трей.</li>
-            <li><strong>Мобильные интерфейсы</strong>: минимальная область нажатия 44×44pt, важные кнопки в нижней части (ближе к большому пальцу).</li>
+            <li><strong>Большие кнопки для важных действий</strong> — увеличение W уменьшает время.</li>
+            <li><strong>Размещение частых элементов рядом с курсором</strong> — уменьшение D.</li>
+            <li><strong>Использование краёв экрана</strong> — «волшебные углы» имеют бесконечный эффективный размер (например, кнопка «Пуск» в Windows, системный трей).</li>
+            <li><strong>Мобильные интерфейсы</strong>: минимальная область нажатия 44×44 pt (Apple HIG), важные кнопки в нижней части (ближе к большому пальцу).</li>
         </ul>
-        <div class="note">⚠️ Типичная ошибка: маленькая кнопка «Отправить» вдали от полей ввода, либо плавающая кнопка FAB в центре, далеко от края.</div>
+        <div class="note">⚠️ Типичная ошибка: маленькая кнопка «Отправить» вдали от полей ввода, либо плавающая кнопка FAB, оторванная от края.</div>
     </div>
 
-    <!-- Закон Хика -->
     <div class="section">
         <h2>2. Закон Хика (Hick-Hyman Law)</h2>
         <p><strong>Формулировка:</strong> Время принятия решения (выбора из нескольких вариантов) растёт логарифмически с увеличением количества альтернатив.</p>
         <div class="formula">RT = a + b · log₂(n + 1)</div>
         <ul>
-            <li><strong>RT</strong> — время реакции (ms)</li>
-            <li><strong>n</strong> — количество равновероятных альтернатив</li>
-            <li><strong>+1</strong> — учёт опции «не выбирать ничего»</li>
-            <li><strong>a, b</strong> — константы (b≈150 мс для человека)</li>
+            <li><strong>RT</strong> — время реакции (в миллисекундах).</li>
+            <li><strong>n</strong> — количество равновероятных альтернатив.</li>
+            <li><strong>+1</strong> — учитывает опцию «не выбирать ничего».</li>
+            <li><strong>a, b</strong> — константы (b ≈ 150 мс для человека).</li>
         </ul>
-        <div class="code-block">
-Пример: выбор из 2 опций → log₂(3) ≈ 1.585 → RT ~ 1.585*150 ≈ 238 мс
-Выбор из 8 опций → log₂(9) ≈ 3.17 → RT ~ 3.17*150 ≈ 475 мс (всего в 2 раза дольше, а не в 4)
-        </div>
+        <p><strong>Пример:</strong> выбор из 2 опций → log₂(3) ≈ 1.585 → RT ≈ 1.585*150 ≈ 238 мс. Выбор из 8 опций → log₂(9) ≈ 3.17 → RT ≈ 3.17*150 ≈ 475 мс (всего в 2 раза дольше, а не в 4).</p>
         <h3>📌 Применение в UI</h3>
         <ul>
             <li><strong>Группировка меню</strong> — не более 5–7 пунктов в одном меню, иначе разбивать на категории.</li>
@@ -103,10 +101,9 @@
         <div class="note">🎯 Итог: закон Хика не означает, что нужно избегать сложных интерфейсов, но требует иерархической организации и сокращения выбора на каждом шаге.</div>
     </div>
 
-    <!-- Совместное применение -->
     <div class="section">
-        <h2>🧩 Комбинация законов: пример с меню интернет-магазина</h2>
-        <div class="table-wrapper">
+        <h2>🧩 Совместное применение: пример меню интернет-магазина</h2>
+        <div class="table-wrap">
             <table>
                 <thead><tr><th>Без учёта законов</th><th>С учётом законов</th></tr></thead>
                 <tbody>
@@ -118,7 +115,6 @@
         </div>
     </div>
 
-    <!-- Частые ошибки -->
     <div class="section">
         <h2>🚫 Частые ошибки проектирования</h2>
         <ul>
@@ -129,30 +125,44 @@
         </ul>
     </div>
 
-    <!-- Итоговая таблица -->
-    <div class="section">
-        <h2>📌 Итог для экзамена</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Закон</th><th>Формула</th><th>Ключевой вывод</th></tr></thead>
-                <tbody>
-                    <tr><td>Фиттс</td><td>T = a + b·log₂(D/W+1)</td><td>Делайте кнопки крупнее и ближе; используйте края экрана.</td></tr>
-                    <tr><td>Хика</td><td>RT = a + b·log₂(n+1)</td><td>Группируйте пункты, используйте прогрессивное раскрытие, не показывайте больше 5-7 вариантов без иерархии.</td></tr>
-                </tbody>
-            </table>
+    <!-- Глоссарий -->
+    <div class="section glossary">
+        <h3>📖 Глоссарий по теме (русский / английский)</h3>
+        <div class="glossary-item">
+            <div class="glossary-term">Закон Фиттса</div>
+            <div class="glossary-def">Закон, описывающий время достижения цели в зависимости от расстояния и размера.<br><span class="glossary-en">Fitts's Law</span></div>
         </div>
-        <div class="note">💡 <strong>Золотое правило</strong>: сначала уменьши n (Хик), чтобы пользователь быстро решил, <em>что</em> делать. Потом уменьши D и увеличь W (Фиттс), чтобы он быстро <em>сделал</em> это.</div>
+        <div class="glossary-item">
+            <div class="glossary-term">Закон Хика</div>
+            <div class="glossary-def">Закон, описывающий время выбора в зависимости от числа альтернатив.<br><span class="glossary-en">Hick-Hyman Law</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Индекс сложности (ID)</div>
+            <div class="glossary-def">log₂(D/W+1) — мера сложности движения к цели в битах.<br><span class="glossary-en">Index of Difficulty (ID)</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">TTI (Time to Interactive)</div>
+            <div class="glossary-def">Время до полной интерактивности (в контексте скорости интерфейса).<br><span class="glossary-en">Time to Interactive</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Прогрессивное раскрытие</div>
+            <div class="glossary-def">Стратегия, при которой показываются сначала основные опции, а дополнительные — по требованию.<br><span class="glossary-en">Progressive Disclosure</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Когнитивная нагрузка</div>
+            <div class="glossary-def">Объём умственной работы, требуемый для выполнения задачи.<br><span class="glossary-en">Cognitive Load</span></div>
+        </div>
     </div>
 
     <!-- ТЕСТ -->
     <div class="section">
-        <h2>📝 Тест по законам Фиттса и Хика</h2>
+        <h2>📝 Тест по теме</h2>
         <div id="quiz-container"></div>
         <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
         <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
 
-    <footer>Вопрос 03 · Закон Фиттса и закон Хика · HCI Экзамен · Углублённая версия с тестом</footer>
+    <footer>Вопрос 03 · Закон Фиттса и закон Хика · HCI Экзамен · Углублённая версия с глоссарием</footer>
 </div>
 
 <script>
@@ -196,7 +206,7 @@
             const div = document.createElement('div');
             div.className = 'quiz-question';
             div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
-            const optsDiv = div.querySelector('.quiz-options');
+            const optsDiv = div.querySelector(`.quiz-options`);
             const isMulti = q.correct.length > 1;
             q.options.forEach((opt, optIdx) => {
                 const label = document.createElement('label');
@@ -216,13 +226,12 @@
     function evaluateQuiz() {
         let score = 0;
         const total = quizData.length;
-        for (let i = 0; i < quizData.length; i++) {
+        for (let i = 0; i < total; i++) {
             const q = quizData[i];
             const inputs = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) input`);
             const selected = Array.from(inputs).filter(inp => inp.checked).map(inp => parseInt(inp.value));
             const isCorrect = selected.length === q.correct.length && selected.every(v => q.correct.includes(v));
             if (isCorrect) score++;
-            // feedback
             let fb = document.getElementById(`fb-${i}`);
             if (!fb) {
                 const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`);
@@ -240,8 +249,7 @@
                 fb.className = 'quiz-feedback wrong';
             }
         }
-        const resultDiv = document.getElementById('quiz-result');
-        resultDiv.innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично! Законы усвоены.' : ' 📘 Повторите разделы с ошибками.'}`;
+        document.getElementById('quiz-result').innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично!' : ' 📘 Повторите.'}`;
     }
 
     buildQuiz();

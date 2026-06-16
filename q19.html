@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос 19: Типографика в UI</title>
+    <title>Вопрос 19: Типографика в UI — углублённо</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.5; padding: 2rem 1rem; }
-        .container { max-width: 1100px; margin: 0 auto; }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
         .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: #0f172a; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #1e293b; }
         .nav-btn { background: #1e293b; color: #94a3b8; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #334155; }
         .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
         .nav-group { display: flex; gap: 0.8rem; }
         .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
-        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
         .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
         .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
-        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #cbd5e1; }
+        .table-wrap { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
         th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
-        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
+        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.95rem; }
+        .glossary { margin-top: 1.5rem; background: #0a0f1a; border-radius: 1rem; padding: 1rem; border: 1px solid #2d3a4f; }
+        .glossary h3 { color: #facc15; margin-bottom: 0.5rem; }
+        .glossary-item { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1rem; padding: 0.3rem 0; border-bottom: 1px solid #1e293b; }
+        .glossary-item:last-child { border-bottom: none; }
+        .glossary-term { font-weight: 600; color: #86efac; }
+        .glossary-def { color: #cbd5e6; }
+        .glossary-en { color: #94a3b8; font-size: 0.85rem; }
         .quiz-question { background: #111827; border-radius: 1rem; padding: 1rem; margin-bottom: 1.2rem; border: 1px solid #2d3a4f; }
-        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.5rem; }
         .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
         .quiz-option input { accent-color: #3b82f6; }
         .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
@@ -31,7 +40,7 @@
         .quiz-submit { background: #3b82f6; border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
         .quiz-submit:hover { background: #2563eb; }
         footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
-        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } .glossary-item { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -44,52 +53,113 @@
         <a href="q20.html" class="nav-btn">Вперёд (вопрос 20) →</a>
     </div>
     <div class="hero">
-        <h1>🔤 Типографика в UI: типы шрифтов и параметры читаемости</h1>
-        <p>Serif, sans-serif, моноширинные. Размер, длина строки, интерлиньяж, контраст — как не испортить интерфейс.</p>
+        <h1>🔤 Типографика в UI — углублённо</h1>
+        <p>Типы шрифтов (serif, sans-serif, моноширинные) и критические параметры читаемости: размер, длина строки, интерлиньяж, контраст.</p>
     </div>
 
     <div class="section">
         <h2>Типы шрифтов</h2>
         <ul>
-            <li><strong>Serif (с засечками)</strong> — Times New Roman, Georgia. Для длинных статей, заголовков. На экране при малых размерах читаемость может страдать.</li>
-            <li><strong>Sans-serif (без засечек)</strong> — Inter, Roboto, Helvetica. Стандарт UI: кнопки, поля, навигация, мобильные интерфейсы.</li>
-            <li><strong>Monospace</strong> — JetBrains Mono, Fira Code. Для кода, терминалов, таблиц. Не использовать для абзацев.</li>
+            <li><strong>Serif (с засечками):</strong> Times New Roman, Georgia, Merriweather. Классические, «книжные», внушают доверие. На экране при малых размерах могут терять читаемость. Используются для длинных статей, заголовков, брендовых текстов.</li>
+            <li><strong>Sans-serif (без засечек):</strong> Inter, Roboto, Helvetica, Arial. Современные, нейтральные, максимально читаемые на экранах. Стандарт де-факто для UI: кнопки, поля, навигация, таблицы.</li>
+            <li><strong>Monospace (моноширинные):</strong> Courier New, Consolas, JetBrains Mono. Каждый символ одинаковой ширины. Технические, ассоциируются с кодом. Используются для блоков кода, терминалов, таблиц с колонками. <strong>Не использовать</strong> для абзацев.</li>
         </ul>
+        <div class="note">📌 <strong>Рекомендация:</strong> для основных интерфейсов выбирайте sans-serif. Serif — для акцентов и длинных чтений. Monospace — только для технического контента.</div>
     </div>
 
     <div class="section">
-        <h2>Критические параметры читаемости</h2>
-        <div class="table-wrapper">
+        <h2>📏 Критические параметры читаемости</h2>
+        <div class="table-wrap">
             <table>
-                <thead><tr><th>Параметр</th><th>Рекомендация</th></tr></thead>
+                <thead><tr><th>Параметр</th><th>Рекомендация</th><th>Почему важно</th></tr></thead>
                 <tbody>
-                    <tr><td>Размер (font size)</td><td>Основной текст ≥16px (десктоп), 16px (мобильные). Заголовки 24–32px.</td></tr>
-                    <tr><td>Длина строки (line length)</td><td>50–75 символов (десктоп), 35–50 (мобильные). Контроль через max-width.</td></tr>
-                    <tr><td>Интерлиньяж (line height)</td><td>1.4–1.6 от размера шрифта. Пример: line-height: 1.5.</td></tr>
-                    <tr><td>Контраст (contrast)</td><td>WCAG AA: обычный текст ≥4.5:1. Плохо: #AAAAAA на белом (2.3:1).</td></tr>
+                    <tr><td><strong>Размер (font size)</strong></td><td>Основной текст ≥16px (десктоп), 16px (мобильные). Заголовки 24–32px.</td><td>Слишком мелко — напряжение зрения, слишком крупно — много прокрутки.</td></tr>
+                    <tr><td><strong>Длина строки (line length)</strong></td><td>50–75 символов (десктоп), 35–50 (мобильные). Контроль через <code>max-width</code>.</td><td>Слишком длинная — теряется ритм; слишком короткая — частые переносы.</td></tr>
+                    <tr><td><strong>Интерлиньяж (line height)</strong></td><td>1.4–1.6 от размера шрифта. Пример: <code>line-height: 1.5</code>.</td><td>Малый — строки слипаются; большой — теряется связность.</td></tr>
+                    <tr><td><strong>Контраст (contrast)</strong></td><td>WCAG AA: обычный текст ≥4.5:1. Плохо: #AAAAAA на белом (2.3:1).</td><td>Низкий контраст — нечитаемо для слабовидящих и при плохом освещении.</td></tr>
                 </tbody>
             </table>
         </div>
-        <div class="note">🔧 Дополнительно: избегать длинных фраз в uppercase (читаются медленнее), трекинг по умолчанию 0, выравнивание по левому краю (не по ширине).</div>
+        <div class="note">🔧 <strong>Дополнительно:</strong> избегайте длинных фраз в uppercase (читаются на 20% медленнее). Трекинг по умолчанию 0, для заглавных можно 0.05em. Выравнивание по левому краю (не по ширине).</div>
+    </div>
+
+    <!-- Глоссарий -->
+    <div class="section glossary">
+        <h3>📖 Глоссарий по теме (русский / английский)</h3>
+        <div class="glossary-item">
+            <div class="glossary-term">Serif</div>
+            <div class="glossary-def">Шрифт с засечками (декоративными элементами).<br><span class="glossary-en">Serif</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Sans-serif</div>
+            <div class="glossary-def">Шрифт без засечек (чистые линии).<br><span class="glossary-en">Sans-serif</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Monospace</div>
+            <div class="glossary-def">Моноширинный шрифт (все символы одинаковой ширины).<br><span class="glossary-en">Monospace</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Font size</div>
+            <div class="glossary-def">Размер шрифта (обычно в px или rem).<br><span class="glossary-en">Font size</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Line height (интерлиньяж)</div>
+            <div class="glossary-def">Расстояние между строками текста.<br><span class="glossary-en">Line height</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Line length (длина строки)</div>
+            <div class="glossary-def">Количество символов в строке (оптимально 50–75).<br><span class="glossary-en">Line length</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Контраст (Contrast)</div>
+            <div class="glossary-def">Соотношение яркости текста и фона (WCAG AA ≥4.5:1).<br><span class="glossary-en">Contrast</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Трекинг (Letter spacing)</div>
+            <div class="glossary-def">Расстояние между буквами (обычно 0).<br><span class="glossary-en">Letter spacing</span></div>
+        </div>
     </div>
 
     <!-- ТЕСТ -->
     <div class="section">
-        <h2>📝 Тест: типографика</h2>
+        <h2>📝 Тест по теме</h2>
         <div id="quiz-container"></div>
         <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
         <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
-    <footer>Вопрос 19 · Типографика в UI · HCI Экзамен</footer>
+
+    <footer>Вопрос 19 · Типографика в UI · HCI Экзамен · Углублённая версия с глоссарием</footer>
 </div>
+
 <script>
     const quizData = [
-        { question: "Какой тип шрифта лучше всего подходит для основного текста в веб-интерфейсах?", options: ["Serif", "Sans-serif", "Monospace", "Cursive"], correct: [1] },
-        { question: "Какой минимальный размер основного текста рекомендуется для десктопа?", options: ["12px", "14px", "16px", "18px"], correct: [2] },
-        { question: "Какая длина строки (символов) оптимальна для чтения с экрана?", options: ["20-30", "50-75", "100-120", "150-200"], correct: [1] },
-        { question: "Какой коэффициент контраста требует WCAG AA для обычного текста?", options: ["3:1", "4.5:1", "7:1", "10:1"], correct: [1] },
-        { question: "Для чего предназначены моноширинные шрифты в интерфейсах?", options: ["Для длинных статей", "Для блоков кода и терминалов", "Для заголовков", "Для навигационных меню"], correct: [1] }
+        {
+            question: "Какой тип шрифта лучше всего подходит для основного текста в веб-интерфейсах?",
+            options: ["Serif", "Sans-serif", "Monospace", "Cursive"],
+            correct: [1]
+        },
+        {
+            question: "Какой минимальный размер основного текста рекомендуется для десктопа?",
+            options: ["12px", "14px", "16px", "18px"],
+            correct: [2]
+        },
+        {
+            question: "Какая длина строки (символов) оптимальна для чтения с экрана?",
+            options: ["20-30", "50-75", "100-120", "150-200"],
+            correct: [1]
+        },
+        {
+            question: "Какой коэффициент контраста требует WCAG AA для обычного текста?",
+            options: ["3:1", "4.5:1", "7:1", "10:1"],
+            correct: [1]
+        },
+        {
+            question: "Для чего предназначены моноширинные шрифты в интерфейсах?",
+            options: ["Для длинных статей", "Для блоков кода и терминалов", "Для заголовков", "Для навигационных меню"],
+            correct: [1]
+        }
     ];
+
     function buildQuiz() {
         const container = document.getElementById('quiz-container');
         container.innerHTML = '';
@@ -97,7 +167,7 @@
             const div = document.createElement('div');
             div.className = 'quiz-question';
             div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
-            const optsDiv = div.querySelector('.quiz-options');
+            const optsDiv = div.querySelector(`.quiz-options`);
             q.options.forEach((opt, optIdx) => {
                 const label = document.createElement('label');
                 label.className = 'quiz-option';
@@ -112,10 +182,11 @@
             container.appendChild(div);
         });
     }
+
     function evaluateQuiz() {
         let score = 0;
         const total = quizData.length;
-        for (let i = 0; i < quizData.length; i++) {
+        for (let i = 0; i < total; i++) {
             const q = quizData[i];
             const inputs = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) input`);
             let selected = null;
@@ -123,12 +194,25 @@
             const isCorrect = (selected === q.correct[0]);
             if (isCorrect) score++;
             let fb = document.getElementById(`fb-${i}`);
-            if (!fb) { const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`); fb = document.createElement('div'); fb.id = `fb-${i}`; fb.className = 'quiz-feedback'; parentDiv.appendChild(fb); }
-            if (isCorrect) { fb.textContent = '✓ Верно'; fb.className = 'quiz-feedback correct'; }
-            else { const correctAns = q.correct.map(idx => q.options[idx]).join(', '); fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`; fb.className = 'quiz-feedback wrong'; }
+            if (!fb) {
+                const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`);
+                fb = document.createElement('div');
+                fb.id = `fb-${i}`;
+                fb.className = 'quiz-feedback';
+                parentDiv.appendChild(fb);
+            }
+            if (isCorrect) {
+                fb.textContent = '✓ Верно';
+                fb.className = 'quiz-feedback correct';
+            } else {
+                const correctAns = q.correct.map(idx => q.options[idx]).join(', ');
+                fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`;
+                fb.className = 'quiz-feedback wrong';
+            }
         }
         document.getElementById('quiz-result').innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично!' : ' 📘 Повторите.'}`;
     }
+
     buildQuiz();
     document.getElementById('quiz-submit').addEventListener('click', evaluateQuiz);
 </script>

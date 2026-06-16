@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос 07: Архитектура ORM</title>
+    <title>Вопрос 07: Архитектура ORM — углублённо</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.5; padding: 2rem 1rem; }
-        .container { max-width: 1100px; margin: 0 auto; }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
         .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: #0f172a; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #1e293b; }
         .nav-btn { background: #1e293b; color: #94a3b8; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #334155; }
         .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
         .nav-group { display: flex; gap: 0.8rem; }
         .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
-        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
         .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
         .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
-        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
-        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #cbd5e1; }
+        .table-wrap { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
         th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
-        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
+        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.95rem; }
+        .glossary { margin-top: 1.5rem; background: #0a0f1a; border-radius: 1rem; padding: 1rem; border: 1px solid #2d3a4f; }
+        .glossary h3 { color: #facc15; margin-bottom: 0.5rem; }
+        .glossary-item { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1rem; padding: 0.3rem 0; border-bottom: 1px solid #1e293b; }
+        .glossary-item:last-child { border-bottom: none; }
+        .glossary-term { font-weight: 600; color: #86efac; }
+        .glossary-def { color: #cbd5e6; }
+        .glossary-en { color: #94a3b8; font-size: 0.85rem; }
         .quiz-question { background: #111827; border-radius: 1rem; padding: 1rem; margin-bottom: 1.2rem; border: 1px solid #2d3a4f; }
-        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.5rem; }
         .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
         .quiz-option input { accent-color: #3b82f6; }
         .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
@@ -32,7 +40,7 @@
         .quiz-submit { background: #3b82f6; border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
         .quiz-submit:hover { background: #2563eb; }
         footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
-        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } .glossary-item { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -45,83 +53,111 @@
         <a href="q8.html" class="nav-btn">Вперёд (вопрос 8) →</a>
     </div>
     <div class="hero">
-        <h1>🗄️ Объектно-реляционное несоответствие и ORM</h1>
-        <p>Проблема impedance mismatch, как ORM (Hibernate, SQLAlchemy) решает её, и главные антипаттерны: N+1, божественная сущность, массовые операции.</p>
+        <h1>🗄️ Архитектура ORM — объектно-реляционное отображение</h1>
+        <p>Объектно-реляционное несоответствие, решения, антипаттерны N+1, God Object и массовые операции.</p>
     </div>
 
     <div class="section">
-        <h2>⚠️ Проблема объектно-реляционного несоответствия</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Аспект</th><th>Объектная модель</th><th>Реляционная модель</th></tr></thead>
-                <tbody>
-                    <tr><td>Структура</td><td>Сеть объектов, ссылки</td><td>Таблицы, примитивные типы</td></tr>
-                    <tr><td>Наследование</td><td>Класс → подклассы</td><td>Нет прямого способа</td></tr>
-                    <tr><td>Идентичность</td><td>Равенство vs ссылочная</td><td>Первичный ключ</td></tr>
-                    <tr><td>Связи</td><td>Прямые ссылки (user.orders)</td><td>Внешние ключи (user_id)</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="code-block">
-// Объектный мир
-class User:
-    id: int
-    name: str
-    orders: List[Order]
-
-// Реляционный: таблицы users (id,name) и orders (id,user_id,total)
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>🔧 Как ORM решает проблему (Hibernate, SQLAlchemy, EF)</h2>
+        <h2>⚠️ Объектно-реляционное несоответствие (Impedance Mismatch)</h2>
+        <p>Различия между объектно-ориентированной моделью и реляционной БД:</p>
         <ul>
-            <li><strong>Маппинг</strong> — связывание класса с таблицей через аннотации/декораторы.</li>
-            <li><strong>Identity Map</strong> — гарантия, что один кортеж = один объект.</li>
-            <li><strong>Ленивая загрузка (Lazy Loading)</strong> — подгрузка связанных объектов при первом обращении.</li>
-            <li><strong>Жадная загрузка (Eager Loading)</strong> — явный JOIN для избежания N+1.</li>
-            <li><strong>Dirty Tracking</strong> — отслеживание изменений для UPDATE только изменённых полей.</li>
-            <li><strong>DSL-запросы</strong> — трансляция родного языка в SQL.</li>
+            <li><strong>Структура:</strong> объекты — сеть ссылок, таблицы — плоские.</li>
+            <li><strong>Наследование:</strong> в ООП есть подклассы, в БД нет (требуется стратегия маппинга).</li>
+            <li><strong>Идентичность:</strong> объекты сравниваются по ссылке, строки — по первичному ключу.</li>
+            <li><strong>Связи:</strong> объектные ссылки → внешние ключи.</li>
+            <li><strong>Типы данных:</strong> сложные типы (enum, date) → простые (INT, VARCHAR).</li>
         </ul>
+        <div class="note">ORM (Hibernate, SQLAlchemy) решает это с помощью маппинга, Identity Map, ленивой/жадной загрузки.</div>
     </div>
 
     <div class="section">
         <h2>🧨 Антипаттерны ORM</h2>
         <ul>
-            <li><strong>N+1 запрос</strong> — ленивая загрузка в цикле. Решение: joinedload/selectinload.</li>
-            <li><strong>Божественная сущность</strong> — класс со всеми полями → декомпозиция, DTO.</li>
-            <li><strong>Массовые операции через цикл</strong> — тысячи UPDATE. Решение: массовые update.</li>
-            <li><strong>Сериализация с ленивой загрузкой</strong> → LazyInitializationException. Решение: DTO или жадная загрузка.</li>
-            <li><strong>Смешивание бизнес-логики</strong> с ORM → выносить в сервисы.</li>
+            <li><strong>N+1 запрос:</strong> выборка родителей (1 запрос) + в цикле подгрузка детей (N запросов). Решение: жадная загрузка (<code>JOIN FETCH</code>).</li>
+            <li><strong>God Object (божественная сущность):</strong> один класс содержит все поля и связи, перегрузка данных. Решение: декомпозиция, DTO.</li>
+            <li><strong>Массовые операции через цикл:</strong> обновление тысяч записей по одной (1000 UPDATE). Решение: массовый <code>UPDATE</code>.</li>
+            <li><strong>Смешивание бизнес-логики с ORM:</strong> сущности содержат валидацию, отправку уведомлений. Решение: выносить логику в сервисы.</li>
         </ul>
         <div class="code-block">
-# Проблема N+1
-users = session.query(User).all()   # 1 запрос
+// Плохо: N+1
+users = session.query(User).all()
 for user in users:
-    print(user.orders)              # N запросов
+    print(user.orders)  // каждый раз новый запрос
 
-# Решение
+// Хорошо: жадная загрузка
 users = session.query(User).options(joinedload(User.orders)).all()
+        </div>
+    </div>
+
+    <!-- Глоссарий -->
+    <div class="section glossary">
+        <h3>📖 Глоссарий по теме (русский / английский)</h3>
+        <div class="glossary-item">
+            <div class="glossary-term">ORM (Object-Relational Mapping)</div>
+            <div class="glossary-def">Технология маппинга объектов на реляционные таблицы.<br><span class="glossary-en">Object-Relational Mapping</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Объектно-реляционное несоответствие</div>
+            <div class="glossary-def">Фундаментальное различие между ООП и реляционной моделью.<br><span class="glossary-en">Impedance Mismatch</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">N+1 проблема</div>
+            <div class="glossary-def">Антипаттерн, когда ленивая загрузка в цикле генерирует N+1 запросов.<br><span class="glossary-en">N+1 problem</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">God Object</div>
+            <div class="glossary-def">Сущность, содержащая все поля и связи (перегруженная).<br><span class="glossary-en">God Object</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Жадная загрузка (Eager Loading)</div>
+            <div class="glossary-def">Подгрузка связанных данных одним запросом (JOIN).<br><span class="glossary-en">Eager Loading</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Ленивая загрузка (Lazy Loading)</div>
+            <div class="glossary-def">Подгрузка связанных данных при первом обращении.<br><span class="glossary-en">Lazy Loading</span></div>
         </div>
     </div>
 
     <!-- ТЕСТ -->
     <div class="section">
-        <h2>📝 Тест: ORM и антипаттерны</h2>
+        <h2>📝 Тест по теме</h2>
         <div id="quiz-container"></div>
         <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
         <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
-    <footer>Вопрос 07 · Архитектура ORM · HCI Экзамен</footer>
+
+    <footer>Вопрос 07 · Архитектура ORM · HCI Экзамен · Углублённая версия с глоссарием</footer>
 </div>
+
 <script>
     const quizData = [
-        { question: "Что означает 'impedance mismatch'?", options: ["Проблема совместимости версий", "Различия между ООП и реляционной моделью", "Ошибка в работе сети", "Конфликт типов данных"], correct: [1] },
-        { question: "Какой паттерн ORM гарантирует, что один кортеж БД представлен одним объектом в памяти?", options: ["Lazy Loading", "Identity Map", "Dirty Tracking", "Unit of Work"], correct: [1] },
-        { question: "Каков главный минус ORM при неосторожном использовании?", options: ["Медленный старт", "Проблема N+1 запросов", "Отсутствие типизации", "Сложность установки"], correct: [1] },
-        { question: "Что такое 'божественная сущность' (God Entity)?", options: ["Сущность с минимальным количеством полей", "Сущность, содержащая слишком много полей и связей", "Сущность, которая не маппится на таблицу", "Первичный ключ"], correct: [1] },
-        { question: "Как правильно обновить тысячи записей через ORM?", options: ["Цикл с session.save()", "session.query().update()", "Вручную через raw SQL", "Использовать только ленивую загрузку"], correct: [1] }
+        {
+            question: "Какой антипаттерн ORM возникает, когда в цикле подгружаются связанные данные для каждого родителя?",
+            options: ["God Object", "N+1 запрос", "Lazy Loading", "Identity Map"],
+            correct: [1]
+        },
+        {
+            question: "Что такое 'объектно-реляционное несоответствие' (impedance mismatch)?",
+            options: ["Разные версии БД", "Разница между объектной моделью и реляционной таблицей", "Проблема с индексами", "Конфликт транзакций"],
+            correct: [1]
+        },
+        {
+            question: "Как решить проблему N+1 в ORM?",
+            options: ["Использовать ленивую загрузку", "Использовать жадную загрузку", "Увеличить размер кеша", "Добавить индексы"],
+            correct: [1]
+        },
+        {
+            question: "Что такое God Object в ORM?",
+            options: ["Класс с оптимальным количеством полей", "Перегруженная сущность с сотней полей", "Синглтон", "Абстрактный класс"],
+            correct: [1]
+        },
+        {
+            question: "Что из перечисленного является антипаттерном ORM?",
+            options: ["Параметризованные запросы", "Массовые операции через цикл", "Использование индексов", "JOIN FETCH"],
+            correct: [1]
+        }
     ];
+
     function buildQuiz() {
         const container = document.getElementById('quiz-container');
         container.innerHTML = '';
@@ -129,7 +165,7 @@ users = session.query(User).options(joinedload(User.orders)).all()
             const div = document.createElement('div');
             div.className = 'quiz-question';
             div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
-            const optsDiv = div.querySelector('.quiz-options');
+            const optsDiv = div.querySelector(`.quiz-options`);
             q.options.forEach((opt, optIdx) => {
                 const label = document.createElement('label');
                 label.className = 'quiz-option';
@@ -144,10 +180,11 @@ users = session.query(User).options(joinedload(User.orders)).all()
             container.appendChild(div);
         });
     }
+
     function evaluateQuiz() {
         let score = 0;
         const total = quizData.length;
-        for (let i = 0; i < quizData.length; i++) {
+        for (let i = 0; i < total; i++) {
             const q = quizData[i];
             const inputs = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) input`);
             let selected = null;
@@ -155,12 +192,25 @@ users = session.query(User).options(joinedload(User.orders)).all()
             const isCorrect = (selected === q.correct[0]);
             if (isCorrect) score++;
             let fb = document.getElementById(`fb-${i}`);
-            if (!fb) { const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`); fb = document.createElement('div'); fb.id = `fb-${i}`; fb.className = 'quiz-feedback'; parentDiv.appendChild(fb); }
-            if (isCorrect) { fb.textContent = '✓ Верно'; fb.className = 'quiz-feedback correct'; }
-            else { const correctAns = q.correct.map(idx => q.options[idx]).join(', '); fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`; fb.className = 'quiz-feedback wrong'; }
+            if (!fb) {
+                const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`);
+                fb = document.createElement('div');
+                fb.id = `fb-${i}`;
+                fb.className = 'quiz-feedback';
+                parentDiv.appendChild(fb);
+            }
+            if (isCorrect) {
+                fb.textContent = '✓ Верно';
+                fb.className = 'quiz-feedback correct';
+            } else {
+                const correctAns = q.correct.map(idx => q.options[idx]).join(', ');
+                fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`;
+                fb.className = 'quiz-feedback wrong';
+            }
         }
         document.getElementById('quiz-result').innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично!' : ' 📘 Повторите.'}`;
     }
+
     buildQuiz();
     document.getElementById('quiz-submit').addEventListener('click', evaluateQuiz);
 </script>

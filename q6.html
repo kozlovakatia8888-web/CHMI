@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос 06: Критерии юзабилити и методы измерения</title>
+    <title>Вопрос 06: Критерии юзабилити и методы измерения — углублённо</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.5; padding: 2rem 1rem; }
-        .container { max-width: 1100px; margin: 0 auto; }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.6; padding: 2rem 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
         .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: #0f172a; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #1e293b; }
         .nav-btn { background: #1e293b; color: #94a3b8; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #334155; }
         .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
         .nav-group { display: flex; gap: 0.8rem; }
         .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
-        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
         .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
         .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
-        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #cbd5e1; }
+        .table-wrap { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
         th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
-        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
         .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.95rem; }
+        .glossary { margin-top: 1.5rem; background: #0a0f1a; border-radius: 1rem; padding: 1rem; border: 1px solid #2d3a4f; }
+        .glossary h3 { color: #facc15; margin-bottom: 0.5rem; }
+        .glossary-item { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1rem; padding: 0.3rem 0; border-bottom: 1px solid #1e293b; }
+        .glossary-item:last-child { border-bottom: none; }
+        .glossary-term { font-weight: 600; color: #86efac; }
+        .glossary-def { color: #cbd5e6; }
+        .glossary-en { color: #94a3b8; font-size: 0.85rem; }
         .quiz-question { background: #111827; border-radius: 1rem; padding: 1rem; margin-bottom: 1.2rem; border: 1px solid #2d3a4f; }
-        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.5rem; }
         .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
         .quiz-option input { accent-color: #3b82f6; }
         .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
@@ -32,7 +40,7 @@
         .quiz-submit { background: #3b82f6; border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
         .quiz-submit:hover { background: #2563eb; }
         footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
-        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } .glossary-item { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -45,61 +53,108 @@
         <a href="q7.html" class="nav-btn">Вперёд (вопрос 7) →</a>
     </div>
     <div class="hero">
-        <h1>📊 Критерии юзабилити и методы измерения</h1>
-        <p>Скорость, ошибки, обучение, удовлетворение — как оценить интерфейс с помощью SUS, SEQ, Completion Rate и других метрик.</p>
+        <h1>📊 Критерии юзабилити и методы измерения — углублённо</h1>
+        <p>Скорость, ошибки, обучение, удовлетворение. SUS, SEQ, и другие методы.</p>
     </div>
 
     <div class="section">
-        <h2>Четыре ключевых критерия юзабилити</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Критерий</th><th>Что характеризует</th><th>Как измерить</th></tr></thead>
-                <tbody>
-                    <tr><td>Скорость работы (Efficiency)</td><td>Время на выполнение задачи</td><td>Task Time, количество действий, Time-based Efficiency</td></tr>
-                    <tr><td>Ошибки (Errors)</td><td>Частота и критичность неверных действий</td><td>Completion Rate, подсчёт ошибок, наблюдение</td></tr>
-                    <tr><td>Обучение (Learnability)</td><td>Время выхода на эффективность</td><td>First-use test, время обучения, memorability</td></tr>
-                    <tr><td>Удовлетворение (Satisfaction)</td><td>Субъективная оценка, эмоции</td><td>SUS, SEQ, ASQ, UMUX-LITE</td></tr>
-                </tbody>
-            </table>
-        </div>
+        <h2>🎯 Четыре критерия юзабилити</h2>
+        <ul>
+            <li><strong>Скорость работы (Efficiency):</strong> время выполнения типовой задачи. Измеряется хронометражем (Task Time), количеством действий.</li>
+            <li><strong>Ошибки (Errors):</strong> частота и критичность неверных действий. Измеряется частотой ошибок, Completion Rate (процент успешных завершений).</li>
+            <li><strong>Обучение (Learnability):</strong> как быстро новый пользователь осваивает интерфейс. Измеряется временем до достижения целевой производительности, first-use test.</li>
+            <li><strong>Удовлетворение (Satisfaction):</strong> субъективная оценка, эмоции. Измеряется опросниками (SUS, SEQ, ASQ).</li>
+        </ul>
+        <div class="note">Стандарт ISO 9241-11: юзабилити = эффективность + продуктивность + удовлетворённость.</div>
     </div>
 
     <div class="section">
-        <h2>📋 Методы измерения: SUS, SEQ и другие</h2>
-        <p><strong>SUS (System Usability Scale)</strong> — 10 утверждений, оценка 1–5. Подсчёт: для нечётных (оценка-1), для чётных (5-оценка), сумма × 2.5 → балл 0–100. Средний SUS ≈ 68.</p>
-        <p><strong>SEQ (Single Ease Question)</strong> — один вопрос после задачи: «Насколько легко было?» (1–7).</p>
-        <p><strong>Другие методы:</strong> NASA-TLX (когнитивная нагрузка), ASQ (после сценария), UMUX-LITE (2 вопроса).</p>
+        <h2>📋 Популярные методы измерения</h2>
+        <ul>
+            <li><strong>SUS (System Usability Scale):</strong> 10 вопросов, шкала 0–100. Средний балл ≈ 68. Выше 80 — отлично.</li>
+            <li><strong>SEQ (Single Ease Question):</strong> один вопрос после задачи: «Насколько легко было выполнить задачу?» (шкала 1–5/7/9).</li>
+            <li><strong>Completion Rate:</strong> доля пользователей, успешно выполнивших задачу без помощи.</li>
+            <li><strong>Task Time:</strong> время выполнения задачи (в секундах).</li>
+            <li><strong>NASA-TLX:</strong> оценка когнитивной нагрузки по 6 шкалам.</li>
+            <li><strong>ASQ (After Scenario Questionnaire):</strong> 3 вопроса об удовлетворённости после сценария.</li>
+        </ul>
         <div class="code-block">
-// Пример расчёта SUS
-Пользователь поставил: 5,2,4,1,5,2,4,1,5,2
-Нечётные: (5-1)=4, (4-1)=3, (5-1)=4, (4-1)=3, (5-1)=4 → сумма=18
-Чётные: (5-2)=3, (5-1)=4, (5-2)=3, (5-1)=4, (5-2)=3 → сумма=17
-Общая = 35 × 2.5 = 87.5 — отлично
+// Пример подсчёта SUS:
+// Нечётные пункты: (оценка - 1)
+// Чётные пункты: (5 - оценка)
+// Сумма * 2.5 = SUS score (0–100)
         </div>
     </div>
 
-    <div class="section">
-        <h2>Рекомендуемый минимум для оценки юзабилити</h2>
-        <ul><li>SUS — общая оценка (после сессии).</li><li>SEQ — после каждой задачи.</li><li>Completion Rate и время выполнения — объективные метрики.</li></ul>
+    <!-- Глоссарий -->
+    <div class="section glossary">
+        <h3>📖 Глоссарий по теме (русский / английский)</h3>
+        <div class="glossary-item">
+            <div class="glossary-term">Юзабилити (Usability)</div>
+            <div class="glossary-def">Степень удобства использования интерфейса.<br><span class="glossary-en">Usability</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">SUS (System Usability Scale)</div>
+            <div class="glossary-def">Опросник из 10 пунктов для оценки юзабилити (0–100).<br><span class="glossary-en">System Usability Scale</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">SEQ (Single Ease Question)</div>
+            <div class="glossary-def">Один вопрос о лёгкости выполнения задачи.<br><span class="glossary-en">Single Ease Question</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Completion Rate</div>
+            <div class="glossary-def">Доля пользователей, успешно выполнивших задачу без помощи.<br><span class="glossary-en">Completion Rate</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Task Time</div>
+            <div class="glossary-def">Время выполнения задачи (в секундах).<br><span class="glossary-en">Task Time</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">NASA-TLX</div>
+            <div class="glossary-def">Метод оценки когнитивной нагрузки по 6 шкалам.<br><span class="glossary-en">NASA Task Load Index</span></div>
+        </div>
     </div>
 
     <!-- ТЕСТ -->
     <div class="section">
-        <h2>📝 Тест: юзабилити и методы измерения</h2>
+        <h2>📝 Тест по теме</h2>
         <div id="quiz-container"></div>
         <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
         <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
-    <footer>Вопрос 06 · Критерии юзабилити · HCI Экзамен</footer>
+
+    <footer>Вопрос 06 · Критерии юзабилити · HCI Экзамен · Углублённая версия с глоссарием</footer>
 </div>
+
 <script>
     const quizData = [
-        { question: "Какой опросник даёт интегральную оценку юзабилити по шкале 0–100?", options: ["SEQ", "NASA-TLX", "SUS", "ASQ"], correct: [2] },
-        { question: "Какая метрика измеряет долю пользователей, выполнивших задачу без помощи?", options: ["Task Time", "Completion Rate", "SUS", "SEQ"], correct: [1] },
-        { question: "Согласно исследованиям, средний балл SUS равен примерно:", options: ["50", "68", "75", "85"], correct: [1] },
-        { question: "Какой критерий юзабилити оценивается исключительно через опросники?", options: ["Скорость", "Ошибки", "Обучение", "Удовлетворение"], correct: [3] },
-        { question: "Что измеряет SEQ? (выберите все верные)", options: ["Сложность выполнения задачи", "Общую удовлетворённость системой", "Лёгкость выполнения задачи", "Время реакции"], correct: [0,2] }
+        {
+            question: "Какой опросник даёт интегральную оценку юзабилити по шкале 0–100?",
+            options: ["SUS", "SEQ", "NASA-TLX", "ASQ"],
+            correct: [0]
+        },
+        {
+            question: "Что измеряет SEQ (Single Ease Question)?",
+            options: ["Общую удовлетворённость", "Сложность конкретной задачи", "Когнитивную нагрузку", "Время выполнения"],
+            correct: [1]
+        },
+        {
+            question: "Какой критерий юзабилити измеряется хронометражем?",
+            options: ["Ошибки", "Скорость", "Обучение", "Удовлетворение"],
+            correct: [1]
+        },
+        {
+            question: "Какой метод измеряет когнитивную нагрузку по 6 шкалам?",
+            options: ["SUS", "SEQ", "NASA-TLX", "ASQ"],
+            correct: [2]
+        },
+        {
+            question: "Что такое Completion Rate?",
+            options: ["Доля успешно завершённых задач", "Время выполнения", "Количество ошибок", "Степень удовлетворённости"],
+            correct: [0]
+        }
     ];
+
     function buildQuiz() {
         const container = document.getElementById('quiz-container');
         container.innerHTML = '';
@@ -107,13 +162,12 @@
             const div = document.createElement('div');
             div.className = 'quiz-question';
             div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
-            const optsDiv = div.querySelector('.quiz-options');
-            const isMulti = q.correct.length > 1;
+            const optsDiv = div.querySelector(`.quiz-options`);
             q.options.forEach((opt, optIdx) => {
                 const label = document.createElement('label');
                 label.className = 'quiz-option';
                 const input = document.createElement('input');
-                input.type = isMulti ? 'checkbox' : 'radio';
+                input.type = 'radio';
                 input.name = `q${idx}`;
                 input.value = optIdx;
                 label.appendChild(input);
@@ -123,22 +177,37 @@
             container.appendChild(div);
         });
     }
+
     function evaluateQuiz() {
         let score = 0;
         const total = quizData.length;
-        for (let i = 0; i < quizData.length; i++) {
+        for (let i = 0; i < total; i++) {
             const q = quizData[i];
             const inputs = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) input`);
-            const selected = Array.from(inputs).filter(inp => inp.checked).map(inp => parseInt(inp.value));
-            const isCorrect = selected.length === q.correct.length && selected.every(v => q.correct.includes(v));
+            let selected = null;
+            for (let inp of inputs) if (inp.checked) { selected = parseInt(inp.value); break; }
+            const isCorrect = (selected === q.correct[0]);
             if (isCorrect) score++;
             let fb = document.getElementById(`fb-${i}`);
-            if (!fb) { const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`); fb = document.createElement('div'); fb.id = `fb-${i}`; fb.className = 'quiz-feedback'; parentDiv.appendChild(fb); }
-            if (isCorrect) { fb.textContent = '✓ Верно'; fb.className = 'quiz-feedback correct'; }
-            else { const correctAns = q.correct.map(idx => q.options[idx]).join(', '); fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`; fb.className = 'quiz-feedback wrong'; }
+            if (!fb) {
+                const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`);
+                fb = document.createElement('div');
+                fb.id = `fb-${i}`;
+                fb.className = 'quiz-feedback';
+                parentDiv.appendChild(fb);
+            }
+            if (isCorrect) {
+                fb.textContent = '✓ Верно';
+                fb.className = 'quiz-feedback correct';
+            } else {
+                const correctAns = q.correct.map(idx => q.options[idx]).join(', ');
+                fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`;
+                fb.className = 'quiz-feedback wrong';
+            }
         }
         document.getElementById('quiz-result').innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично!' : ' 📘 Повторите.'}`;
     }
+
     buildQuiz();
     document.getElementById('quiz-submit').addEventListener('click', evaluateQuiz);
 </script>

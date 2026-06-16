@@ -3,122 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос 01: Архитектурные парадигмы веб-фронтенда</title>
+    <title>Вопрос 01: Архитектурные парадигмы веб-фронтенда — углублённо</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #0b0f1a;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            color: #e2e8f0;
-            line-height: 1.5;
-            padding: 2rem 1rem;
-        }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.6; padding: 2rem 1rem; }
         .container { max-width: 1200px; margin: 0 auto; }
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            background: #0f172a;
-            padding: 0.8rem 1.2rem;
-            border-radius: 60px;
-            border: 1px solid #1e293b;
-        }
-        .nav-btn {
-            background: #1e293b;
-            color: #94a3b8;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid #334155;
-        }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; background: #0f172a; padding: 0.8rem 1.2rem; border-radius: 60px; border: 1px solid #1e293b; }
+        .nav-btn { background: #1e293b; color: #94a3b8; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #334155; }
         .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
         .nav-group { display: flex; gap: 0.8rem; }
         .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
-        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
-        .section {
-            background: #0f172a;
-            border-radius: 1.2rem;
-            padding: 1.5rem;
-            margin: 1.8rem 0;
-            border: 1px solid #1e293b;
-        }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
         .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
-        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.6rem; color: #cbd5e1; }
-        .table-wrapper { overflow-x: auto; margin: 1rem 0; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #cbd5e1; }
+        .table-wrap { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
         th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
-        td { color: #cbd5e6; }
-        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
-        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
-        /* стили теста */
-        .quiz-question {
-            background: #111827;
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-bottom: 1.2rem;
-            border: 1px solid #2d3a4f;
-        }
-        .quiz-question p { font-weight: 600; margin-bottom: 0.5rem; }
-        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.8rem; }
+        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.95rem; }
+        .glossary { margin-top: 1.5rem; background: #0a0f1a; border-radius: 1rem; padding: 1rem; border: 1px solid #2d3a4f; }
+        .glossary h3 { color: #facc15; margin-bottom: 0.5rem; }
+        .glossary-item { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1rem; padding: 0.3rem 0; border-bottom: 1px solid #1e293b; }
+        .glossary-item:last-child { border-bottom: none; }
+        .glossary-term { font-weight: 600; color: #86efac; }
+        .glossary-def { color: #cbd5e6; }
+        .glossary-en { color: #94a3b8; font-size: 0.85rem; }
+        .quiz-question { background: #111827; border-radius: 1rem; padding: 1rem; margin-bottom: 1.2rem; border: 1px solid #2d3a4f; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.5rem; }
         .quiz-option { display: flex; align-items: center; gap: 0.6rem; }
-        .quiz-option input { accent-color: #3b82f6; width: 18px; height: 18px; }
+        .quiz-option input { accent-color: #3b82f6; }
         .quiz-feedback { font-size: 0.85rem; margin-top: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 0.5rem; background: #1e293b; display: inline-block; }
         .quiz-feedback.correct { background: #14532d; color: #86efac; }
         .quiz-feedback.wrong { background: #7f1d1d; color: #fca5a5; }
-        .quiz-submit {
-            background: #3b82f6;
-            border: none;
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 0.5rem;
-        }
-        .quiz-submit:hover { background: #2563eb; transform: scale(1.02); }
+        .quiz-submit { background: #3b82f6; border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+        .quiz-submit:hover { background: #2563eb; }
         footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
-        @media (max-width: 700px) {
-            .nav-bar { flex-direction: column; align-items: stretch; border-radius: 1rem; }
-            .nav-group { justify-content: space-between; }
-            .hero h1 { font-size: 1.5rem; }
-        }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } .glossary-item { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="nav-bar">
         <div class="nav-group">
-            <a href="questions.html" class="nav-btn">🏠 На главную</a>
+            <a href="index.html" class="nav-btn">🏠 На главную</a>
             <a href="q2.html" class="nav-btn">← Назад (вопрос 2)</a>
         </div>
         <a href="q2.html" class="nav-btn">Вперёд (вопрос 2) →</a>
     </div>
-
     <div class="hero">
         <h1>🌐 Архитектурные парадигмы веб-фронтенда: MPA, SPA, SSR, SSG</h1>
-        <p>Полный разбор с примерами, плюсами/минусами, таблицей сравнения и тестом для самопроверки.</p>
+        <p>Полный разбор с примерами, плюсами/минусами, сравнением по критериям, глоссарием и тестом.</p>
     </div>
 
     <!-- 1. Введение -->
     <div class="section">
         <h2>📌 Зачем разбираться в парадигмах?</h2>
         <p>Выбор архитектуры определяет, как быстро загрузится сайт, насколько он будет дружелюбен к поисковым роботам и насколько удобен для пользователя. Каждая парадигма — это компромисс между скоростью первого рендера, интерактивностью и сложностью разработки.</p>
+        <p><strong>Ключевые метрики:</strong></p>
+        <ul>
+            <li><strong>TTV (Time to View)</strong> — время до появления контента.</li>
+            <li><strong>TTI (Time to Interactive)</strong> — время до возможности взаимодействия (клики, ввод).</li>
+            <li><strong>SEO</strong> — как страница индексируется поисковыми системами.</li>
+            <li><strong>Server Load</strong> — нагрузка на сервер при генерации страниц.</li>
+        </ul>
     </div>
 
     <!-- 2. MPA -->
     <div class="section">
-        <h2>1. MPA (Multi‑Page Application)</h2>
+        <h2>1. MPA (Multi‑Page Application) — многостраничное приложение</h2>
         <p><strong>Принцип:</strong> при каждом клике по ссылке сервер генерирует и отправляет новый HTML-документ. Страница перезагружается полностью.</p>
         <div class="code-block">
 // Пример на Express.js (сервер рендерит HTML)
@@ -138,7 +92,7 @@ app.get('/about', (req, res) => {
 
     <!-- 3. SPA -->
     <div class="section">
-        <h2>2. SPA (Single‑Page Application)</h2>
+        <h2>2. SPA (Single‑Page Application) — одностраничное приложение</h2>
         <p><strong>Принцип:</strong> при первом визите загружается "скелет" HTML и большой JS-бандл. Далее роутинг на клиенте: подгружаются только данные через API, страница не перезагружается.</p>
         <div class="code-block">
 // Пример React с React Router
@@ -183,7 +137,7 @@ export default function Page({ data }) {
 
     <!-- 5. SSG -->
     <div class="section">
-        <h2>4. SSG (Static Site Generation)</h2>
+        <h2>4. SSG (Static Site Generation) — генерация статических сайтов</h2>
         <p><strong>Принцип:</strong> HTML-страницы генерируются один раз на этапе сборки (build-time). Пользователь получает готовый статический файл с CDN — максимальная скорость.</p>
         <div class="code-block">
 // Eleventy, Hugo, или Next.js (export)
@@ -198,7 +152,7 @@ export default {
             <li><strong>Рендеринг:</strong> заранее на сервере сборки (CI).</li>
             <li><strong>SEO:</strong> идеальное.</li>
             <li><strong>TTI:</strong> мгновенное (статика + минимум JS).</li>
-            <li><strong>Плюсы:</strong> скорость, безопасность, дешевый хостинг (CDN).</li>
+            <li><strong>Плюсы:</strong> скорость, безопасность, дешёвый хостинг (CDN).</li>
             <li><strong>Минусы:</strong> перегенерация при каждом изменении контента, не подходит для персонализированных данных.</li>
         </ul>
         <div class="note">📌 <strong>Примеры SSG:</strong> блоги, документация, лендинги, сайты-визитки (Hugo, Gatsby, Astro, 11ty).</div>
@@ -207,7 +161,7 @@ export default {
     <!-- Сводная таблица -->
     <div class="section">
         <h2>📊 Полная сравнительная таблица</h2>
-        <div class="table-wrapper">
+        <div class="table-wrap">
             <table>
                 <thead><tr><th>Критерий</th><th>MPA</th><th>SPA (CSR)</th><th>SSR</th><th>SSG</th></tr></thead>
                 <tbody>
@@ -222,7 +176,7 @@ export default {
         </div>
     </div>
 
-    <!-- Дополнительные пояснения: TTV vs TTI, гидратация, ISR -->
+    <!-- Дополнительные термины -->
     <div class="section">
         <h2>🧠 Важные термины</h2>
         <ul>
@@ -230,55 +184,106 @@ export default {
             <li><strong>TTI (Time to Interactive)</strong> — время, когда можно кликать и взаимодействовать.</li>
             <li><strong>Гидратация (hydration)</strong> — процесс, при котором статический HTML, полученный с сервера, "оживляется" клиентским JS (вешаются обработчики событий, начинают работать хуки).</li>
             <li><strong>ISR (Incremental Static Regeneration)</strong> — усовершенствование SSG (Next.js), позволяющее обновлять статические страницы фоном без полной перегенерации.</li>
+            <li><strong>CDN (Content Delivery Network)</strong> — сеть доставки контента, ускоряющая загрузку статики.</li>
         </ul>
     </div>
 
-    <!-- ИНТЕРАКТИВНЫЙ ТЕСТ -->
+    <!-- ГЛОССАРИЙ -->
+    <div class="section glossary">
+        <h3>📖 Глоссарий по теме (русский / английский)</h3>
+        <div class="glossary-item">
+            <div class="glossary-term">Архитектура веб-фронтенда</div>
+            <div class="glossary-def">Способ организации клиентской части веб-приложения.<br><span class="glossary-en">Web frontend architecture</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">MPA (Multi-Page Application)</div>
+            <div class="glossary-def">Многостраничное приложение, где каждый переход — новая загрузка HTML с сервера.<br><span class="glossary-en">Multi-Page Application</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">SPA (Single-Page Application)</div>
+            <div class="glossary-def">Одностраничное приложение, где роутинг на клиенте, данные подгружаются через API.<br><span class="glossary-en">Single-Page Application</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">SSR (Server-Side Rendering)</div>
+            <div class="glossary-def">Серверный рендеринг HTML с последующей гидратацией на клиенте.<br><span class="glossary-en">Server-Side Rendering</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">SSG (Static Site Generation)</div>
+            <div class="glossary-def">Генерация статических HTML-страниц на этапе сборки.<br><span class="glossary-en">Static Site Generation</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">CSR (Client-Side Rendering)</div>
+            <div class="glossary-def">Рендеринг на клиенте (браузере) с использованием JavaScript.<br><span class="glossary-en">Client-Side Rendering</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">Гидратация (Hydration)</div>
+            <div class="glossary-def">«Оживление» статического HTML на клиенте: привязка обработчиков событий, инициализация состояния.<br><span class="glossary-en">Hydration</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">TTI (Time to Interactive)</div>
+            <div class="glossary-def">Время до полной интерактивности страницы (готовность к взаимодействию).<br><span class="glossary-en">Time to Interactive</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">TTV (Time to View)</div>
+            <div class="glossary-def">Время до первого отображения контента (видимый контент).<br><span class="glossary-en">Time to View</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">SEO (Search Engine Optimization)</div>
+            <div class="glossary-def">Оптимизация для поисковых систем — индексация страниц роботами.<br><span class="glossary-en">Search Engine Optimization</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">ISR (Incremental Static Regeneration)</div>
+            <div class="glossary-def">Фоновое обновление статических страниц (Next.js) без полной пересборки.<br><span class="glossary-en">Incremental Static Regeneration</span></div>
+        </div>
+        <div class="glossary-item">
+            <div class="glossary-term">CDN (Content Delivery Network)</div>
+            <div class="glossary-def">Сеть серверов для быстрой доставки статического контента пользователям по всему миру.<br><span class="glossary-en">Content Delivery Network</span></div>
+        </div>
+    </div>
+
+    <!-- ТЕСТ -->
     <div class="section">
-        <h2>📝 Тест по теме: архитектурные парадигмы</h2>
-        <p>Проверь себя — выбери правильный ответ (возможно несколько). После ответа на все вопросы нажми "Проверить".</p>
+        <h2>📝 Тест по теме</h2>
         <div id="quiz-container"></div>
         <button class="quiz-submit" id="quiz-submit">Проверить ответы</button>
         <div id="quiz-result" style="margin-top: 1rem;"></div>
     </div>
 
-    <footer>
-        Вопрос 01 · Архитектурные парадигмы веб-фронтенда · HCI Экзамен · Углублённая версия с тестом
-    </footer>
+    <footer>Вопрос 01 · Архитектурные парадигмы · HCI Экзамен · Углублённая версия с глоссарием</footer>
 </div>
 
 <script>
-    // Данные теста: вопросы, варианты, правильные ответы (индексы, начиная с 0)
+    // Тест (6 вопросов)
     const quizData = [
         {
             question: "Какая архитектура обеспечивает максимальную скорость при первом визите и не требует серверной обработки в момент запроса?",
             options: ["MPA", "SPA (CSR)", "SSR", "SSG"],
-            correct: [3]  // SSG
+            correct: [3]
         },
         {
             question: "Какие из перечисленных архитектур имеют отличное SEO 'из коробки'? (можно несколько)",
             options: ["MPA", "SPA (CSR)", "SSR", "SSG"],
-            correct: [0,2,3] // MPA, SSR, SSG
+            correct: [0,2,3]
         },
         {
             question: "В какой архитектуре возникает понятие 'гидратация'?",
             options: ["MPA", "SPA", "SSR", "SSG"],
-            correct: [2] // SSR
+            correct: [2]
         },
         {
             question: "Какой недостаток характерен для SPA (CSR)?",
             options: ["Плохая SEO", "Медленная навигация", "Высокая нагрузка на сервер", "Невозможность кеширования"],
-            correct: [0] // плохая SEO
+            correct: [0]
         },
         {
             question: "Какая архитектура подходит для блога с редкими обновлениями и максимальной скоростью?",
             options: ["MPA", "SPA", "SSR", "SSG"],
-            correct: [3] // SSG
+            correct: [3]
         },
         {
             question: "Что из перечисленного является преимуществом SSR?",
             options: ["Полная изоляция клиентского кода", "Минимальное потребление CPU на сервере", "Быстрый TTV и хорошее SEO", "Не требует гидратации"],
-            correct: [2] // быстрый TTV и хорошее SEO
+            correct: [2]
         }
     ];
 
@@ -289,18 +294,17 @@ export default {
             const div = document.createElement('div');
             div.className = 'quiz-question';
             div.innerHTML = `<p>${idx+1}. ${q.question}</p><div class="quiz-options" id="q-${idx}"></div>`;
-            const optionsDiv = div.querySelector(`.quiz-options`);
+            const optsDiv = div.querySelector(`.quiz-options`);
             q.options.forEach((opt, optIdx) => {
                 const label = document.createElement('label');
                 label.className = 'quiz-option';
                 const input = document.createElement('input');
                 input.type = 'checkbox';
                 input.value = optIdx;
-                input.setAttribute('data-q', idx);
-                input.setAttribute('data-opt', optIdx);
+                input.dataset.q = idx;
                 label.appendChild(input);
                 label.appendChild(document.createTextNode(` ${opt}`));
-                optionsDiv.appendChild(label);
+                optsDiv.appendChild(label);
             });
             container.appendChild(div);
         });
@@ -308,40 +312,31 @@ export default {
 
     function evaluateQuiz() {
         let score = 0;
-        let total = quizData.length;
-        let resultsHtml = '';
-        for (let i = 0; i < quizData.length; i++) {
+        const total = quizData.length;
+        for (let i = 0; i < total; i++) {
             const q = quizData[i];
-            const checkboxes = document.querySelectorAll(`.quiz-question:has(p:first-child) .quiz-option input[data-q="${i}"]`);
+            const checkboxes = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) input[type="checkbox"]`);
             const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => parseInt(cb.value));
             const isCorrect = selected.length === q.correct.length && selected.every(v => q.correct.includes(v));
             if (isCorrect) score++;
-            // подсветка ответа
-            const questionDiv = document.querySelector(`.quiz-question:has(p:first-child)`);
-            // упростим: добавим фидбек в каждом вопросе
-            let feedbackDiv = document.getElementById(`feedback-${i}`);
-            if (!feedbackDiv) {
-                const targetDiv = document.querySelector(`.quiz-question:nth-child(${i+1})`);
-                if(targetDiv) {
-                    feedbackDiv = document.createElement('div');
-                    feedbackDiv.id = `feedback-${i}`;
-                    feedbackDiv.className = 'quiz-feedback';
-                    targetDiv.appendChild(feedbackDiv);
-                }
+            let fb = document.getElementById(`fb-${i}`);
+            if (!fb) {
+                const parentDiv = document.querySelector(`#quiz-container .quiz-question:nth-child(${i+1})`);
+                fb = document.createElement('div');
+                fb.id = `fb-${i}`;
+                fb.className = 'quiz-feedback';
+                parentDiv.appendChild(fb);
             }
-            if(feedbackDiv) {
-                if(isCorrect) {
-                    feedbackDiv.textContent = '✓ Правильно';
-                    feedbackDiv.className = 'quiz-feedback correct';
-                } else {
-                    const correctAnswers = q.correct.map(idx => q.options[idx]).join(', ');
-                    feedbackDiv.textContent = `✗ Неправильно. Правильный ответ: ${correctAnswers}`;
-                    feedbackDiv.className = 'quiz-feedback wrong';
-                }
+            if (isCorrect) {
+                fb.textContent = '✓ Верно';
+                fb.className = 'quiz-feedback correct';
+            } else {
+                const correctAns = q.correct.map(idx => q.options[idx]).join(', ');
+                fb.textContent = `✗ Ошибка. Правильный ответ: ${correctAns}`;
+                fb.className = 'quiz-feedback wrong';
             }
         }
-        const resultDiv = document.getElementById('quiz-result');
-        resultDiv.innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично! Ты готов к экзамену!' : ' 👉 Повтори разделы с ошибками.'}`;
+        document.getElementById('quiz-result').innerHTML = `<strong>Результат: ${score} из ${total}</strong>${score === total ? ' 🎉 Отлично! Ты готов!' : ' 📘 Повтори материал.'}`;
     }
 
     buildQuiz();
