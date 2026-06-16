@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шпаргалка по HCI — все термины и тезисы</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.5; padding: 2rem 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #0f172a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #1e293b;
+        }
+        .nav-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #334155;
+        }
+        .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
+        .nav-group { display: flex; gap: 0.8rem; }
+        .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
+        .hero h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .section {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid #1e293b;
+        }
+        .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
+        .table-wrap { overflow-x: auto; margin: 1rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
+        th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
+        .term { font-weight: 600; color: #86efac; }
+        .def { color: #cbd5e6; }
+        .q-td { font-weight: 600; color: #b9e2ff; }
+        .thesis { color: #cbd5e6; }
+        .highlight { background: #1e293b; }
+        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
+        footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
+        @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav-bar">
+        <div class="nav-group">
+            <a href="index.html" class="nav-btn">🏠 На главную</a>
+            <a href="q20.html" class="nav-btn">← Назад (вопрос 20)</a>
+        </div>
+        <a href="tests.html" class="nav-btn">Вперёд (глобальный тест) →</a>
+    </div>
+    <div class="hero">
+        <h1>📚 Шпаргалка по HCI</h1>
+        <p>Основные понятия и сводная таблица тезисов по всем 20 вопросам — для быстрого повторения перед экзаменом.</p>
+    </div>
+
+    <!-- Раздел 1: Термины и определения -->
+    <div class="section">
+        <h2>🔑 Ключевые термины</h2>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Термин</th><th>Определение</th></tr></thead>
+                <tbody>
+                    <tr><td class="term">DOM</td><td class="def">Древовидное представление HTML-документа, доступное для JavaScript.</td></tr>
+                    <tr><td class="term">MPA</td><td class="def">Multi‑Page Application — традиционная архитектура с перезагрузкой страниц при каждом действии.</td></tr>
+                    <tr><td class="term">SPA</td><td class="def">Single‑Page Application — один HTML-скелет, роутинг на клиенте, подгрузка данных по API.</td></tr>
+                    <tr><td class="term">SSR</td><td class="def">Server‑Side Rendering — генерация HTML на сервере с последующей гидратацией на клиенте.</td></tr>
+                    <tr><td class="term">SSG</td><td class="def">Static Site Generation — предварительная сборка HTML на этапе билда, отдача через CDN.</td></tr>
+                    <tr><td class="term">Гидратация</td><td class="def">Процесс «оживления» статического HTML клиентским JavaScript (привязка событий).</td></tr>
+                    <tr><td class="term">TTI</td><td class="def">Time to Interactive — время, когда страница становится полностью интерактивной.</td></tr>
+                    <tr><td class="term">TTV</td><td class="def">Time to View — время, когда пользователь видит контент (до интерактивности).</td></tr>
+                    <tr><td class="term">Event Bubbling</td><td class="def">Всплытие событий — фаза движения события от целевого элемента к корню.</td></tr>
+                    <tr><td class="term">Event Capturing</td><td class="def">Захват событий — фаза движения от корня к целевому элементу.</td></tr>
+                    <tr><td class="term">Делегирование</td><td class="def">Один обработчик на родителе, обрабатывающий события от всех детей за счёт всплытия.</td></tr>
+                    <tr><td class="term">Закон Фиттса</td><td class="def">Время достижения цели зависит от расстояния и размера цели: T = a + b·log₂(D/W+1).</td></tr>
+                    <tr><td class="term">Закон Хика</td><td class="def">Время выбора растёт логарифмически с числом альтернатив: RT = a + b·log₂(n+1).</td></tr>
+                    <tr><td class="term">GOMS</td><td class="def">Модель Goals, Operators, Methods, Selection rules для когнитивно-моторного анализа.</td></tr>
+                    <tr><td class="term">KLM</td><td class="def">Keystroke-Level Model — упрощённый расчёт времени через K, P, B, M, H операторы.</td></tr>
+                    <tr><td class="term">Когнитивная нагрузка</td><td class="def">Объём умственной работы, требуемый для выполнения задачи; бывает внешняя (интерфейс) и внутренняя (сложность).</td></tr>
+                    <tr><td class="term">Закон Миллера</td><td class="def">Человек удерживает 7±2 (5–9) объектов в рабочей памяти одновременно.</td></tr>
+                    <tr><td class="term">SUS</td><td class="def">System Usability Scale — опросник из 10 пунктов, дающий оценку юзабилити от 0 до 100.</td></tr>
+                    <tr><td class="term">SEQ</td><td class="def">Single Ease Question — один вопрос о лёгкости выполнения задачи (шкала 1–5/7/9).</td></tr>
+                    <tr><td class="term">ORM</td><td class="def">Object-Relational Mapping — маппинг объектов ООП на реляционные таблицы.</td></tr>
+                    <tr><td class="term">N+1 проблема</td><td class="def">При ленивой загрузке: 1 запрос на родителей + N запросов на детей. Решается жадной загрузкой.</td></tr>
+                    <tr><td class="term">pickle</td><td class="def">Бинарная сериализация в Python; небезопасна для данных от пользователя (RCE).</td></tr>
+                    <tr><td class="term">JWT</td><td class="def">JSON Web Token — stateless токен с подписью, содержит данные пользователя и срок истечения.</td></tr>
+                    <tr><td class="term">Сессии</td><td class="def">Stateful подход: сервер хранит сессию, клиент получает Session ID в cookie.</td></tr>
+                    <tr><td class="term">OAuth 2.0</td><td class="def">Протокол делегирования доступа (авторизации) без передачи пароля.</td></tr>
+                    <tr><td class="term">OpenAPI</td><td class="def">Стандарт описания REST API в YAML/JSON (машиночитаемый).</td></tr>
+                    <tr><td class="term">Swagger UI</td><td class="def">Интерактивная документация с возможностью выполнять запросы (Try it out).</td></tr>
+                    <tr><td class="term">gRPC</td><td class="def">Высокопроизводительный RPC-фреймворк на HTTP/2 и Protocol Buffers, поддерживает стриминг.</td></tr>
+                    <tr><td class="term">GraphQL</td><td class="def">Язык запросов для API, позволяющий клиенту запрашивать только нужные поля за один запрос.</td></tr>
+                    <tr><td class="term">WCAG</td><td class="def">Web Content Accessibility Guidelines — стандарт доступности (POUR).</td></tr>
+                    <tr><td class="term">Shadow DOM</td><td class="def">Инкапсуляция стилей и DOM для Web Components.</td></tr>
+                    <tr><td class="term">Module Federation</td><td class="def">Плагин Webpack для динамической загрузки модулей между приложениями (микрофронтенды).</td></tr>
+                    <tr><td class="term">Middleware</td><td class="def">Функции в конвейере обработки HTTP-запроса (логирование, аутентификация, CORS и др.).</td></tr>
+                    <tr><td class="term">Dependency Injection</td><td class="def">Паттерн, при котором объект получает зависимости извне (конструктор), а не создаёт их сам.</td></tr>
+                    <tr><td class="term">F-паттерн</td><td class="def">Траектория сканирования страницы: две горизонтальные линии вверху и вертикаль по левому краю.</td></tr>
+                    <tr><td class="term">Эффект последовательной позиции</td><td class="def">Лучшее запоминание первых (primacy) и последних (recency) элементов списка.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Раздел 2: Сводная таблица по вопросам -->
+    <div class="section">
+        <h2>📋 Сводка по 20 вопросам — основные тезисы</h2>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>№</th><th>Тема</th><th>Ключевые тезисы</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td class="q-td">Архитектурные парадигмы</td><td class="thesis">MPA (сервер, SEO), SPA (клиент, плохое SEO), SSR (гидратация), SSG (build-time, CDN). TTI — время до интерактивности.</td></tr>
+                    <tr><td>2</td><td class="q-td">DOM и события</td><td class="thesis">DOM — дерево. Фазы: capture → target → bubble. Делегирование — один обработчик на родителе.</td></tr>
+                    <tr><td>3</td><td class="q-td">Законы Фиттса и Хика</td><td class="thesis">Фиттс: T = a + b·log₂(D/W+1) — важны размер и расстояние. Хика: RT = a + b·log₂(n+1) — группируйте варианты.</td></tr>
+                    <tr><td>4</td><td class="q-td">GOMS и KLM</td><td class="thesis">GOMS — цели, операторы, методы, правила. KLM — упрощённый расчёт времени (K, P, B, M, H).</td></tr>
+                    <tr><td>5</td><td class="q-td">Когнитивная нагрузка</td><td class="thesis">Закон Миллера (7±2). Стратегии: группировка, прогрессивное раскрытие, узнавание вместо воспоминания.</td></tr>
+                    <tr><td>6</td><td class="q-td">Критерии юзабилити</td><td class="thesis">Скорость, ошибки, обучение, удовлетворение. SUS (0–100, норма 68), SEQ (после задачи).</td></tr>
+                    <tr><td>7</td><td class="q-td">ORM</td><td class="thesis">Объектно-реляционное несоответствие. Антипаттерны: N+1, God Object, массовые операции через цикл.</td></tr>
+                    <tr><td>8</td><td class="q-td">Сериализация</td><td class="thesis">Бинарная (pickle) — компактно, но небезопасно (RCE). JSON — человекочитаем, везде. XML — избыточен.</td></tr>
+                    <tr><td>9</td><td class="q-td">Аутентификация, сессии, JWT</td><td class="thesis">Идентификация → аутентификация → авторизация. Сессии (stateful) — отзыв, HttpOnly; JWT (stateless) — масштабируемость, но нельзя отозвать.</td></tr>
+                    <tr><td>10</td><td class="q-td">OAuth 2.0</td><td class="thesis">Роли: владелец, клиент, сервер авторизации, сервер ресурсов. Authorization Code Flow — код + секрет → токен.</td></tr>
+                    <tr><td>11</td><td class="q-td">OpenAPI и Swagger</td><td class="thesis">OpenAPI — спецификация (YAML/JSON). Swagger Editor — написание, UI — документация с Try it out, Codegen — генерация клиентов.</td></tr>
+                    <tr><td>12</td><td class="q-td">REST, GraphQL, gRPC</td><td class="thesis">REST — простой, кеширование. GraphQL — гибкость, один запрос. gRPC — бинарный, стриминг, микросервисы.</td></tr>
+                    <tr><td>13</td><td class="q-td">Дизайн-системы и WCAG</td><td class="thesis">Дизайн-система: токены, компоненты, паттерны. WCAG: Perceivable, Operable, Understandable, Robust. Контраст ≥4.5:1, ARIA, клавиатура.</td></tr>
+                    <tr><td>14</td><td class="q-td">Визуальная композиция и цвет</td><td class="thesis">Целостность, доминанта, уравновешенность. Правило 60-30-10: фон, вторичный, акцентный.</td></tr>
+                    <tr><td>15</td><td class="q-td">Islands и RSC</td><td class="thesis">Islands (Astro): статика + изолированные виджеты. RSC (Next.js): серверные компоненты без JS в бандле, прямая работа с БД.</td></tr>
+                    <tr><td>16</td><td class="q-td">Безопасность (XSS, CSRF, SQLi)</td><td class="thesis">XSS → экранирование (фреймворки). CSRF → CSRF-токены, SameSite. SQLi → параметризованные запросы/ORM.</td></tr>
+                    <tr><td>17</td><td class="q-td">Микрофронтенды</td><td class="thesis">iframe (изоляция), Web Components (Shadow DOM), Module Federation (общие зависимости, синглтоны).</td></tr>
+                    <tr><td>18</td><td class="q-td">Middleware и DI</td><td class="thesis">Middleware — конвейер (логирование, аутентификация). DI — внедрение зависимостей через конструктор → тестируемость, гибкость.</td></tr>
+                    <tr><td>19</td><td class="q-td">Типографика</td><td class="thesis">Serif (статьи), Sans‑serif (UI), Monospace (код). Размер ≥16px, длина 50–75 символов, line-height 1.5, контраст ≥4.5:1.</td></tr>
+                    <tr><td>20</td><td class="q-td">Восприятие и внимание</td><td class="thesis">F-паттерн: важное — вверху и слева. Primacy/recency: первые и последние элементы запоминаются лучше середины.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">💡 Используйте эту таблицу для быстрого повторения перед экзаменом. Всё самое важное — в одной строке на вопрос!</div>
+    </div>
+
+    <footer>Шпаргалка по HCI · Все термины и тезисы · Удачи на экзамене!</footer>
+</div>
+</body>
+</html>
