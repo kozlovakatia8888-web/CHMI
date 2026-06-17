@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Шпаргалка по коду — Бэкенд и Фронтенд</title>
+    <title>Шпаргалка по коду для экзамена</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #0b0f1a; font-family: 'Inter', system-ui, sans-serif; color: #e2e8f0; line-height: 1.6; padding: 2rem 1rem; }
@@ -36,28 +36,62 @@
         }
         .nav-btn:hover { background: #2d3a4f; color: #f1f5f9; border-color: #3b82f6; transform: translateY(-2px); }
         .nav-group { display: flex; gap: 0.8rem; }
-        .hero { margin-bottom: 2rem; border-left: 4px solid #3b82f6; padding-left: 1.5rem; }
+        .hero {
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
         .hero h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff, #b9e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
-        .section { background: #0f172a; border-radius: 1.2rem; padding: 1.5rem; margin: 1.8rem 0; border: 1px solid #1e293b; }
-        .section h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
-        .section h3 { font-size: 1.2rem; margin: 1.2rem 0 0.5rem; color: #cbd5e1; }
+        .section {
+            background: #0f172a;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            border: 1px solid #1e293b;
+        }
+        .section h2 { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: #b9e2ff; border-left: 3px solid #3b82f6; padding-left: 0.8rem; }
+        .section h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #cbd5e1; }
+        .section h4 { font-size: 1.05rem; margin: 1rem 0 0.3rem; color: #94a3b8; }
+        .code-block {
+            background: #020617;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #a5f3c3;
+            overflow-x: auto;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+        }
+        .file-path {
+            display: inline-block;
+            background: #1e293b;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin: 0.2rem 0;
+        }
+        .note {
+            background: #1e1b2e;
+            border-left: 3px solid #facc15;
+            padding: 0.8rem 1rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
         .table-wrap { overflow-x: auto; margin: 1rem 0; }
         table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid #1e293b; vertical-align: top; }
         th { background: #0a0f1a; color: #f1f5f9; font-weight: 600; }
-        .code-block { background: #020617; padding: 1rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; color: #a5f3c3; overflow-x: auto; margin: 1rem 0; }
-        .note { background: #1e1b2e; border-left: 3px solid #facc15; padding: 0.8rem 1rem; border-radius: 0.8rem; margin: 1rem 0; font-size: 0.95rem; }
         .glossary { margin-top: 1.5rem; background: #0a0f1a; border-radius: 1rem; padding: 1rem; border: 1px solid #2d3a4f; }
-        .glossary h3 { color: #facc15; margin-bottom: 0.5rem; }
         .glossary-item { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1rem; padding: 0.3rem 0; border-bottom: 1px solid #1e293b; }
         .glossary-item:last-child { border-bottom: none; }
         .glossary-term { font-weight: 600; color: #86efac; }
         .glossary-def { color: #cbd5e6; }
-        .glossary-en { color: #94a3b8; font-size: 0.85rem; }
-        .tip-list { list-style: square; padding-left: 1.5rem; color: #cbd5e6; }
-        .tip-list li { margin-bottom: 0.5rem; }
         footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: #5b6e8c; border-top: 1px solid #1e293b; padding-top: 1.5rem; }
         @media (max-width: 700px) { .nav-bar { flex-direction: column; } .hero h1 { font-size: 1.5rem; } .glossary-item { grid-template-columns: 1fr; } }
+        ul { margin-left: 1.5rem; }
     </style>
 </head>
 <body>
@@ -67,82 +101,140 @@
             <a href="index.html" class="nav-btn">🏠 На главную</a>
             <a href="table.html" class="nav-btn">📚 Шпаргалка (термины)</a>
         </div>
-        <a href="tests.html" class="nav-btn">🧠 Глобальный тест →</a>
+        <div class="nav-group">
+            <a href="t.html" class="nav-btn">📝 Глобальный тест</a>
+            <a href="q21.html" class="nav-btn">🔥 Мотивация</a>
+        </div>
     </div>
     <div class="hero">
-        <h1>📘 Шпаргалка по коду: Бэкенд + Фронтенд</h1>
-        <p>Быстрая навигация по файлам, функциям и ключевым механизмам проекта (FastAPI, SQLAlchemy, React, MUI).</p>
+        <h1>📄 Шпаргалка по коду для экзамена</h1>
+        <p>Структура проекта, ключевые файлы, функции и куски кода для бэкенда (FastAPI + SQLAlchemy) и фронтенда (React + TypeScript + MUI).</p>
     </div>
 
-    <!-- 1. Бэкенд -->
     <div class="section">
-        <h2>⚙️ 1. Бэкенд (FastAPI + SQLAlchemy)</h2>
-
-        <h3>1.1. ORM (SQLAlchemy) — взаимодействие с базой</h3>
+        <h2>Оглавление</h2>
         <ul>
-            <li><strong>Модели</strong> — <code>app/models.py</code> (классы <code>Brand</code>, <code>Category</code>, <code>Product</code>, <code>User</code>, <code>Order</code>). Наследуются от <code>Base</code> (из <code>database.py</code>).</li>
-            <li><strong>Сессии</strong> — <code>app/database.py</code>: <code>engine</code>, <code>SessionLocal</code>, функция <code>get_db</code> (зависимость).</li>
-            <li><strong>CRUD</strong> — <code>app/crud.py</code>: функции <code>create_*</code>, <code>get_*</code>, <code>update_*</code>, <code>delete_*</code>, принимают <code>Session</code>.</li>
+            <li><a href="#backend" style="color:#3b82f6;">1. Бэкенд (FastAPI + SQLAlchemy)</a>
+                <ul>
+                    <li><a href="#b1" style="color:#94a3b8;">1.1. Взаимодействие с ORM (SQLAlchemy)</a></li>
+                    <li><a href="#b2" style="color:#94a3b8;">1.2. Создание моделей и записей, обратное извлечение</a></li>
+                    <li><a href="#b3" style="color:#94a3b8;">1.3. Роутинг (маршрутизация)</a></li>
+                    <li><a href="#b4" style="color:#94a3b8;">1.4. Сохранение (Transaction)</a></li>
+                    <li><a href="#b5" style="color:#94a3b8;">1.5. Авторизация и аутентификация (JWT)</a></li>
+                    <li><a href="#b6" style="color:#94a3b8;">1.6. Веб-сокеты (WebSocket)</a></li>
+                </ul>
+            </li>
+            <li><a href="#frontend" style="color:#3b82f6;">2. Фронтенд (React + TypeScript + MUI)</a>
+                <ul>
+                    <li><a href="#f1" style="color:#94a3b8;">2.1. Права и роли</a></li>
+                    <li><a href="#f2" style="color:#94a3b8;">2.2. Компоненты React (View)</a></li>
+                    <li><a href="#f3" style="color:#94a3b8;">2.3. WebSocket на фронтенде</a></li>
+                    <li><a href="#f4" style="color:#94a3b8;">2.4. Использование готовой библиотеки интерфейса (MUI)</a></li>
+                </ul>
+            </li>
+            <li><a href="#tips" style="color:#3b82f6;">3. Как быстро ориентироваться в коде</a></li>
+            <li><a href="#exam" style="color:#3b82f6;">4. Что важно подчеркнуть на экзамене</a></li>
         </ul>
-        <div class="code-block">
+    </div>
+
+    <!-- ==================== БЭКЕНД ==================== -->
+    <div class="section" id="backend">
+        <h2>1. Бэкенд (FastAPI + SQLAlchemy)</h2>
+
+        <div id="b1">
+            <h3>1.1. Взаимодействие с ORM (SQLAlchemy)</h3>
+            <p><span class="file-path">app/models.py</span> — все модели наследуются от <code>Base</code> (определён в <span class="file-path">database.py</span>).</p>
+            <div class="code-block">
 # models.py
 class Product(Base):
     __tablename__ = "products"
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     price = Column(Float, nullable=False)
+    # relationships
+            </div>
+            <p><span class="file-path">app/database.py</span> — движок, сессии, зависимость <code>get_db</code>.</p>
+            <div class="code-block">
+# database.py
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+            </div>
+            <p><span class="file-path">app/crud.py</span> — CRUD-операции с сессией.</p>
+            <div class="code-block">
+def get_product(db: Session, product_id: int):
+    return db.query(models.Product).filter(models.Product.id == product_id).first()
+            </div>
+            <p>Использование в роутере:</p>
+            <div class="code-block">
+@router.get("/products/{product_id}")
+def read_product(product_id: int, db: Session = Depends(get_db)):
+    product = crud.get_product(db, product_id)
+    ...
+            </div>
         </div>
 
-        <h3>1.2. Создание моделей и записей, обратное извлечение</h3>
-        <ul>
-            <li><strong>Создание таблиц</strong> — <code>Base.metadata.create_all(bind=engine)</code> в <code>main.py</code> (lifespan).</li>
-            <li><strong>Создание записи</strong> (в <code>crud.py</code>): <code>db.add(объект)</code> → <code>db.commit()</code> → <code>db.refresh()</code>.</li>
-            <li><strong>Извлечение</strong> — <code>db.query(Модель).filter(...).first()</code> или <code>.all()</code>.</li>
-        </ul>
-        <div class="code-block">
-# Создание
+        <div id="b2">
+            <h3>1.2. Создание моделей и записей, обратное извлечение</h3>
+            <p><span class="file-path">main.py</span> — создание таблиц при старте:</p>
+            <div class="code-block">
+Base.metadata.create_all(bind=engine)
+            </div>
+            <p>Создание записи (пример в <span class="file-path">crud.py</span>):</p>
+            <div class="code-block">
 def create_product(db: Session, product: schemas.ProductCreate):
     db_product = models.Product(**product.model_dump())
     db.add(db_product)
     db.commit()
     db.refresh(db_product)
     return db_product
-
-# Извлечение
-def get_product(db: Session, product_id: int):
-    return db.query(models.Product).filter(models.Product.id == product_id).first()
+            </div>
+            <p>Извлечение: <code>db.query(Модель).filter(...).first()</code> или <code>.all()</code>.</p>
         </div>
 
-        <h3>1.3. Роутинг (маршрутизация)</h3>
-        <ul>
-            <li><strong>Главный файл</strong> — <code>app/main.py</code>: подключаются все роутеры через <code>app.include_router()</code>.</li>
-            <li><strong>Файлы роутеров</strong> — <code>app/routers/</code> (auth, users, products, categories, brands, orders). Каждый содержит <code>APIRouter()</code> и декораторы.</li>
-            <li><strong>Формирование URL</strong> — префикс из <code>main.py</code> (<code>/api/v1</code>) + префикс роутера (<code>/products</code>) + путь внутри роутера (<code>/{id}</code>).</li>
-        </ul>
+        <div id="b3">
+            <h3>1.3. Роутинг (маршрутизация)</h3>
+            <p><span class="file-path">app/main.py</span> — подключение роутеров:</p>
+            <div class="code-block">
+app.include_router(auth.router, prefix="/api/v1")
+app.include_router(products.router, prefix="/api/v1")
+...
+            </div>
+            <p>Роутеры в <span class="file-path">app/routers/</span> — каждый файл с <code>APIRouter()</code>:</p>
+            <div class="code-block">
+router = APIRouter(prefix="/products", tags=["📦 Товары"])
+@router.post("/")
+def create_product(...): ...
+@router.get("/{product_id}")
+def get_product(...): ...
+            </div>
+            <p><strong>Как формируется URL:</strong> префикс из main + префикс роутера + путь внутри роутера. Например, <code>/api/v1/products/</code> и <code>/api/v1/products/1</code>.</p>
+        </div>
 
-        <h3>1.4. Сохранение (транзакции)</h3>
-        <ul>
-            <li><code>db.add()</code> — помещает объект в сессию.</li>
-            <li><code>db.commit()</code> — фиксирует транзакцию.</li>
-            <li><code>db.refresh()</code> — обновляет объект из БД (подгружает ID, даты).</li>
-            <li>При ошибке сессия закрывается без коммита (автоматический откат).</li>
-        </ul>
+        <div id="b4">
+            <h3>1.4. Сохранение (Transaction)</h3>
+            <ul>
+                <li><code>db.add(объект)</code> — добавляет объект в сессию.</li>
+                <li><code>db.commit()</code> — фиксирует изменения в БД.</li>
+                <li><code>db.refresh(объект)</code> — обновляет объект из БД (подгружает сгенерированные поля).</li>
+                <li>При ошибке сессия закрывается без коммита (автооткат).</li>
+            </ul>
+        </div>
 
-        <h3>1.5. Авторизация и аутентификация (JWT)</h3>
-        <ul>
-            <li><strong>Настройки</strong> — <code>app/config.py</code> (SECRET_KEY, ALGORITHM).</li>
-            <li><strong>Генерация токена</strong> — <code>app/routers/auth.py</code>: функция <code>create_access_token</code>.</li>
-            <li><strong>Получение токена</strong> — эндпоинт <code>/auth/token</code> (OAuth2PasswordRequestForm).</li>
-            <li><strong>Проверка токена</strong> — <code>app/dependencies.py</code>:
-                <ul>
-                    <li><code>oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")</code></li>
-                    <li><code>get_current_user</code> — декодирует токен, извлекает пользователя.</li>
-                    <li><code>require_admin</code>, <code>require_admin_or_manager</code> — проверяют роли.</li>
-                </ul>
-            </li>
-        </ul>
-        <div class="code-block">
-# Пример защиты эндпоинта
+        <div id="b5">
+            <h3>1.5. Авторизация и аутентификация (JWT)</h3>
+            <ul>
+                <li><span class="file-path">app/config.py</span> — <code>SECRET_KEY</code>, <code>ALGORITHM</code>.</li>
+                <li><span class="file-path">app/routers/auth.py</span> — <code>create_access_token</code> и эндпоинт <code>/auth/token</code>.</li>
+                <li><span class="file-path">app/dependencies.py</span> — <code>oauth2_scheme</code>, <code>get_current_user</code>, <code>require_admin</code>, <code>require_admin_or_manager</code>.</li>
+            </ul>
+            <p>Пример защиты эндпоинта:</p>
+            <div class="code-block">
 @router.post("/brands/")
 def create_brand(
     brand: schemas.BrandCreate,
@@ -150,124 +242,107 @@ def create_brand(
     current_user: schemas.User = Depends(require_admin_or_manager)
 ):
     ...
+            </div>
         </div>
 
-        <h3>1.6. WebSocket (уведомления в реальном времени)</h3>
-        <ul>
-            <li><strong>Менеджер соединений</strong> — <code>app/websocket_manager.py</code> (класс <code>ConnectionManager</code>).</li>
-            <li><strong>Эндпоинт</strong> — <code>@app.websocket("/ws/notifications")</code> в <code>main.py</code>.</li>
-            <li><strong>Отправка сообщения</strong> — <code>asyncio.create_task(manager.send_message(...))</code> (например, после создания заказа).</li>
-        </ul>
-    </div>
-
-    <!-- 2. Фронтенд -->
-    <div class="section">
-        <h2>⚛️ 2. Фронтенд (React + TypeScript + MUI)</h2>
-
-        <h3>2.1. Права и роли</h3>
-        <ul>
-            <li><strong>Хранение роли</strong> — <code>src/contexts/AuthContext.tsx</code> (объект <code>user</code> с полем <code>role</code>).</li>
-            <li><strong>Защита маршрутов</strong> — <code>src/components/PrivateRoute.tsx</code> проверяет <code>allowedRoles</code>.</li>
-            <li><strong>Фильтрация меню</strong> — в <code>Layout.tsx</code> пункты меню имеют <code>roles</code>, и они отображаются только если роль пользователя входит в список.</li>
-        </ul>
-
-        <h3>2.2. Компоненты React (View)</h3>
-        <ul>
-            <li><strong>Структура</strong> — <code>src/pages/</code> (страницы: Login, Dashboard, Products, Categories, Brands, Users, Shop/...).</li>
-            <li><strong>Переиспользуемые компоненты</strong> — <code>src/components/</code> (Layout, PrivateRoute, ImageManager, NotificationSnackbar).</li>
-            <li><strong>Хуки</strong> — <code>useState</code>, <code>useEffect</code>, <code>useNavigate</code>, <code>useParams</code>, кастомный <code>useAuth</code>.</li>
-            <li><strong>API</strong> — axios-инстанс в <code>src/api/client.ts</code>.</li>
-            <li><strong>Навигация</strong> — <code>react-router-dom</code> (Routes, Link, useNavigate).</li>
-        </ul>
-
-        <h3>2.3. WebSocket на фронтенде</h3>
-        <ul>
-            <li><strong>Контекст</strong> — <code>src/contexts/WebSocketContext.tsx</code> создаёт соединение к <code>ws://localhost:8000/ws/notifications</code> для ролей admin/manager.</li>
-            <li><strong>Обработка сообщений</strong> — при получении <code>new_order</code> генерируется событие, которое перехватывает <code>NotificationSnackbar</code>.</li>
-        </ul>
-
-        <h3>2.4. Использование MUI</h3>
-        <ul>
-            <li><strong>Тема</strong> — <code>src/theme.ts</code> (цвета, шрифты).</li>
-            <li><strong>Подключение</strong> — <code>ThemeProvider</code> в <code>index.tsx</code>.</li>
-            <li><strong>Компоненты</strong> — <code>Button</code>, <code>TextField</code>, <code>Table</code>, <code>Card</code>, <code>Drawer</code>, <code>Snackbar</code>, <code>Alert</code>, иконки из <code>@mui/icons-material</code>.</li>
-        </ul>
-    </div>
-
-    <!-- 3. Как быстро ориентироваться в коде -->
-    <div class="section">
-        <h2>🔍 3. Как быстро ориентироваться в коде</h2>
-        <ul class="tip-list">
-            <li><strong>Найти эндпоинт</strong> → <code>app/routers/</code> → нужный файл по названию → декоратор (<code>@router.get(...)</code>).</li>
-            <li><strong>Понять модель</strong> → <code>app/models.py</code> (класс + поля).</li>
-            <li><strong>Увидеть бизнес-логику</strong> → <code>app/crud.py</code> (функции <code>create_*</code>, <code>get_*</code>).</li>
-            <li><strong>Аутентификация</strong> → <code>app/routers/auth.py</code> (генерация токена) + <code>app/dependencies.py</code> (проверка токена).</li>
-            <li><strong>Фронтенд</strong> → <code>src/App.tsx</code> (маршруты), затем <code>src/pages/</code> и <code>src/components/</code>.</li>
-            <li><strong>Роли</strong> → <code>AuthContext</code> (хранение) + <code>PrivateRoute</code> (проверка).</li>
-            <li><strong>WebSocket</strong> → <code>WebSocketContext</code> + <code>NotificationSnackbar</code>.</li>
-            <li>Используйте поиск (Ctrl+Shift+F): ищите названия функций, URL, имена моделей.</li>
-        </ul>
-    </div>
-
-    <!-- 4. Что важно подчеркнуть на экзамене -->
-    <div class="section">
-        <h2>💡 4. Что важно подчеркнуть на экзамене</h2>
-        <ul class="tip-list">
-            <li><strong>ORM</strong> — мы описываем модели на Python, SQLAlchemy преобразует их в SQL-запросы, мы не пишем сырые запросы.</li>
-            <li><strong>JWT</strong> — stateless: токен подписан и содержит все данные, сервер не хранит сессии.</li>
-            <li><strong>WebSocket</strong> — двунаправленная связь для push-уведомлений, в отличие от HTTP (запрос-ответ).</li>
-            <li><strong>React-компоненты</strong> — функциональные, используют хуки для состояния и эффектов.</li>
-            <li><strong>Роли</strong> — проверяются дважды: на бэкенде (в каждом защищённом эндпоинте) и на фронтенде (скрытие элементов и защита маршрутов).</li>
-            <li><strong>MUI</strong> — ускоряет разработку за счёт готовых компонентов и кастомизации через тему.</li>
-        </ul>
-    </div>
-
-    <!-- Глоссарий -->
-    <div class="section glossary">
-        <h3>📖 Глоссарий ключевых терминов</h3>
-        <div class="glossary-item">
-            <div class="glossary-term">ORM (Object-Relational Mapping)</div>
-            <div class="glossary-def">Технология отображения объектов на реляционные таблицы (SQLAlchemy).<br><span class="glossary-en">Object-Relational Mapping</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">JWT (JSON Web Token)</div>
-            <div class="glossary-def">Stateless токен с подписью, содержит данные пользователя и срок истечения.<br><span class="glossary-en">JSON Web Token</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">WebSocket</div>
-            <div class="glossary-def">Протокол двунаправленной связи в реальном времени (не HTTP).<br><span class="glossary-en">WebSocket</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">CRUD</div>
-            <div class="glossary-def">Create, Read, Update, Delete — базовые операции с данными.<br><span class="glossary-en">CRUD</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">API Router</div>
-            <div class="glossary-def">Группа эндпоинтов (в FastAPI — APIRouter).<br><span class="glossary-en">APIRouter</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">Сессия (Session) SQLAlchemy</div>
-            <div class="glossary-def">Объект, управляющий подключением к БД и транзакциями.<br><span class="glossary-en">SQLAlchemy Session</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">React Context</div>
-            <div class="glossary-def">Механизм передачи данных через дерево компонентов без props drilling.<br><span class="glossary-en">React Context</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">MUI (Material-UI)</div>
-            <div class="glossary-def">Библиотека компонентов React, реализующих Material Design.<br><span class="glossary-en">Material-UI</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">Хук (Hook)</div>
-            <div class="glossary-def">Функция React, позволяющая использовать состояние и эффекты в функциональных компонентах (useState, useEffect).<br><span class="glossary-en">React Hook</span></div>
-        </div>
-        <div class="glossary-item">
-            <div class="glossary-term">OAuth2PasswordRequestForm</div>
-            <div class="glossary-def">Стандартная форма FastAPI для получения логина/пароля в эндпоинте /token.<br><span class="glossary-en">OAuth2PasswordRequestForm</span></div>
+        <div id="b6">
+            <h3>1.6. Веб-сокеты (WebSocket)</h3>
+            <p><span class="file-path">app/websocket_manager.py</span> — класс <code>ConnectionManager</code> с методами <code>connect</code>, <code>disconnect</code>, <code>send_message</code>.</p>
+            <p><span class="file-path">app/main.py</span> — эндпоинт WebSocket:</p>
+            <div class="code-block">
+@app.websocket("/ws/notifications")
+async def websocket_endpoint(websocket: WebSocket):
+    await manager.connect(websocket)
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
+            </div>
+            <p>Отправка уведомления после создания заказа (<span class="file-path">app/routers/orders.py</span>):</p>
+            <div class="code-block">
+asyncio.create_task(manager.send_message({"type": "new_order", ...}))
+            </div>
         </div>
     </div>
 
-    <footer>Шпаргалка по коду · Бэкенд (FastAPI + SQLAlchemy) · Фронтенд (React + MUI) · HCI Экзамен</footer>
+    <!-- ==================== ФРОНТЕНД ==================== -->
+    <div class="section" id="frontend">
+        <h2>2. Фронтенд (React + TypeScript + MUI)</h2>
+
+        <div id="f1">
+            <h3>2.1. Права и роли</h3>
+            <p><span class="file-path">src/contexts/AuthContext.tsx</span> — контекст с <code>user</code> (поле <code>role</code>).</p>
+            <p><span class="file-path">src/components/PrivateRoute.tsx</span> — проверяет <code>allowedRoles</code>, редиректит на <code>/unauthorized</code>.</p>
+            <p>В <span class="file-path">App.tsx</span> маршруты обёрнуты в <code>PrivateRoute</code> с разными ролями:</p>
+            <div class="code-block">
+&lt;Route path="/admin/users" element={
+  &lt;PrivateRoute allowedRoles={['admin']}&gt;
+    &lt;Users /&gt;
+  &lt;/PrivateRoute&gt;
+} /&gt;
+            </div>
+            <p>Фильтрация меню в <span class="file-path">Layout.tsx</span>: пункты имеют массив <code>roles</code>, отображаются только при совпадении с ролью пользователя.</p>
+        </div>
+
+        <div id="f2">
+            <h3>2.2. Компоненты React (View)</h3>
+            <ul>
+                <li><span class="file-path">src/pages/</span> — страницы: Login, Dashboard, Products, Categories, Brands, Users, Shop/ (публичные).</li>
+                <li><span class="file-path">src/components/</span> — переиспользуемые: Layout, PrivateRoute, ShopLayout, ImageManager, NotificationSnackbar.</li>
+                <li>Компоненты функциональные, используют <code>useState</code>, <code>useEffect</code>, <code>useNavigate</code>, <code>useParams</code>, <code>useAuth</code>.</li>
+                <li>API-запросы через <span class="file-path">src/api/client.ts</span> (axios-инстанс).</li>
+                <li>Навигация: <code>react-router-dom</code> — <code>Link</code>, <code>useNavigate</code>, <code>Outlet</code>.</li>
+            </ul>
+        </div>
+
+        <div id="f3">
+            <h3>2.3. WebSocket на фронтенде</h3>
+            <p><span class="file-path">src/contexts/WebSocketContext.tsx</span> — создаёт соединение к <code>ws://localhost:8000/ws/notifications</code> для ролей admin/manager.</p>
+            <p>При получении сообщения типа <code>new_order</code> генерируется событие <code>newOrder</code>.</p>
+            <p><span class="file-path">src/components/NotificationSnackbar.tsx</span> — слушает это событие и показывает Snackbar (Material-UI).</p>
+        </div>
+
+        <div id="f4">
+            <h3>2.4. Использование готовой библиотеки интерфейса (MUI)</h3>
+            <ul>
+                <li><span class="file-path">src/theme.ts</span> — кастомная тема MUI (цвета, шрифты, скругления).</li>
+                <li><span class="file-path">src/index.tsx</span> — <code>ThemeProvider</code> оборачивает приложение.</li>
+                <li>В компонентах импортируются готовые компоненты из <code>@mui/material</code> и <code>@mui/icons-material</code>.</li>
+                <li>Стилизация через проп <code>sx</code> или <code>styled</code>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== КАК ОРИЕНТИРОВАТЬСЯ ==================== -->
+    <div class="section" id="tips">
+        <h2>3. Как быстро ориентироваться в коде</h2>
+        <ul>
+            <li><strong>Эндпоинты:</strong> <code>app/routers/</code> → ищите файл по теме, смотрите декораторы.</li>
+            <li><strong>Модели:</strong> <code>app/models.py</code>.</li>
+            <li><strong>Бизнес-логика:</strong> <code>app/crud.py</code>.</li>
+            <li><strong>Аутентификация:</strong> <code>app/routers/auth.py</code> + <code>app/dependencies.py</code>.</li>
+            <li><strong>Фронтенд:</strong> начинайте с <code>src/App.tsx</code>, затем <code>src/pages/</code> и <code>src/components/</code>.</li>
+            <li><strong>Роли:</strong> <code>AuthContext</code> и <code>PrivateRoute</code>.</li>
+            <li><strong>WebSocket:</strong> <code>WebSocketContext</code> и <code>NotificationSnackbar</code>.</li>
+            <li>Используйте поиск (<kbd>Ctrl+Shift+F</kbd>) по названиям функций, URL, классам.</li>
+        </ul>
+    </div>
+
+    <!-- ==================== ЧТО ПОДЧЕРКНУТЬ ==================== -->
+    <div class="section" id="exam">
+        <h2>4. Что важно подчеркнуть на экзамене</h2>
+        <ul>
+            <li><strong>ORM</strong> — не пишем SQL, описываем модели Python, SQLAlchemy преобразует в запросы.</li>
+            <li><strong>JWT</strong> — не храним сессии, токен подписан и содержит всё о пользователе.</li>
+            <li><strong>WebSocket</strong> — push-уведомления в реальном времени, отличие от HTTP (запрос-ответ).</li>
+            <li><strong>React-компоненты</strong> — функциональные, хуки (<code>useState</code>, <code>useEffect</code>).</li>
+            <li><strong>Роли</strong> — на бэкенде (проверка в эндпоинтах) и на фронтенде (скрытие UI и защита маршрутов).</li>
+            <li><strong>MUI</strong> — ускоряет разработку готовыми компонентами и кастомизацией через тему.</li>
+        </ul>
+    </div>
+
+    <footer>Шпаргалка по коду для экзамена · Все файлы и куски кода сохранены · Удачи!</footer>
 </div>
 </body>
 </html>
